@@ -1,0 +1,51 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: hnunumerical.bst
+Database file #1: bib/references.bib
+-- HNUTThesis.bst version 0.1 (2017/08/19) by Cheng Chang.
+-- https://github.com/chengchang/hnuthesis
+-- See the "userguide.pdf" manual for usage information.
+
+Done.
+You've used 8 entries,
+            2528 wiz_defined-function locations,
+            620 strings with 5632 characters,
+and the built_in function-call counts, 2577 in all, are:
+= -- 257
+> -- 102
+< -- 5
++ -- 48
+- -- 24
+* -- 183
+:= -- 359
+add.period$ -- 19
+call.type$ -- 8
+change.case$ -- 0
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 105
+empty$ -- 238
+format.name$ -- 30
+if$ -- 597
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 8
+newline$ -- 46
+num.names$ -- 8
+pop$ -- 32
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 87
+stack$ -- 0
+substring$ -- 227
+swap$ -- 32
+text.length$ -- 5
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 0
+warning$ -- 0
+while$ -- 27
+width$ -- 9
+write$ -- 97
