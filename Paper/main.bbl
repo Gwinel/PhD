@@ -47,4 +47,9 @@ Fan B, Andersen D~G, Kaminsky M.
 \newblock In: Proc of NSDI, volume~13.
 \newblock 2013,  385--398
 
+\bibitem{broder2004network}
+Broder A, Mitzenmacher M.
+\newblock Network applications of bloom filters: A survey.
+\newblock Internet mathematics, 2004, 1(4):485--509
+
 \end{thebibliography}

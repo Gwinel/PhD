@@ -12,14 +12,18 @@
 \contentsline {subsubsection}{\numberline {(1)}插入操作}{7}{subsubsection.1.2.1.1}
 \contentsline {subsubsection}{\numberline {(2)}删除操作}{9}{subsubsection.1.2.1.2}
 \contentsline {subsubsection}{\numberline {(3)}查询操作}{10}{subsubsection.1.2.1.3}
-\contentsline {subsection}{\numberline {1.2.2}Cuckoo过滤器算法}{11}{subsection.1.2.2}
-\contentsline {section}{\numberline {1.3}并发Cuckoo过滤器}{11}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}}{11}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}}{11}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}}{11}{subsection.1.3.3}
-\contentsline {section}{\numberline {1.4}本章小结}{11}{section.1.4}
-\contentsline {chapter}{参考文献}{12}{chapter*.8}
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}读学位期间所发表的学术论文}{13}{appendix.A}
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}读学位期间所参加的科研项目}{14}{appendix.B}
-\contentsline {chapter}{致\hskip 1em\relax 谢}{15}{appendix*.9}
+\contentsline {subsection}{\numberline {1.2.2}指纹信息的长度}{10}{subsection.1.2.2}
+\contentsline {subsubsection}{\numberline {(1)}指纹信息下限约束}{11}{subsubsection.1.2.2.1}
+\contentsline {subsubsection}{\numberline {(2)}实验评估}{12}{subsubsection.1.2.2.2}
+\contentsline {subsubsection}{\numberline {(3)}启示}{12}{subsubsection.1.2.2.3}
+\contentsline {subsection}{\numberline {1.2.3}空间效率}{12}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}并发Cuckoo过滤器}{14}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}}{14}{subsection.1.3.1}
+\contentsline {subsection}{\numberline {1.3.2}}{14}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}}{14}{subsection.1.3.3}
+\contentsline {section}{\numberline {1.4}本章小结}{14}{section.1.4}
+\contentsline {chapter}{参考文献}{15}{chapter*.9}
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}读学位期间所发表的学术论文}{16}{appendix.A}
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}读学位期间所参加的科研项目}{17}{appendix.B}
+\contentsline {chapter}{致\hskip 1em\relax 谢}{18}{appendix*.10}
 \contentsfinish 

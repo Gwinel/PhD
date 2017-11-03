@@ -66,7 +66,7 @@
 首先假设布鲁姆过滤器中使用的k个哈希函数的计算结果都是均匀分布的，即每个元素都等概率地被哈希到m个bit位上的任何一个，与其他元素被哈希到的位置无关。
 则对某一特定bit位在一个元素由特定哈希函数插入时没有被置位为1的概率p$_1$为：
 \begin{equation}
-p_1 = 1-\frac{1}{m}
+p_1 = 1-{1/m}
 \end{equation}
 则k个哈希函数中都没有一个对其置位的概率p$_2$：
 \begin{equation}
@@ -78,23 +78,23 @@ p_3 = {p_2}^n = {p_1}^{kn}
 \end{equation}
 则此位被置位的概率p$_4$为：
 \begin{equation}
-p_4 = 1 - \left(1 - \frac{1}{m}\right)^{kn}
+p_4 = 1 - \left(1 - {1/m}\right)^{kn}
 \label{equ:alpha}
 \end{equation}
 现在考虑判定阶段，若对应某个判定元素的k个位全部置位为1，则可判定其在集合中。因此将某元素误判的概率为：
 \begin{equation}
-\epsilon = \left(1 - \left(1 - \frac{1}{m}\right)^{kn}\right)^k
+\epsilon = \left(1 - \left(1 - {1/m}\right)^{kn}\right)^k
 \label{equ:epsilon}
 \end{equation}
 
 
 由
-\begin{math} \left(1 + x\right)^{\frac{1}{x}} \thickapprox e \end{math}
+\begin{math} \left(1 + x\right)^{{1/x}} \thickapprox e \end{math}
 可知，但m很大时，满足
-\begin{math}-\frac{1}{m} \to 0\end{math}，
+$-{1/m}$ $\to 0$，
 可将公式\ref{equ:alpha}转化为：
 \begin{equation}
-\epsilon = \left(1 - \left(1 - \frac{1}{m}\right)^{{-m}\frac{-kn}{m}}\right)^k \thickapprox \left(1 - e^{-\frac{nk}{m}}\right)^k
+\epsilon = \left(1 - \left(1 - {1/m}\right)^{{-m}\frac{-kn}{m}}\right)^k \thickapprox \left(1 - e^{-\frac{nk}{m}}\right)^k
 \label{equ:beta}
 \end{equation}
 由公式\ref{equ:beta}可以初步断定\begin{math}\epsilon\end{math}与元素的个数n和位数组的长度m决定，增大n或者减小m都会导致\begin{math}\epsilon\end{math}的升高。这种计算方法不严格，因为前面假设哈希函数和散列后值的分布是相互独立的。
@@ -107,11 +107,11 @@ Mitzenmacher证明无假设情况下的误判率的期望值相同\cite{mitzenma
 对于选取什么样的哈希函数已经在前文中有过介绍，这里不再缀述。
 而对于哈希函数的个数，直观的认为越多越好。实际上，哈希函数越多，用于表达集合中每一个元素所需要的位数就越多，这与布鲁姆过滤器用较低的误判率换取空间的高效利用的初衷相悖。那么哈希函数的个数应该满足什么条件才能有最佳性能呢？
 
-下面推导对给定的\begin{math}\alpha\end{math}，k满足什么条件可以使\begin{math}\epsilon\end{math}最小化。
+下面推导对给定的$\alpha$，k满足什么条件可以使$\epsilon$最小化。
 
 令：
 \begin{equation}
-f\left(k\right) = \left(1 - e^{-\frac{nk}{m}}\right)^k 
+f\left(k\right) = \left(1 - e^{-{nk/m}}\right)^k 
 \end{equation}
 
 取 b = e$^{n/m}$，得：
@@ -121,12 +121,12 @@ f\left(k\right) = \left(1 - b^{-k}\right)^k
 
 两边取对数得： 
 \begin{equation}
-lnf\left(k\right) = k\ast ln\left(1 - b^{-k}\right)
+lnf\left(k\right) = kln\left(1 - b^{-k}\right)
 \end{equation}
 
 函数两边对k求导得：
 \begin{equation}
-\frac{1}{f\left(k\right)} f'\left(k\right) = ln\left(1 - b^{-k}\right) + k \frac{b^{-k}\ast lnb}{1 - b^{-k}} 
+{1/f(k)}\cdot f'(k) = ln(1 - b^{-k}) + k \frac{b^{-k}\cdot lnb}{1 - b^{-k}} 
 \label{equ:fk}
 \end{equation}
 
@@ -135,29 +135,30 @@ lnf\left(k\right) = k\ast ln\left(1 - b^{-k}\right)
 令：
 \begin{equation}
 \begin{split}
-\frac{1}{f\left(k\right)}f'\left(k\right) = ln\left(1 - b^{-k}\right) + k \frac{b^{-k}\ast lnb}{1 - b^{-k}} = 0 \\
-\Rightarrow \left(1 - b^{-k}\right) ln\left(1 - b^{-k}\right) = -k\ast b^{-k}lnb \\
+\frac{1}{f(k)}\cdot f'(k) = ln(1 - b^{-k}) + k\cdot \frac{b^{-k}\cdot lnb}{1 - b^{-k}} = 0 \\
+\Rightarrow (1 - b^{-k}) ln(1 - b^{-k}) = -k\cdot b^{-k}\cdot lnb \\
 \Rightarrow 1 - b^{-k} = b^{-k} \\
-\Rightarrow e{-\frac{kn}{m}} = \frac{1}{2}\\
-\Rightarrow k = ln2\ast \frac{m}{n} \thickapprox 0.7\frac{m}{n}
+\Rightarrow e^{-\frac{kn}{m}} = \frac{1}{2}\\
+\Rightarrow k = ln2\cdot {m/n} \thickapprox 0.7{m/n}
 \end{split}
 \end{equation}
-因此，对于固定的\begin{math}\alpha\end{math}，当\begin{math}k = 0.7\frac{m}{n}\end{math}时具有最低的误判率，此时\begin{math}\epsilon\end{math}等于：
+因此，对于固定的$\alpha$，当$k = 0.7{m/n}$时具有最低的误判率，此时$\epsilon$等于：
 \begin{equation}
-\left(1 - \frac{1}{2}\right)^k = 2^{-ln2{m}{n}} \thickapprox 0.62\frac{m}{n}
+(1 - {1/2})^k = 2^{-ln2\cdot\frac{m}{n}} \thickapprox 0.62{m/n}
 \end{equation}
 
 \subsection{最优位数组长度}
+\label{sec:opt_m}
 下面进行给定一定的误判率上限，布鲁姆过滤器至少需要多少位才能表示全集中任意的x个元素的集合。
-假设全集中元素的个数为n，最大误判率为\begin{math}\epsilon\end{math}。以此为前提展开对位数组大小的推导。
+假设全集中元素的个数为n，最大误判率为$epsilon$。以此为前提展开对位数组大小的推导。
 
-假设S$_n$为全集中任取n个元素的集合，B是表示S$_n$的位数组。
-那么对于集合S$_n$中任意一个元素x，在B中查询x都能得到肯定的结果，即B能够接受x。
-显然，由于布鲁姆过滤器引入允许误判，B能够接受的不仅仅是S$_n$中的元素，它还允许最多\begin{math}\epsilon\end{math}*(u - n)个误报。因此，对于一个确定的位数组来说，它能够接受总共n + \begin{math}\epsilon\end{math}*(u - n)个元素。在n + \begin{math}\epsilon\end{math}*(u - n)个元素中，B真正表示的只有其中n个，所以一个确定的位数组可以表示:
+假设$S_n$为全集中任取$n$个元素的集合，$B$是表示$S_n$的位数组。
+那么对于集合$S_n$中任意一个元素$x$，在$B$中查询$x$都能得到肯定的结果，即$B$能够接受$x$。
+显然，由于布鲁姆过滤器引入允许误判，$B$能够接受的不仅仅是$S_n$中的元素，它还允许最多$\epsilon \cdot(u - n)$个误报。因此，对于一个确定的位数组来说，它能够接受总共$n +\epsilon\cdot(u - n)$个元素。在$n + \epsilon\cdot(u - n)$个元素中，$B$真正表示的只有其中$n$个，所以一个确定的位数组可以表示:
 \begin{equation}
-\binom{n + \epsilon *\left(u - n\right)}{n}
+\binom{n + \epsilon \cdot(u - n)}{n}
 \end{equation}
-个集合。m位的位数组一共有2$^m$个不同的组合，可以进一步推导m位的位数组可以表示：
+个集合。$m$位的位数组一共有$2^m$个不同的组合，可以进一步推导$m$位的位数组可以表示：
 \begin{equation}
 2^m\binom{n + \epsilon *\left(u - n\right)}{n}
 \end{equation}
@@ -167,26 +168,26 @@ lnf\left(k\right) = k\ast ln\left(1 - b^{-k}\right)
 \end{equation}
 个。因此，要让布鲁姆过滤器的位数组大小能够满足所有包含n个元素的子集，必须满足：
 \begin{equation}
-2^m\binom{n + \epsilon *\left(u - n\right)}{n} \geq \binom{u}{n}
+2^m\cdot\binom{n + \epsilon \cdot(u - n)}{n} \geq \binom{u}{n}
 \end{equation}
 即m需要满足：
 \begin{equation}
-m \geq log_2\frac{\binom{u}{n}}{\binom{n + \epsilon *\left(u - n\right)}{n}} \geq log_2\frac{\binom{u}{n}}{\binom{\epsilon u}{n}} \thickapprox log_2\epsilon^{-n} = n log_2\left(\frac{1}{\epsilon}\right)
+m \geq log_2({\binom{u}{n}/\binom{n + \epsilon \cdot(u - n)}{n}}) \geq log_2({\binom{u}{n}/\binom{\epsilon u}{n}}) \thickapprox log_2\epsilon^{-n} = n log_2({1/\epsilon})
 \label{equ:bfm}
 \end{equation}
-式~\ref{equ:bfm}中近似相等有个重要的前提条件：n远小于\begin{math}\epsilon\end{math}u，这个前提在实际的问题中也是常见的。
-根据式~\ref{equ:bfm}中的不等式，得到如下结论：在误判率上限为\begin{math}\epsilon\end{math}的情况下，m至少要等于\textit{n}log$_2$(1/\begin{math}\epsilon\end{math})才能表示任意n个元素的集合。
+式~\ref{equ:bfm}中近似相等有个重要的前提条件：$n$远小于$\epsilon\cdot u$，这个前提在实际的问题中也是常见的。
+根据式~\ref{equ:bfm}中的不等式，得到如下结论：在误判率上限为$\epsilon$的情况下，$m$至少要等于$nlog_2{1/\epsilon}$才能表示任意$n$个元素的集合。
 
-在本章~\ref{sec:num_hashf}中推导出哈希函数的个数k等于\begin{math}k = 0.7\frac{m}{n}\end{math}时可以得到最小误判率，此时的误判率为\begin{math}(\frac{1}{2})^{0.7\frac{m}{n}}\end{math}。
-令\begin{math}(\frac{1}{2})^{0.7\frac{m}{n}} \leq \epsilon \end{math}，可以进一步推导：
+在本章~\ref{sec:num_hashf}中推导出哈希函数的个数$k$等于$k = 0.7{m/n}$时可以得到最小误判率，此时的误判率为$(\frac{1}{2})^{0.7{m/n}}$。
+令$(\frac{1}{2})^{0.7{m/n}} \leq \epsilon $，可以进一步推导：
 \begin{equation}
-m \geq n\frac{log_2(\frac{1}{\epsilon})}{ln2} = nlog_2e\ast log_2(\frac{1}{\epsilon}) \thickapprox 1.44\textit{n}log_2(\frac{1}{\epsilon})
+m \geq n\frac{log_2({1/\epsilon})}{ln2} = nlog_2e\ast log_2({1/\epsilon}) \thickapprox 1.44n\cdot log_2({1/\epsilon})
 \label{equ:bfm2}
 \end{equation}
 
-式~\ref{equ:bfm2}说明当k取到最优值时，要保证误判率不超过给定的上限\begin{math}\epsilon\end{math}，m至少要取到最小值的1.44倍。
-可以验证，当给定\begin{math}\epsilon\end{math} = 0.01时，存储每个元素需要9.6比特。
-而将\begin{math}\epsilon\end{math} = 0.001时，每个元素需要额外的增加4.8比特。
+式~\ref{equ:bfm2}说明当k取到最优值时，要保证误判率不超过给定的上限$\epsilon$，$m$至少要取到最小值的1.44倍。
+可以验证，当给定$\epsilon = 0.01$时，存储每个元素需要9.6比特。
+而将$\epsilon = 0.001 $时，每个元素需要额外的增加4.8比特。
 所以，在实际的应用中，对于误判的容忍度不同，要求误判率越低，则存储每个元素需要的比特位越多，相同容量下存储的元素个数就越少。
 
 \section{Cuckoo过滤器}
@@ -204,6 +205,7 @@ m \geq n\frac{log_2(\frac{1}{\epsilon})}{ln2} = nlog_2e\ast log_2(\frac{1}{\epsi
 又支持动态的对元素的插入和删除，而不会造成漏报。
 
 \subsection{Cuckoo过滤器算法描述}
+\label{sec:cbf_algo}
 % 近几年，有研究人员将Cuckoo哈希表应用于集合元素查询。为了支持事务内存，Sanchez\cite{sanchez2007implementing}等人提出将每条事务的内存地址的读/写集存入到Cuckoo哈希表中，当哈希表内的元素达到饱和时，将其转化为布鲁姆过滤器。
 为了支持动态的插入和删除元素，Cuckoo过滤器采用的是一种称为\textbf{不完整键值(partial-key)} Cuckoo哈希的技术。
 Cuckoo过滤器是标准Cuckoo哈希表在集合元素查询算法领域的应用。
@@ -229,20 +231,15 @@ h_2(x) &= h_1(x)\bigoplus hash(\text{x的指纹信息})
 \label{equ:ckf}
 \end{equation}
 
-式~\ref{equ:ckf}的异或操作有一个重要的特性：h$_1$(x)可以通过h$_2$(x)和指纹信息用同样的公式推算出来。
-即就是说，替换编号为\textit{i}的哈希桶中的旧键(不论\textit{i}对应的是h$_1$还是h$_2$)，都可以通过当前桶编号\textit{i}以及存储在该桶内的指纹直接计算出旧键的备选哈希桶的编号\textit{j}，计算过程如式~\ref{equ:ckf2}所示。
-\begin{equation}
- % \begin{split}
-j = i \bigoplus hash(\text{指纹信息})
-%
-% \end{split}
-\end{equation}
+式~\ref{equ:ckf}的异或操作有一个重要的特性：$h_1(x)$可以通过$h_2(x)$和指纹信息用同样的公式推算出来。
+即就是说，替换编号为$i$的哈希桶中的旧键(不论$i$对应的是$h_1$还是$h_2$)，都可以通过当前桶编号\textit{i}以及存储在该桶内的指纹直接计算出旧键的备选哈希桶的编号\textit{j}，计算方式为：$j = i \bigoplus hash(\text{指纹信息})$。
+
 因此，在进行插入操作时，不用检索目标哈希桶内存储的条目的完整信息，只需要存储在哈希表中的指纹信息。
 
 另外，为了使众条目在哈希表中均匀分布，在与索引值进行异或运算之前，指纹信息已经进行过哈希运算。
 当指纹信息远小于哈希表的大小时，如果直接使用索引值与未经哈希的指纹信息进行异或运算推算接纳被踢出条目的哈希桶的位置，那么接纳被踢出的条目哈希桶与原来的哈希桶在位置上很近。
 下面举例说明。
-使用8比特的指纹信息时，接纳从\textit{i}中被踢出的条目的哈希桶的位置距离\textit{i}的最大距离为2$^8$。
+使用8比特的指纹信息时，接纳从\textit{i}中被踢出的条目的哈希桶的位置距离\textit{i}的最大距离为$2^8 = 256$。
 这时因为在进行异或运算时，会选取索引值的低8位进行运算，而高8位保持不变。
 对指纹信息进行哈希能够确保这些条目尽量分散在哈希表的不同位置，从而可以避免哈希碰撞，提高哈希表的空间利用率。
 
@@ -277,8 +274,8 @@ i = rand(i1, i2) \\% \tcc{随机的从i1、i2中选取一个桶} \\
 \end{algorithm}
 
 算法~\ref{algo:ckf_insert}给出了使用不完整键Cuckoo哈希方法对Cuckoo过滤器动态插入元素的过程。
-指纹信息的长度小于h$_1$和h$_2$的长度造成的后果有两个方面：
-\textbf{第一}，通过公式~\ref{equ:ckf}计算出的\textit{(h$_1$, h$_2$)}的组合的总数会远远小于使用完整的哈希值计算得到的组合的数量，这将导致哈希碰撞更严重；
+指纹信息的长度小于$h_1$和$h_2$的长度造成的后果有两个方面：
+\textbf{第一}，通过公式~\ref{equ:ckf}计算出的($h_1$, $h_2$)的组合的总数会远远小于使用完整的哈希值计算得到的组合的数量，这将导致哈希碰撞更严重；
 \textbf{第二}，允许插入两个具有相同指纹的条目\textit{x}和\textit{y}，在一个哈希桶内可能出现多个相同的指纹信息是合法的。
 但是如果相同的指纹信息的数量超过2b(b为哈希桶的大小)时，存储其指纹信息的哈希桶会过载。
 解决哈希桶过载的途径有多种。
@@ -300,7 +297,7 @@ Cuckoo过滤器可以直接从过滤器中移除相关条目的指纹完成删�
 \Fn{Delete(x)}{}{
 	f = fingerprint(x) \\
 	i1 = hash(x); \\
-	i2 = i1\begin{math}\bigoplus\end{math}hash(f) \\
+	i2 = i1$\bigoplus$hash(f) \\
 	\If{\text{bucket[i1]或bucket[i2]中含有f}}{
 		{从当前bucket内删除f的一个副本}\\
 		\Return $True$
@@ -317,14 +314,14 @@ Cuckoo过滤器可以直接从过滤器中移除相关条目的指纹完成删�
 
 在删除某个条目后，不需要对这个实体进行清理。
 这样可以避免在同一个桶内存有两个具有相同指纹信息的条目时的“误删”。
-假设条目\textit{x}和\textit{y}都映射到了桶\textit{i}$_1$内，并且具有相同的指纹信息\textit{f}。
-因为\textit{i}$_2$ = \textit{i}$_1$\begin{math}\bigoplus\end{math}hash(f)，所以它们同样能够保存在桶\textit{i}$_2$内.
+假设条目\textit{x}和\textit{y}都映射到了桶$i_1$内，并且具有相同的指纹信息\textit{f}。
+因为$i_2$ = $i_1\bigoplus hash(f)$，所以它们同样能够保存在桶$i_2$内.
 在删除\textit{x}时，不用考虑删除的指纹信息的副本是在插入\textit{x}还是\textit{y}是添加的。
-删除\textit{x}后，在桶\textit{i}$_1$、\textit{i}$_2$中\textit{y}仍然可以被查询到。
+删除\textit{x}后，在桶$i_1$、$i_2$中\textit{y}仍然可以被查询到。
 
 值得注意的是，在上面的例子中删除条目\textit{x}之后，过滤器的误判行为仍然存在。
 过滤器中的\textit{y}会在查询\textit{x}时误报，因为两者具有相同的桶索引值和指纹信息。
-误判行为仍然在近似集合元素查询数据结构接受的范围之内，误判率也仍然满足\begin{math}\epsilon\end{math}的上界约束条件。
+误判行为仍然在近似集合元素查询数据结构接受的范围之内，误判率也仍然满足$\epsilon$的上界约束条件。
 
 安全的删除条目有一个前提条件：被删除的\textit{x}必须是已经插入到了过滤器中的条目。
 否则的话，有可能造成过滤器内恰好就有相同指纹信息的条目。
@@ -337,7 +334,7 @@ Cuckoo过滤器可以直接从过滤器中移除相关条目的指纹完成删�
 \Fn{Lookup(x)}{}{
 	f = fingerprint(x) \\
 	i1 = hash(x); \\
-	i2 = i1\begin{math}\bigoplus\end{math}hash(f) \\
+	i2 = i1$\bigoplus$hash(f) \\
 	\If{\text{bucket[i1]或bucket[i2]中含有f}}{
 		\Return $True$
 	}
@@ -352,13 +349,154 @@ Cuckoo过滤器的查询操作相对简单。算法~\ref{algo:ckf_lookup}对这�
 然后遍历这些哈希桶：如果在任何一个桶内找到了\textit{x}的指纹，则返回True。否则返回False。
 值得注意的是，只要哈希桶不发生溢出，就能确保不存在任何误报。
 
-\subsection{Cuckoo过滤器的参数}
-\subsubsection{指纹信息的长度}
+\subsection{指纹信息的长度}
+在这一部分中，将探讨构造Cuckoo过滤器的几个关键参数。
+在Cuckoo过滤器中使用不完整键Cuckoo哈希方法存储指纹信息会导致指纹信息的下界值随着过滤器大小的增加而缓慢增加。
+这与用传统方法实现的过滤器相反，在标准布鲁姆过滤器中，指纹信息的大小只与预定的$\epsilon$有关。这个看上去似乎是Cuckoo过滤器的劣势，实际上它造成的影响微乎其微。
 
-\subsection{最优哈希桶大小}
+表~\ref{tab:ckf_para}列出了本小节所用到的一些关键参数及其含义。
+\begin{table}[htbp]
+  \centering
+  \caption{相关符号及其含义}
+  \label{tab:ckf_para}
+  \begin{tabular}{cc}
+    \toprule
+      参数  & 含义  \\
+    \midrule
+      $\epsilon$  					  &   误判率 \\
+        f 							  &   指纹信息的长度(单位：bit)\\
+      $\alpha$					      &   负载因子($0\leq\alpha\leq 1$) \\
+    	b                             &   每个哈希桶内包含的实体的数量 \\
+    	m 							  &	  哈希桶的数量 \\
+    	n                             &   条目(元素)的数量 \\
+        C 							  &   表达一个条目所需的平均位数(单位：bit)\\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection{指纹信息下限约束}
+在Cuckoo过滤器中，对于一个给定的元素，根据其当前位置和指纹信息使用不完整键哈希方法可以推导出它的备选哈希桶的索引值。
+这样，每个元素的候选哈希桶都不是独立的。
+比如，某一元素可以存放在桶$i_1$或$i_2$中，对于长度为$f$比特的指纹信息，根据公式~\ref{equ:ckf}，$i_2$可能的索引值最多有$2^f$种可能。
+若指纹信息的长度为一个字节，对给定的$i_1$，$i_2$最多只能偏离$i_1$256个位置。
+对于具有$m$个桶的哈希表而言，当$2^f \lq m$时，$i_2$能够选择的哈希桶的范围只是整个$m$个哈希桶的一个很小的子集。
+这会引起更多的碰撞。
+
+直观上看如果指纹信息的长度足够长，不完整Cuckoo哈希仍然能够接近标准Cuckoo哈希的冲突处理能力。
+然而，如果哈希表非常大，而此时指纹信息的长度相对来说要远远小于哈希表的大小，这样容易引起更多的哈希碰撞，从而导致插入失败的概率升高。
+当Cuckoo过滤器需要处理大量元素，而$\epsilon$设定一个中等偏低的值时，可能发生上述情形。
+接下来，将通过分析确定插入失败的概率下限。
+
+首先推导对于给定的$u$个元素，它们恰好映射到相同的两个哈希桶内的概率$p_1$。
+假设第一个元素$x$位于桶$i_1$内，并且指纹为$t_x$。
+如果其他的$u-1$个元素具有与$x$相同的桶索引值，它们必然满足以下两个条件：(1)它们的指纹都为$t_x$，出现的概率为$\frac{1}{2^f}$；
+(2)它们第一个桶索引值为$i_1$或者$i_1 \bigoplus h(t_x)$，出现的概率为$\frac{2}{m}$。
+因此，$u$个元素映射到相同的两个桶内的概率$p_1 = (\frac{2}{m}\ast \frac{1}{2^f})^{u-1}$
+
+现在考虑构建Cuckoo过滤器的随机插入$n$个元素的构建过程。
+假设初始化的哈希表桶数组满足$m = cn$，每个哈希桶容纳的元素个数为$b$，其中$c$为常数。
+当出现$u = 2b+1$个元素被映射到相同的两个桶内时，插入失败。
+这个概率为插入失败的概率下界。
+由于从$n$个元素中包含$2b+1$个元素的子集有$\binom{n}{2b+1}$个，$2b+1$个元素在插入过程中发生碰撞的期望值为：
+\begin{equation}
+\binom{n}{2b+1}(\frac{2}{2^fm})^{2b} = \binom{n}{2b+1}(\frac{2}{2^f{cn}})^{2b} = \Omega(\frac{n}{4^{bf}}) 
+\label{equ:ckf_f}
+\end{equation}
+
+因此，由式~\ref{equ:ckf_f}可以做出结论，$4^{bf}$必须满足$\Omega(n)$才能避免一场的插入失败的概率。
+指纹信息的长度最好为$f = \Omega(log(\frac{n}{b}))$比特。
+在第~\ref{sec:opt_m}节中指出标准的布鲁姆过滤器用于表示每个元素所需的比特数为常数(近似等于$ln(\frac{1}{\epsilon})$)。
+而Cuckoo过滤器指纹信息所需的长度为$\Omega(logn)$这个级别，这个结果看上去似乎不是特别理想。
+这会不会引起扩展性问题呢？
+实验表明桶容量$b$的在下界约束中的起决定作用：只要将$b$控制在合理的大小，指纹信息的长度仍然可以保持较小的值。
+
+\subsubsection{实验评估}
+%实验评估
+\textcolor{red}{todo}
+\subsubsection{启示}
+\textcolor{red}{todo}
+
+\subsection{空间效率}
+在第~\ref{sec:algo}节描述的Cuckoo过滤器的三种操作与每个哈希桶内包含多少实体无关。
+但是，为Cuckoo过滤器选择正确的参数对于空间效率具有重要意义。
+这一部分着重介绍如何选取合适的参数优化Cuckoo过滤器的空间效率。
+
+空间效率是通过计算在完整的过滤器中用于表示每个元素所用的平均比特数来衡量的。
+用哈希表的大小除以过滤器有效存储的元素的个数就是表示每个元素所用的平均比特数。
+尽管每个实体可以存储一条指纹信息，但是并不是所有的实体都已经存入了指纹信息——过滤器的哈希表内一定有空闲的实体。
+所以，每个元素实际上需要的比特数大于指纹信息的长度。
+如果每条指纹信息的长度为$f$比特，哈希表的负载因子为$\alpha$，则每个元素的空间开销C为：
+\begin{equation}
+C = \frac{\text{哈希表的大小}}{\text{元素个数}} = \frac{f\cdot \text{实体数量}}{\alpha \cdot \text{实体的数量}} = \frac{f}{\alpha} \text{bits.}
+\label{equ:space_cost}
+\end{equation}
+
+在前文中有过介绍，指纹信息的长度和负载因子都与哈希桶的大小有关。
+下面研究在给定的误判率$\epsilon$前提下，如何通过选取最优的桶大小$b$使$C$最小化。
+
+保持Cuckoo过滤器的总的大小为常量，改变哈希桶的大小会产生两方面的影响：
+\begin{itemize}
+\item \textbf{哈希桶容纳的实体数量越多，哈希表的空间占用率就越高。}对于使用两个哈希函数的Cuckoo过滤器，当桶能容纳的实体数$b = 1$时，哈希表的负载因子$\alpha$为50\%，
+而当$b = 2,4,8$时，$\alpha$分别为84\%，95\%和98\%。
+\item \textbf{哈希桶的容量越大，维持相同$\epsilon$需要的指纹信息的长度越长。}
+哈希桶的容量越大，进行查询时需要检查更多的实体，并且发现相同指纹信息的概率也会增加。
+在最坏情况下，查询一个并不存在的元素需要探测两个分别包含了$b$个实体的桶
+(当然并不是所有的哈希桶内都填满了实体，这里只是考虑最糟糕的情况；当哈希表的负载因子达到95\%时，已经很接近极限情况)。
+对于每一个实体而言，一次查询与存储的指纹相匹配并且返回成功匹配误报的概率最多为${1/2^f}$。
+在进行$2b$次这样的比较之后，误报率的上界为：
+\begin{equation}
+1 - (1 - {1/2^f})^{2b} \thickapprox {2b/2^f}
+\end{equation}
+该上界约束与哈希桶的容量$b$成正比。
+为了保证预定的误报率$\epsilon$不变，必须确保${2b/2^f}\leq \epsilon$，保证这个条件的最小指纹信息长度为：
+\begin{equation}
+f \geq \lceil log_2({2b/\epsilon})\rceil = \lceil log_2({1/\epsilon}) + log_2(2b)\rceil  
+\label{equ:upper_f}
+\end{equation}
+\end{itemize}
+
+由式~\ref{equ:space_cost}和\ref{equ:upper_f}可以推算存储每个元素的空间开销$C$受下面条件的限制：
+\begin{equation}
+C \geq {\lceil log_2({1/\epsilon}) + log_2(2b)\rceil /\alpha}
+\label{equ:space_cost_bound}
+\end{equation}
+$\alpha$随着$b$的增加而增加。
+当$b = 4$时，$\alpha = 0.95$，${1/\alpha} \thickapprox 1.05$。
+此时$C$ = 1.05$log_2({1/\epsilon}) + 1.05\ast 3$。
+式~\ref{equ:space_cost_bound}表明，当负载因子一定时，Cuckoo过滤器的空间开销要低于布鲁姆过滤器($1.44log_2({1/\epsilon})$)。
+
+\textcolor{red}{为了确定最优的哈希桶容量$b$，下面将通过实验比较参数$b$为不同的值时的空间效率。
+用不完整键Cuckoo哈希方法构造具有不同的指纹信息长度的哈希表，分别记录对应的平均空间开销和误判率。
+结果如图~\ref{fig:cbf_opt_b}所示。
+使空间效率最好的$b$的取值依赖于预定的误判率$\epsilon$：当$\epsilon > 0.002 $时，$b = 2$对应的平均空间开销要略好于$b = 4$对应的空间开销；而当$ 10^{-5} < \epsilon \leq 0.002$时，$b = 4$具有最小的空间开销。}
+
+综上所述，Cuckoo过滤器的默认参数配置为(2，4)，即每个元素有两个候选的哈希桶，每个哈希桶最多能够容纳4条指纹信息。
+选取这组参数作为默认配置的原因是实际的应用一般都要求$ 10^{-5} < \epsilon \leq 0.002$~\cite{broder2004network}。
+
 \section{并发Cuckoo过滤器}
+
 \subsection{}
 \subsection{}
 \subsection{}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{本章小结}

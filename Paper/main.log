@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  2 NOV 2017 20:46
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  3 NOV 2017 22:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2558,10 +2558,10 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
 
 [6]
 
-LaTeX Warning: Reference `sec:XX' on page 7 undefined on input line 210.
+LaTeX Warning: Reference `sec:XX' on page 7 undefined on input line 212.
 
 
-LaTeX Warning: Reference `equ:ckf2' on page 7 undefined on input line 233.
+LaTeX Warning: Reference `equ:ckf2' on page 7 undefined on input line 235.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2629,7 +2629,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[9]) (./main.bbl
+[9]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2643,16 +2643,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [10]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[11]) (./chapters/publications.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2662,7 +2655,62 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[12
+[11]
+
+LaTeX Warning: Reference `sec:algo' on page 12 undefined on input line 425.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[12]
+
+LaTeX Warning: Reference `fig:cbf_opt_b' on page 13 undefined on input line 476
+.
+
+) (./main.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[13]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[14]) (./chapters/publications.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[15
 
 ]
 附录 A
@@ -2676,7 +2724,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[13
+[16
 
 ]
 附录 B
@@ -2690,7 +2738,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[14
+[17
 
 ] (./chapters/acknowledgements.tex
 
@@ -2708,7 +2756,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[15
+[18
 
 
 ]
@@ -2727,12 +2775,12 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 45794 strings out of 493005
- 905521 string characters out of 6134596
- 997263 words of memory out of 5000000
- 49105 multiletter control sequences out of 15000+600000
- 16370 words of font info for 133 fonts, out of 8000000 for 9000
+ 45833 strings out of 493005
+ 907488 string characters out of 6134596
+ 997682 words of memory out of 5000000
+ 49146 multiletter control sequences out of 15000+600000
+ 16354 words of font info for 131 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,17n,87p,10499b,6158s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (22 pages).
+Output written on main.pdf (25 pages).
