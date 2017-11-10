@@ -1,29 +1,29 @@
 \contentsline {chapter}{学位论文原创性声明和学位论文版权使用授权书}{I}{Doc-Start}
 \contentsline {chapter}{插图索引}{III}{chapter*.2}
 \contentsline {chapter}{附表索引}{IV}{chapter*.3}
-\contentsline {chapter}{\numberline {第1章\hspace {.3em}}并发布鲁姆过滤器设计}{1}{chapter.1}
+\contentsline {chapter}{\numberline {第1章\hspace {.3em}}支持动态更新的并发Cuckoo过滤器设计}{1}{chapter.1}
 \contentsline {section}{\numberline {1.1}布鲁姆过滤器}{2}{section.1.1}
 \contentsline {subsection}{\numberline {1.1.1}基本原理}{2}{subsection.1.1.1}
 \contentsline {subsection}{\numberline {1.1.2}误判率估计}{3}{subsection.1.1.2}
 \contentsline {subsection}{\numberline {1.1.3}最优哈希函数个数}{4}{subsection.1.1.3}
 \contentsline {subsection}{\numberline {1.1.4}最优位数组长度}{5}{subsection.1.1.4}
-\contentsline {section}{\numberline {1.2}Cuckoo过滤器}{6}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Cuckoo过滤器算法描述}{7}{subsection.1.2.1}
-\contentsline {subsubsection}{\numberline {(1)}插入操作}{7}{subsubsection.1.2.1.1}
-\contentsline {subsubsection}{\numberline {(2)}删除操作}{9}{subsubsection.1.2.1.2}
-\contentsline {subsubsection}{\numberline {(3)}查询操作}{10}{subsubsection.1.2.1.3}
-\contentsline {subsection}{\numberline {1.2.2}指纹信息的长度}{10}{subsection.1.2.2}
-\contentsline {subsubsection}{\numberline {(1)}指纹信息下限约束}{11}{subsubsection.1.2.2.1}
-\contentsline {subsubsection}{\numberline {(2)}实验评估}{12}{subsubsection.1.2.2.2}
-\contentsline {subsubsection}{\numberline {(3)}启示}{12}{subsubsection.1.2.2.3}
-\contentsline {subsection}{\numberline {1.2.3}空间效率}{12}{subsection.1.2.3}
-\contentsline {section}{\numberline {1.3}并发Cuckoo过滤器}{14}{section.1.3}
-\contentsline {subsection}{\numberline {1.3.1}}{14}{subsection.1.3.1}
-\contentsline {subsection}{\numberline {1.3.2}}{14}{subsection.1.3.2}
-\contentsline {subsection}{\numberline {1.3.3}}{14}{subsection.1.3.3}
-\contentsline {section}{\numberline {1.4}本章小结}{14}{section.1.4}
-\contentsline {chapter}{参考文献}{15}{chapter*.9}
-\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}读学位期间所发表的学术论文}{16}{appendix.A}
-\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}读学位期间所参加的科研项目}{17}{appendix.B}
-\contentsline {chapter}{致\hskip 1em\relax 谢}{18}{appendix*.10}
+\contentsline {section}{\numberline {1.2}Cuckoo过滤器的参数}{6}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}指纹信息的长度}{7}{subsection.1.2.1}
+\contentsline {subsubsection}{\numberline {(1)}指纹信息下界约束}{7}{subsubsection.1.2.1.1}
+\contentsline {subsubsection}{\numberline {(2)}实验评估}{8}{subsubsection.1.2.1.2}
+\contentsline {subsubsection}{\numberline {(3)}启示}{8}{subsubsection.1.2.1.3}
+\contentsline {subsection}{\numberline {1.2.2}空间效率}{9}{subsection.1.2.2}
+\contentsline {subsubsection}{\numberline {(1)}性能评估}{10}{subsubsection.1.2.2.1}
+\contentsline {section}{\numberline {1.3}并发Cuckoo过滤器}{10}{section.1.3}
+\contentsline {subsection}{\numberline {1.3.1}加锁与解锁}{11}{subsection.1.3.1}
+\contentsline {subsubsection}{\numberline {(1)}并发访问接口}{13}{subsubsection.1.3.1.1}
+\contentsline {subsection}{\numberline {1.3.2}插入操作}{14}{subsection.1.3.2}
+\contentsline {subsection}{\numberline {1.3.3}删除操作}{16}{subsection.1.3.3}
+\contentsline {subsection}{\numberline {1.3.4}查询操作}{17}{subsection.1.3.4}
+\contentsline {section}{\numberline {1.4}性能优化与评估}{17}{section.1.4}
+\contentsline {section}{\numberline {1.5}本章小结}{17}{section.1.5}
+\contentsline {chapter}{参考文献}{19}{chapter*.11}
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}读学位期间所发表的学术论文}{20}{appendix.A}
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}读学位期间所参加的科研项目}{21}{appendix.B}
+\contentsline {chapter}{致\hskip 1em\relax 谢}{22}{appendix*.12}
 \contentsfinish 

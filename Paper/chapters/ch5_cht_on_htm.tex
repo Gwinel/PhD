@@ -446,7 +446,7 @@ Intel TSX将确认在这种情况下确实需要加锁以保证代码的正确�
 
   fallback\_path:~~\\
   $retries \gets retries + 1$\;
-  \If{$retries \lq MAX\_RETRIES$}{
+  \If{$retries < MAX\_RETRIES$}{
     goto speculative\_path\;
   }
   $*prev \gets NULL$\;

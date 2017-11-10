@@ -1,4 +1,4 @@
-\chapter{并发布鲁姆过滤器设计}
+\chapter{支持动态更新的并发Cuckoo过滤器设计}
 %引子
 % 对于海量数据处理业务，通常需要建立索引数据结构来帮助查询，快速判断数据记录是否存在，过滤器(filter)能够很好的满足构建索引数据结构的要求。
 查找或判断一个元素是否存在于一个指定集合中，这是计算机科学中一个基本问题。
@@ -190,12 +190,13 @@ m \geq n\frac{log_2({1/\epsilon})}{ln2} = nlog_2e\ast log_2({1/\epsilon}) \thick
 而将$\epsilon = 0.001 $时，每个元素需要额外的增加4.8比特。
 所以，在实际的应用中，对于误判的容忍度不同，要求误判率越低，则存储每个元素需要的比特位越多，相同容量下存储的元素个数就越少。
 
-\section{Cuckoo过滤器}
+\section{Cuckoo过滤器的参数}
+\label{sec:cbf_para}
 传统的布鲁姆过滤器的空间效率高，对插入和查询元素的处理也相当快。
 但是它也存在缺陷——存在一定的误报率，不支持元素的删除操作。
 消除误报率除非能实现没有碰撞的哈希函数，但是不发生碰撞的哈希函数至今没有被设计出来。
 研究人员能做的就是尽量选择均匀的哈希函数，并且借助一些数据结构的特性有效的对碰撞进行处理。
-而在上一节的中介绍到误判率每缩小到原来的十分之一，用于表示元素的比特数至少要增加4.8。
+而在上一节的中介绍到误判率每缩小到原来的十分之一，至少要增加4.8个比特位用于表示一个元素。
 另外，实现元素删除操作的一个方法是引入计数器，将每个比特位都扩张成一个计数值，降低了空间效率。
 为了支持对元素的删除操作，出现了很多标准布鲁姆过滤器的扩展版本\cite{bender2012don,bonomi2006improved,fan2000summary}。
 所以，布鲁姆过滤器实现更低的误判率和实现删除操作都需要牺牲一定的空间效率。
@@ -204,155 +205,13 @@ m \geq n\frac{log_2({1/\epsilon})}{ln2} = nlog_2e\ast log_2({1/\epsilon}) \thick
 它既可以确保该元素存在的必然性，即将“可能存在”变成“一定存在”；
 又支持动态的对元素的插入和删除，而不会造成漏报。
 
-\subsection{Cuckoo过滤器算法描述}
-\label{sec:cbf_algo}
-% 近几年，有研究人员将Cuckoo哈希表应用于集合元素查询。为了支持事务内存，Sanchez\cite{sanchez2007implementing}等人提出将每条事务的内存地址的读/写集存入到Cuckoo哈希表中，当哈希表内的元素达到饱和时，将其转化为布鲁姆过滤器。
+
 为了支持动态的插入和删除元素，Cuckoo过滤器采用的是一种称为\textbf{不完整键值(partial-key)} Cuckoo哈希的技术。
 Cuckoo过滤器是标准Cuckoo哈希表在集合元素查询算法领域的应用。
 在前面的章节中已经对Cuckoo哈希表的基本原理和概念有过详细介绍(\textcolor{red}{第~\ref{sec:XX}节})，这里不再赘述。
 仅对与在这一部分密切相关的术语进行重申。
-Cuckoo的数据结构与Cuckoo哈希表相同，其基本单元称为\textbf{实体}(entry)，不同的是每一个实体内存储的不是完整的键值，而是根据键值进行提取后的\textbf{指纹}(fingerprint)~\cite{memc3}，用f表示。
+Cuckoo的数据结构与Cuckoo哈希表相同，其基本单元称为\textbf{实体}(entry)，不同的是每一个实体内存储的不是完整的键值，而是根据键值进行提取后的\textbf{指纹}(fingerprint)~\cite{memc3}，用$f$表示。
 哈希表由存储了多个实体的\textbf{桶}(bucket)数组构成。
-\textbf{条目}(item)是指键值对。
-本小节对Cuckoo过滤器的查询、插入和删除操作的实现进行介绍。
-
-\subsubsection{插入操作}
-在标准Cuckoo哈希表中，在哈希表中插入新的条目时需要以某种方式读取原本存储于哈希表内的条目，以便在发生踢出原始条目时确定将该条目安置在哪个位置上。
-但是，对于只存储了指纹的Cuckoo过滤器而言，它无法根据原始条目的键计算出旧键迁移到哪个位置。
-这里引入不完整键Cuckoo哈希算法来解决无法根据指纹信息定位旧键迁移位置的问题。对任意的条目\textit{x}，使用公式~\ref{equ:ckf}计算其两个备选哈希桶的索引值：
-\begin{equation}
-\begin{split}
-h_1\left(x\right) &= hash\left(x\right) \\
-% \label{equ:ckf1}
-% \end{equation}
-% \begin{equation}
-h_2(x) &= h_1(x)\bigoplus hash(\text{x的指纹信息})
-\end{split}
-\label{equ:ckf}
-\end{equation}
-
-式~\ref{equ:ckf}的异或操作有一个重要的特性：$h_1(x)$可以通过$h_2(x)$和指纹信息用同样的公式推算出来。
-即就是说，替换编号为$i$的哈希桶中的旧键(不论$i$对应的是$h_1$还是$h_2$)，都可以通过当前桶编号\textit{i}以及存储在该桶内的指纹直接计算出旧键的备选哈希桶的编号\textit{j}，计算方式为：$j = i \bigoplus hash(\text{指纹信息})$。
-
-因此，在进行插入操作时，不用检索目标哈希桶内存储的条目的完整信息，只需要存储在哈希表中的指纹信息。
-
-另外，为了使众条目在哈希表中均匀分布，在与索引值进行异或运算之前，指纹信息已经进行过哈希运算。
-当指纹信息远小于哈希表的大小时，如果直接使用索引值与未经哈希的指纹信息进行异或运算推算接纳被踢出条目的哈希桶的位置，那么接纳被踢出的条目哈希桶与原来的哈希桶在位置上很近。
-下面举例说明。
-使用8比特的指纹信息时，接纳从\textit{i}中被踢出的条目的哈希桶的位置距离\textit{i}的最大距离为$2^8 = 256$。
-这时因为在进行异或运算时，会选取索引值的低8位进行运算，而高8位保持不变。
-对指纹信息进行哈希能够确保这些条目尽量分散在哈希表的不同位置，从而可以避免哈希碰撞，提高哈希表的空间利用率。
-
-\SetKwProg{Fn}{Function}{}{}
-\begin{algorithm}[htbp]
-\SetAlgoLined
-\Fn{Insert(x)}{}{
-f = fingerprint(x)\\
-i1 = hash(x)\\
-i2 = i1\begin{math}\bigoplus\end{math}hash(f) \\
-\If{\text{桶i1或i2内有空闲实体}}{
-	{将f存入i1或i2}\\
-	\Return $Done$;
-	}
-
-\tcc{当前桶内没有空闲位置}
-i = rand(i1, i2) \\% \tcc{随机的从i1、i2中选取一个桶} \\
-\For{$n=0$ \KwTo $MaxNumKicks - 1$}{
-	{从bucket[i]中随机的选择一个实体e}\\
-	{将新插入条目的指纹信息与e的指纹信息交换}\\
-	i = i\begin{math}\bigoplus\end{math}hash(f)\\
-	\If{\text{bucket[i]有空闲实体}}{
-		{将f存储到bucket[i]}\\
-		\Return $Done$
-	}
-}
-\tcc{哈希表饱和}
-\Return $Failure$
-}
-\caption{Cuckoo过滤器插入操作}
-\label{algo:ckf_insert}
-\end{algorithm}
-
-算法~\ref{algo:ckf_insert}给出了使用不完整键Cuckoo哈希方法对Cuckoo过滤器动态插入元素的过程。
-指纹信息的长度小于$h_1$和$h_2$的长度造成的后果有两个方面：
-\textbf{第一}，通过公式~\ref{equ:ckf}计算出的($h_1$, $h_2$)的组合的总数会远远小于使用完整的哈希值计算得到的组合的数量，这将导致哈希碰撞更严重；
-\textbf{第二}，允许插入两个具有相同指纹的条目\textit{x}和\textit{y}，在一个哈希桶内可能出现多个相同的指纹信息是合法的。
-但是如果相同的指纹信息的数量超过2b(b为哈希桶的大小)时，存储其指纹信息的哈希桶会过载。
-解决哈希桶过载的途径有多种。
-\begin{itemize}
-	\item 第一，也是最简单的方法——不实现过滤器删除元素操作，这样每条指纹信息都只需要存储一份副本。但这显然与Cuckoo过滤器的设计初衷不符。
-	\item 第二，引入适当的空间开销在哈希桶内加入计数器，进行插入/删除操作时适当的自增/自减。
-	\item 第三，将原始的键存储在其他位置(可以是访存速度较慢的外存上)，这样可以在插入时查看该记录，防止重复插入。
-	但是如果哈希桶内已经存在匹配的实体，则插入的速度相对较慢。
-\end{itemize}	
-
-\subsubsection{删除操作}
-在标准的布鲁姆过滤器中删除条目需要对整个过滤器进行重建，引起惊人的性能开销。所以标准布鲁姆过滤器不支持删除操作。
-而将布鲁姆过滤器的比特位扩展成计数值的方法需要耗费3-4倍的空间开销。
-Cuckoo过滤器可以直接从过滤器中移除相关条目的指纹完成删除操作。
-有关Cuckoo过滤器的删除过程如算法~\ref{algo:ckf_delete}所示。
-\SetKwProg{Fn}{Function}{}{}
-\begin{algorithm}[htbp]
-\SetAlgoLined
-\Fn{Delete(x)}{}{
-	f = fingerprint(x) \\
-	i1 = hash(x); \\
-	i2 = i1$\bigoplus$hash(f) \\
-	\If{\text{bucket[i1]或bucket[i2]中含有f}}{
-		{从当前bucket内删除f的一个副本}\\
-		\Return $True$
-	}
-
-	\Return $False$
-}
-\caption{Cuckoo过滤器的删除操作}
-\label{algo:ckf_delete}
-\end{algorithm}
-
-相比当前一些支持删除操作的布鲁姆过滤器的扩展版本，比如\textit{d-left}计数过滤器，熵过滤器的实现，Cuckoo过滤器的删除操作十分简单。
-对于一个需要删除的条目，Cuckoo过滤器首先根据索引值在桶内进行查找；如果在任意的桶内有匹配的指纹信息，则删除该桶内的指纹信息的一个副本。
-
-在删除某个条目后，不需要对这个实体进行清理。
-这样可以避免在同一个桶内存有两个具有相同指纹信息的条目时的“误删”。
-假设条目\textit{x}和\textit{y}都映射到了桶$i_1$内，并且具有相同的指纹信息\textit{f}。
-因为$i_2$ = $i_1\bigoplus hash(f)$，所以它们同样能够保存在桶$i_2$内.
-在删除\textit{x}时，不用考虑删除的指纹信息的副本是在插入\textit{x}还是\textit{y}是添加的。
-删除\textit{x}后，在桶$i_1$、$i_2$中\textit{y}仍然可以被查询到。
-
-值得注意的是，在上面的例子中删除条目\textit{x}之后，过滤器的误判行为仍然存在。
-过滤器中的\textit{y}会在查询\textit{x}时误报，因为两者具有相同的桶索引值和指纹信息。
-误判行为仍然在近似集合元素查询数据结构接受的范围之内，误判率也仍然满足$\epsilon$的上界约束条件。
-
-安全的删除条目有一个前提条件：被删除的\textit{x}必须是已经插入到了过滤器中的条目。
-否则的话，有可能造成过滤器内恰好就有相同指纹信息的条目。
-这条原则不仅是对Cuckoo过滤器，同样对其他支持删除操作的过滤器也适用。
-
-\subsubsection{查询操作}
-\SetKwProg{Fn}{Function}{}{}
-\begin{algorithm}[htbp]
-\SetAlgoLined
-\Fn{Lookup(x)}{}{
-	f = fingerprint(x) \\
-	i1 = hash(x); \\
-	i2 = i1$\bigoplus$hash(f) \\
-	\If{\text{bucket[i1]或bucket[i2]中含有f}}{
-		\Return $True$
-	}
-
-	\Return $False$
-}
-\caption{Cuckoo过滤器查询操作}
-\label{algo:ckf_lookup}
-\end{algorithm}
-Cuckoo过滤器的查询操作相对简单。算法~\ref{algo:ckf_lookup}对这个过程做了简单描述。
-对于给定的条目\textit{x}，首先计算其指纹并根据公式~\ref{equ:ckf}计算出它的两个哈希桶的索引值。
-然后遍历这些哈希桶：如果在任何一个桶内找到了\textit{x}的指纹，则返回True。否则返回False。
-值得注意的是，只要哈希桶不发生溢出，就能确保不存在任何误报。
-
-\subsection{指纹信息的长度}
-在这一部分中，将探讨构造Cuckoo过滤器的几个关键参数。
-在Cuckoo过滤器中使用不完整键Cuckoo哈希方法存储指纹信息会导致指纹信息的下界值随着过滤器大小的增加而缓慢增加。
-这与用传统方法实现的过滤器相反，在标准布鲁姆过滤器中，指纹信息的大小只与预定的$\epsilon$有关。这个看上去似乎是Cuckoo过滤器的劣势，实际上它造成的影响微乎其微。
 
 表~\ref{tab:ckf_para}列出了本小节所用到的一些关键参数及其含义。
 \begin{table}[htbp]
@@ -368,23 +227,28 @@ Cuckoo过滤器的查询操作相对简单。算法~\ref{algo:ckf_lookup}对这�
       $\alpha$					      &   负载因子($0\leq\alpha\leq 1$) \\
     	b                             &   每个哈希桶内包含的实体的数量 \\
     	m 							  &	  哈希桶的数量 \\
-    	n                             &   条目(元素)的数量 \\
-        C 							  &   表达一个条目所需的平均位数(单位：bit)\\
+    	n                             &   元素的数量 \\
+        C 							  &   表达一个元素所需的平均位数(单位：bit)\\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\subsubsection{指纹信息下限约束}
+\subsection{指纹信息的长度}
+在这一部分中，将探讨构造Cuckoo过滤器的几个关键参数。
+在Cuckoo过滤器中使用不完整键Cuckoo哈希方法存储指纹信息会导致指纹信息的下界值随着过滤器大小的增加而缓慢增加。
+这与用传统方法实现的过滤器相反，在标准布鲁姆过滤器中，指纹信息的大小只与预定的$\epsilon$有关。这个看上去似乎是Cuckoo过滤器的劣势，实际上它造成的影响微乎其微。
+
+\subsubsection{指纹信息下界约束}
 在Cuckoo过滤器中，对于一个给定的元素，根据其当前位置和指纹信息使用不完整键哈希方法可以推导出它的备选哈希桶的索引值。
 这样，每个元素的候选哈希桶都不是独立的。
 比如，某一元素可以存放在桶$i_1$或$i_2$中，对于长度为$f$比特的指纹信息，根据公式~\ref{equ:ckf}，$i_2$可能的索引值最多有$2^f$种可能。
-若指纹信息的长度为一个字节，对给定的$i_1$，$i_2$最多只能偏离$i_1$256个位置。
-对于具有$m$个桶的哈希表而言，当$2^f \lq m$时，$i_2$能够选择的哈希桶的范围只是整个$m$个哈希桶的一个很小的子集。
+若指纹信息的长度为一个字节，对给定的$i_1$，$i_2$最多只能偏离$i_1$ 256个位置。
+对于具有$m$个桶的哈希表而言，当$2^f \leq m$时，$i_2$能够选择的哈希桶的范围只是整个$m$个哈希桶的一个很小的子集。
 这会引起更多的碰撞。
 
 直观上看如果指纹信息的长度足够长，不完整Cuckoo哈希仍然能够接近标准Cuckoo哈希的冲突处理能力。
 然而，如果哈希表非常大，而此时指纹信息的长度相对来说要远远小于哈希表的大小，这样容易引起更多的哈希碰撞，从而导致插入失败的概率升高。
-当Cuckoo过滤器需要处理大量元素，而$\epsilon$设定一个中等偏低的值时，可能发生上述情形。
+当Cuckoo过滤器需要处理大量元素，而$\epsilon$设定一个s中等偏低的值时，可能发生上述情形。
 接下来，将通过分析确定插入失败的概率下限。
 
 首先推导对于给定的$u$个元素，它们恰好映射到相同的两个哈希桶内的概率$p_1$。
@@ -462,7 +326,7 @@ C \geq {\lceil log_2({1/\epsilon}) + log_2(2b)\rceil /\alpha}
 \end{equation}
 $\alpha$随着$b$的增加而增加。
 当$b = 4$时，$\alpha = 0.95$，${1/\alpha} \thickapprox 1.05$。
-此时$C$ = 1.05$log_2({1/\epsilon}) + 1.05\ast 3$。
+此时$C$ = 1.05$log_2({1/\epsilon}) + 1.05\cdot 3$。
 式~\ref{equ:space_cost_bound}表明，当负载因子一定时，Cuckoo过滤器的空间开销要低于布鲁姆过滤器($1.44log_2({1/\epsilon})$)。
 
 \textcolor{red}{为了确定最优的哈希桶容量$b$，下面将通过实验比较参数$b$为不同的值时的空间效率。
@@ -473,30 +337,356 @@ $\alpha$随着$b$的增加而增加。
 综上所述，Cuckoo过滤器的默认参数配置为(2，4)，即每个元素有两个候选的哈希桶，每个哈希桶最多能够容纳4条指纹信息。
 选取这组参数作为默认配置的原因是实际的应用一般都要求$ 10^{-5} < \epsilon \leq 0.002$~\cite{broder2004network}。
 
+\subsubsection{性能评估}
+
 \section{并发Cuckoo过滤器}
+无论是标准的布鲁姆过滤器还是现有的其他一些布鲁姆过滤器的扩展版本，都具有在单核平台上快速处理元素的能力以及高效的空间利用率。
+单核处理器的计算能力已达到瓶颈，相对而言多核计算机的计算资源和计算能力更加充裕。
+在当前数据呈现爆炸式增长的背景下，海量数据处理压力越来越大，单核处理器上的过滤器逐渐显得捉襟见肘。
+因此，设计基于多核系统的多线程并发的过滤器对于海量数据处理无疑是雪中送炭。
+然而，当前的相关研究中并没有一款支持多核并发查询和更新的过滤器。
 
-\subsection{}
-\subsection{}
-\subsection{}
+并发控制在多核平台上设计并发数据结构的关键环节，它对线程扩展性和整体性能起决定作用。
+在前面对并发哈希表的评估与分析中通过比较各个并发哈希表的线程同步方式发现不当使用共享变量以及使用TAS锁不利于并发哈希表的线程扩展性。
+本文设计的并发Cuckoo过滤器其基础数据结构本质上仍然是哈希表，不同的是Cuckoo过滤器结合了处理集合成员查询问题的特征改用存储不完整键值替换标准Cuckoo哈希表中存储完整的键值信息的做法，换取存储空间的极大节省。
+因此，前文通过实验评估得出的结论仍然适用于并发Cuckoo过滤器。
+
+在这个背景下，设计了一种支持多核并发的基于不完整键Cuckoo哈希方法的过滤器。
+这一部分主要介绍并发Cuckoo过滤器的实现过程和性能评估结果。
+
+\subsection{加锁与解锁}
+接下来的内容介绍如何通过基于Intel RTM的MCS锁实现多线程并发的Cuckoo过滤器。
+Listing 2.1 给出了基于Intel RTM的MCS锁算法实现。
+$locklib\_mutex\_t$是一个包含了MCS锁字段、一个$uint8\_t$类型的$mode$变量以及一个用于缓存行对齐的字符串的结构体。
+函数$locklib\_mutex\_lock()$具有两个参数，一个为互斥量$mutex$，一个为整型数$mode$。
+$mode$的值分别对应0、1，0表示当前持有锁的操作为读取操作，1表示当前持有锁的操作为更新操作(删除或插入)。
+\begin{lstlisting}[caption = {基于Intel RTM的MCS锁算法}]
+struct {
+        mcs_lock_t    lock;
+        uint32_t    pad1[128/4 - sizeof(mcs_lock_t)];
+} spec_mcs_lock_t;
+
+struct {
+        mcs_lock_t        mcs;
+        uint8_t mode;
+        char padding[];
+} locklib_mutex_t;
+
+int locklib_mutex_lock(locklib_mutex_t *mutex, uint8_t mode){
+        spec_mcs_lock_t *lock = (spec_mcs_lock_t *) mutex;
+        uint32_t reason = 0;
+
+speculative_path:
+        XBEGIN(fallback_path, reason);
+        if (lock->lock) XABORT(1);
+        return 0;
+
+fallback_path:
+        retries++;
+        while (lock->lock)
+                cpu_relax();
+        if (retries < MAX_RETRIES)
+                goto speculative_path;
+
+        // Acquire lock in a standard manner
+        my_node.locked = true;
+        qnode_t *prev = __sync_lock_TAS(&lock->lock, &my_node);
+        if (unlikely(prev != NULL)) {
+                prev->next = &my_node;
+                while (my_node.locked)
+                        cpu_relax();
+        }
+        mutex->mode = mode;
+        return 0;}
+\end{lstlisting}
+对临界区的保护设置了$speculative\_path$，$fallback\_path$两条执行路径：一条为事务化推测执行路径(第16行)；一条为回退路径(第21行)，即当事务执行失败后，临界区申请标准锁完成本次操作。
+在事务化推测执行期间，线程首先不会申请获取锁，直到执行完成准备提交时再申请获取锁，如果申请的锁被占用，则该线程所执行的事务被中止，
+线程对系统状态所做的更改都失效，系统回退到初始状态跳转到回退路径执行(事务内存的原子性)。
+
+跳转到回退路径之后，如果当前重试的次数没有达到预先设定的门限值，将继续尝试进行事务化推测执行(第23-26行)。
+如果当前重试次数已经达到了门限值，则使用标准的锁方法完成操作(第29-35行)。
+
+由于硬件事务内存不能保证每次事务化执行都能成功提交对系统状态的更改，为了避免进程悬停，在使用硬件事务内存进行锁省略编程时设置回退路径是有效的保障程序顺利执行的手段。
+一般的，事务代码在经过一定次数的重试之后成功提交的概率远远大于失败的概率，所以执行回退路径对性能的影响是可控的。
+
+% \begin{figure}
+\begin{lstlisting}[caption = {基于Intel RTM的MCS解锁算法}]
+int locklib_mutex_unlock(locklib_mutex_t *mutex)
+{
+    spec_mcs_lock_t *lock = (spec_mcs_lock_t *) mutex;
+
+    if (XTEST()) {
+        XEND();
+    } 
+    else {
+        // Release lock in a standard manner
+        qnode_t *last = my_node.next;
+        if (last == NULL) {
+            if (likely(true == __sync_bool_CAS
+            	(&lock->lock, &my_node, NULL)))
+                	return 0;
+
+            while ((last = my_node.next) == NULL)
+                	cpu_relax();
+            }
+
+        my_node.next = NULL;
+        last->locked = false;
+    }
+
+    retries = 0;
+    return 0;
+}
+\end{lstlisting}
+
+Listing 2.2 展示了对应的解锁过程。
+与加锁过程的两条路径相对应，释放锁的过程也分为两个阶段：首先使用\textit{XTEST}判断当前执行的操作是否为事务执行，若为事务执行，使用\textit{XEND}结束；若判断此次操作申请的锁是通过标准的方式获取的，则按照标准锁的释放过程释放锁。
+最后将\textit{retries}变量清零。
+
+\subsubsection{并发访问接口}
+
+\begin{table}[htbp]
+  \caption{HashTable类的成员函数列表}
+\label{tab:cbf_API}
+\footnotesize
+\centering
+\begin{tabular}{ccc}
+\toprule
+序号&API &   描述  \\
+\midrule
+1	&	explicit ~\textbf{HashTable(num)}									 	&  	构造函数\\
+2	&	 ～\textbf{HashTable()}  									& 	析构函数\\
+3	&	size\_t  \textbf{NumBuckets()} 									&  	返回哈希桶数量\\
+4	&	size\_t  \textbf{SizeInBytes() }									&  	返回哈希表大小(单位:Bytes)\\
+5	&	size\_t  \textbf{SizeInTags()} 									&  	返回哈希表容纳的指纹的数量\\
+6	&	string   \textbf{Info()} 											&  	返回哈希表的容量信息\\
+7	&	uint32\_t  \textbf{ReadTags(i, j)}										&  	读取指纹信息\\
+8	&	void  \textbf{WriteTags(i, j, t)} 										&  	修改指纹信息\\
+9	&	bool  \textbf{ ConFindTagInBuckets(i1, i2, tag) }			& 	并发查找接口\\
+10	&	bool  \textbf{ ConDeleteTagFromBucket1(i, tag)	}			& 	并发删除接口\\
+11	&	ReturnCode  \textbf{ ConInsertTagToBucket(i, tag, kickout, \&oldtag) }	& 并发插入接口\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+并发Cuckoo过滤器的实现使用了大约500行C++代码。
+在这一部分中，将对并发Cuckoo过滤器\textbf{HashTable}类的主要API进行介绍。
+表~\ref{tab:cbf_API}~列出了Cuckoo过滤器的\textit{HashTable}类的主要API。
+序号3-5对应的API主要用于统计哈希表的信息，用于最终计算哈希表的负载因子，内存消耗等；序号6对应的API输出指纹信息的长度、每个哈希桶能容纳的指纹信息的数量、哈希桶的数量、哈希表的最大指纹容量等信息；序号7、8对应的API分别用于读取和修改指定的指纹信息；序号9-11对应的API实现在哈希表内并发的读取和修改元素。
+
+下面对Cuckoo过滤器的三种元素操作的多线程并发实现进行描述。
+
+\subsection{插入操作}
+在标准Cuckoo哈希表中，在哈希表中插入新的元素时需要以某种方式读取原本存储于哈希表内的元素，以便在发生踢出原始元素时确定将该元素安置在哪个位置上。
+但是，对于只存储了指纹的Cuckoo过滤器而言，它无法根据原始元素的键计算出旧键迁移到哪个位置。
+这里引入不完整键Cuckoo哈希算法来解决无法根据指纹信息定位旧键迁移位置的问题。
+对任意的元素\textit{x}，使用公式~\ref{equ:ckf}计算其两个备选哈希桶的索引值：
+\begin{equation}
+\begin{split}
+h_1\left(x\right) &= hash\left(x\right) \\
+% \label{equ:ckf1}
+% \end{equation}
+% \begin{equation}
+h_2(x) &= h_1(x)\bigoplus hash(\text{x的指纹信息})
+\end{split}
+\label{equ:ckf}
+\end{equation}
+
+式~\ref{equ:ckf}的异或操作有一个重要的特性：$h_1(x)$可以通过$h_2(x)$和指纹信息用同样的公式推算出来。
+即就是说，替换编号为$i$的哈希桶中的旧键(不论$i$对应的是$h_1$还是$h_2$)，都可以通过当前桶编号\textit{i}以及存储在该桶内的指纹直接计算出旧键的备选哈希桶的编号\textit{j}，计算方式为：$j = i \bigoplus hash(\text{指纹信息})$。
+
+因此，在进行插入操作时，不用检索目标哈希桶内存储的元素的完整信息，只需要存储在哈希表中的指纹信息。
+
+另外，为了使众元素在哈希表中均匀分布，在与索引值进行异或运算之前，指纹信息已经进行过哈希运算。
+当指纹信息远小于哈希表的大小时，如果直接使用索引值与未经哈希的指纹信息进行异或运算推算接纳被踢出元素的哈希桶的位置，那么接纳被踢出的元素哈希桶与原来的哈希桶在位置上很近。
+下面举例说明。
+使用8比特的指纹信息时，接纳从\textit{i}中被踢出的元素的哈希桶的位置距离\textit{i}的最大距离为$2^8 = 256$。
+这时因为在进行异或运算时，会选取索引值的低8位进行运算，而高8位保持不变。
+对指纹信息进行哈希能够确保这些元素尽量分散在哈希表的不同位置，从而可以避免哈希碰撞，提高哈希表的空间利用率。
+
+\SetKwProg{Fn}{Function}{}{}
+\begin{algorithm}[htbp]
+\SetAlgoLined
+\# define UPDATE\_LOCK ~~~ locklib\_mutex\_lock(mutex, 1)\\
+\# define UPDATE\_UNLOCK ~~~ locklib\_mutex\_unlock(mutex)\\
+\Fn{Insert(x)}{}{
+f = fingerprint(x)\\
+i1 = hash(x)\\
+i2 = i1~$~~\bigoplus~~$~hash(f) \\
+UPDATE\_LOCK \\
+\If{\text{桶i1或i2内有空闲实体;}}{
+	{将f存入i1或i2;}\\
+	UPDATE\_UNLOCK\\
+	\Return $true$
+	}
+
+\tcc{当前桶内没有空闲位置}
+i = rand(i1, i2) \\
+\For{$n=0$ \KwTo $MaxNumKicks - 1$}{
+	{从bucket[i]中随机的选择一个实体e;}\\
+	{将新插入元素的指纹信息与e的指纹信息交换;}\\
+	i = i~~$\bigoplus$~~hash(f)\\
+	\If{\text{bucket[i]有空闲实体;}}{
+		{将f存储到bucket[i];}\\
+		UPDATE\_UNLOCK\\
+		\Return $true$
+	}
+}
+UPDATE\_UNLOCK\\
+\tcc{哈希表饱和}
+\Return $false$
+}
+\caption{Cuckoo过滤器插入操作}
+\label{algo:ckf_insert}
+\end{algorithm}
+
+算法~\ref{algo:ckf_insert}给出了使用不完整键Cuckoo哈希方法对Cuckoo过滤器动态插入元素的过程。
+
+指纹信息的长度小于$h_1$和$h_2$的长度造成的后果有两个方面：
+\textbf{第一}，通过公式~\ref{equ:ckf}计算出的($h_1$, $h_2$)的组合的总数会远远小于使用完整的哈希值计算得到的组合的数量，这将导致哈希碰撞更严重；
+\textbf{第二}，允许插入两个具有相同指纹的元素\textit{x}和\textit{y}，在一个哈希桶内可能出现多个相同的指纹信息是合法的。
+但是如果相同的指纹信息的数量超过2b(b为哈希桶的大小)时，存储其指纹信息的哈希桶会过载。
+解决哈希桶过载的途径有多种。
+\begin{itemize}
+	\item 第一，也是最简单的方法——不实现过滤器删除元素操作，这样每条指纹信息都只需要存储一份副本。但这显然与Cuckoo过滤器的设计初衷不符。
+	\item 第二，引入适当的空间开销在哈希桶内加入计数器，进行插入/删除操作时适当的自增/自减。
+	\item 第三，将原始的键存储在其他位置(可以是访存速度较慢的外存上)，这样可以在插入时查看该记录，防止重复插入。
+	但是如果哈希桶内已经存在匹配的实体，则插入的速度相对较慢。
+\end{itemize}	
+
+\subsection{删除操作}
+在标准的布鲁姆过滤器中删除元素需要对整个过滤器进行重建，引起惊人的性能开销。所以标准布鲁姆过滤器不支持删除操作。
+而将布鲁姆过滤器的比特位扩展成计数值的方法需要耗费3-4倍的空间开销。
+Cuckoo过滤器可以直接从过滤器中移除相关元素的指纹完成删除操作。
+有关Cuckoo过滤器的删除过程如算法~\ref{algo:ckf_delete}所示。
+\SetKwProg{Fn}{Function}{}{}
+\begin{algorithm}[htbp]
+\SetAlgoLined
+\# define UPDATE\_LOCK ~~~ locklib\_mutex\_lock(mutex, 1)\\
+\# define UPDATE\_UNLOCK ~~~ locklib\_mutex\_unlock(mutex)\\
+\Fn{Delete(x)}{}{
+	f = fingerprint(x) \\
+	i1 = hash(x); \\
+	i2 = i1~~$\bigoplus$~~hash(f) \\
+	UPDATE\_LOCK\\
+	\If{\text{bucket[i1]或bucket[i2]中含有f}}{
+		{从当前bucket内删除f的一个副本;}\\
+		UPDATE\_UNLOCK\\
+		\Return $true$
+	}
+	UPDATE\_UNLOCK\\
+	\Return $false$
+}
+\caption{Cuckoo过滤器的删除操作}
+\label{algo:ckf_delete}
+\end{algorithm}
+
+相比当前一些支持删除操作的布鲁姆过滤器的扩展版本，比如\textit{d-left}计数过滤器，熵过滤器的实现，Cuckoo过滤器的删除操作十分简单。
+对于一个需要删除的元素，Cuckoo过滤器首先根据索引值在桶内进行查找；如果在任意的桶内有匹配的指纹信息，则删除该桶内的指纹信息的一个副本。
+
+在删除某个元素后，不需要对这个实体进行清理。
+这样可以避免在同一个桶内存有两个具有相同指纹信息的元素时的“误删”。
+假设元素\textit{x}和\textit{y}都映射到了桶$i_1$内，并且具有相同的指纹信息\textit{f}。
+因为$i_2$ = $i_1\bigoplus hash(f)$，所以它们同样能够保存在桶$i_2$内.
+在删除\textit{x}时，不用考虑删除的指纹信息的副本是在插入\textit{x}还是\textit{y}是添加的。
+删除\textit{x}后，在桶$i_1$、$i_2$中\textit{y}仍然可以被查询到。
+
+值得注意的是，在上面的例子中删除元素\textit{x}之后，过滤器的误判行为仍然存在。
+过滤器中的\textit{y}会在查询\textit{x}时误报，因为两者具有相同的桶索引值和指纹信息。
+误判行为仍然在近似集合元素查询数据结构接受的范围之内，误判率也仍然满足$\epsilon$的上界约束条件。
+
+安全的删除元素有一个前提条件：被删除的\textit{x}必须是已经插入到了过滤器中的元素。
+否则的话，有可能造成过滤器内恰好就有相同指纹信息的元素。
+这条原则不仅是对Cuckoo过滤器，同样对其他支持删除操作的过滤器也适用。
+
+\subsection{查询操作}
+\SetKwProg{Fn}{Function}{}{}
+
+\begin{algorithm}[htbp]
+\SetAlgoLined
+\# define FIND\_LOCK ~~~ locklib\_mutex\_lock(mutex, 0)\\
+\# define FIND\_UNLOCK ~~~ locklib\_mutex\_unlock(mutex)\\
+\Fn{Lookup(x)}{}{
+	f = fingerprint(x) \\
+	i1 = hash(x); \\
+	i2 = i1~~$\bigoplus$~~hash(f) \\
+	FIND\_LOCK\\
+	\If{\text{bucket[i1]或bucket[i2]中含有f;}}{
+		FIND\_UNLOCK\\
+		\Return $true$
+	}
+	FIND\_UNLOCK\\
+	\Return $false$
+}
+\caption{Cuckoo过滤器查询操作}
+\label{algo:ckf_lookup}
+\end{algorithm}
+Cuckoo过滤器的查询操作相对简单。算法~\ref{algo:ckf_lookup}对这个过程做了简单描述。
+对于给定的元素\textit{x}，首先计算其指纹并根据公式~\ref{equ:ckf}计算出它的两个哈希桶的索引值。
+然后遍历这些哈希桶：如果在任何一个桶内找到了\textit{x}的指纹，则返回$true$。否则返回$false$。
+值得注意的是，只要哈希桶不发生溢出，就能确保不存在任何误报。
+
+
+\SetKwProg{Fn}{Function}{}{}
+\begin{algorithm}[htbp]
+\SetAlgoLined
+\# define FIND\_lock ~~~ locklib\_mutex\_lock(mutex, 0)\\
+\# define FIND\_unlock ~~~ locklib\_mutex\_unlock(mutex)\\
+\Fn{ConFindTagInBuckets(\textbf{const} i1, \textbf{const} i2, \textbf{const} tag)}{
+\textbf{char} *p1 = bucktets\_[i1].bits\_, *p2 = bucktets\_[i2].bits\_ \\
+\textbf{int} v1 = *(*)p1, v2 = *(*)p2 \\
+FIND\_LOCK \\
+\If{f == 4 ~~ \&\& ~~k == 4}{
+	 \textbf{bool} ~ret $\gets$ hasvalue4(v1, tag) || hasvalue4(v2, tag)\\
+	 FIND\_UNLOCK \\
+	 \textbf{return} $ret$ 
+}
+\uElseIf{$f == 8 ~~ \&\& ~~k == 4$}
+{
+	\textbf{bool} ret $\gets$ hasvalue8(v1, tag) || hasvalue8(v2, tag)\\
+	FIND\_UNLOCK \\
+	\textbf{return} $ret$
+}
+\uElseIf{$f == 12 ~~ \&\& ~~k == 4$}
+{
+	\textbf{bool} ret $\gets$ hasvalue12(v1, tag) || hasvalue12(v2, tag)\\
+	FIND\_UNLOCK\\
+	\textbf{return} $ret$
+}
+\uElseIf{$f == 16 ~~ \&\& ~~k == 4$}
+{
+	\textbf{bool} ret $\gets$ hasvalue16(v1, tag) || hasvalue16(v2, tag)\\
+	FIND\_UNLOCK\\
+	\textbf{return} $ret$
+}
+\Else{
+	  \For{$j=0$ \KwTo $kTagsPerBucket - 1$}{
+	  \uIf{(ReadTag(i1, j) == tag) || (ReadTag(i2, j) == tag)}{
+	  	FIND\_UNLOCK;\\
+	  	\textbf{return} $true$
+	  }
+	  }
+}
+FIND\_UNLOCK; \\
+\textbf{return} $false$;
+}
+\caption{Cuckoo过滤器的并发查询过程}
+\label{algo:cbf_confind}
+\end{algorithm}
+
+% 算法~\ref{algo:cbf_confind}所示为Cuckoo过滤器的并发查询操作过程。
+% 并发控制采用粗粒度锁实现方式，使用的锁为基于Intel RTM的MCS锁，临界区为整个哈希表。
+% 当线程$t_1$被分配执行查询任务时，它事务化的执行本次操作，$mode = 0$表明当前执行的为查询操作，
+% 执行查询操作时，首先
+
+% 若在$t_1$执行期间被分配了更新任务的线程$t_2$仍然可以正常访问。
+
+% 因为硬件事务内存的一个特性是：允许用户采用粗粒度锁方法进行并发控制但能达到细粒度锁方法的性能。
+% 所以在性能和扩展性上都有保障，下文对并发Cuckoo过滤器的评估结果证明了这一点。
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\section{性能优化与评估}
+% \section{性能评估}
 \section{本章小结}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  3 NOV 2017 22:44
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  11 NOV 2017 00:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2558,10 +2558,21 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
 
 [6]
 
-LaTeX Warning: Reference `sec:XX' on page 7 undefined on input line 212.
+LaTeX Warning: Reference `sec:XX' on page 7 undefined on input line 211.
 
 
-LaTeX Warning: Reference `equ:ckf2' on page 7 undefined on input line 235.
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[7]
+
+LaTeX Warning: Reference `sec:algo' on page 8 undefined on input line 284.
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2576,7 +2587,41 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[7]
+[8]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[9]
+
+LaTeX Warning: Reference `fig:cbf_opt_b' on page 10 undefined on input line 335
+.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[10]
+Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
+nput line 363.
+
 *************************************************
 * fontspec warning: "script-not-exist"
 * 
@@ -2619,50 +2664,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[8]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[9]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
 [11]
-
-LaTeX Warning: Reference `sec:algo' on page 12 undefined on input line 425.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2673,13 +2675,8 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [12]
-
-LaTeX Warning: Reference `fig:cbf_opt_b' on page 13 undefined on input line 476
+LaTeX Font Info:    Calculating math sizes for size <9.03365> on input line 453
 .
-
-) (./main.bbl
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
@@ -2691,16 +2688,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [13]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[14]) (./chapters/publications.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2710,7 +2700,57 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[15
+[14]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[15]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[16]) (./main.bbl
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[17]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[18]) (./chapters/publications.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[19
 
 ]
 附录 A
@@ -2724,7 +2764,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[16
+[20
 
 ]
 附录 B
@@ -2738,7 +2778,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[17
+[21
 
 ] (./chapters/acknowledgements.tex
 
@@ -2756,7 +2796,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[18
+[22
 
 
 ]
@@ -2775,12 +2815,12 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 45833 strings out of 493005
- 907488 string characters out of 6134596
- 997682 words of memory out of 5000000
- 49146 multiletter control sequences out of 15000+600000
- 16354 words of font info for 131 fonts, out of 8000000 for 9000
+ 45876 strings out of 493005
+ 908322 string characters out of 6134596
+ 999034 words of memory out of 5000000
+ 49178 multiletter control sequences out of 15000+600000
+ 21879 words of font info for 157 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,17n,87p,10499b,6158s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,21n,87p,10499b,7179s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (25 pages).
+Output written on main.pdf (29 pages).
