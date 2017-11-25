@@ -1,26 +1,121 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
-\bibitem{bloom1970space}
-Bloom B~H.
-\newblock Space/time trade-offs in hash coding with allowable errors.
-\newblock Communications of the ACM, 1970, 13(7):422--426
+\bibitem{hennessy2011computer}
+Hennessy J~L, Patterson D~A.
+\newblock Computer architecture: a quantitative approach.
+\newblock Elsevier, 2011
 
-\bibitem{bender2012don}
-Bender M~A, Farach-Colton M, Johnson R, et~al.
-\newblock Don't thrash: how to cache your hash on flash.
-\newblock Proceedings of the VLDB Endowment, 2012, 5(11):1627--1637
+\bibitem{geer2005chip}
+Geer D.
+\newblock Chip makers turn to multicore processors.
+\newblock Computer, 2005, 38(5):11--13
 
-\bibitem{bonomi2006improved}
-Bonomi F, Mitzenmacher M, Panigrahy R, et~al.
-\newblock An improved construction for counting bloom filters.
-\newblock In: Proc of ESA, volume~6.
-\newblock Springer, 2006,  684--695
+\bibitem{marr2002hyper}
+Marr D, Binns F, Hill D, et~al.
+\newblock Hyper-threading technology in the netburst{\textregistered}
+  microarchitecture.
+\newblock 14th Hot Chips, 2002.
 
-\bibitem{song2005fast}
-Song H, Dharmapurikar S, Turner J, et~al.
-\newblock Fast hash table lookup using extended bloom filter: an aid to network
-  processing.
-\newblock ACM SIGCOMM Computer Communication Review, 2005, 35(4):181--192
+\bibitem{samson2005interface}
+Samson E~C, Machiroutu S~V, Chang J~Y, et~al.
+\newblock Interface Material Selection and a Thermal Management Technique in
+  Second-Generation Platforms Built on Intel{\textregistered} Centrino™
+  Mobile Technology.
+\newblock Intel Technology Journal, 2005, 9(1)
+
+\bibitem{lempel20112nd}
+Lempel O.
+\newblock 2nd Generation Intel{\textregistered} Core Processor Family:
+  Intel{\textregistered} Core i7, i5 and i3.
+\newblock In: Proc of Hot Chips 23 Symposium (HCS), 2011 IEEE.
+\newblock IEEE, 2011,  1--48
+
+\bibitem{chang200765}
+Chang J, Huang M, Shoemaker J, et~al.
+\newblock The 65-nm 16-MB shared on-die L3 cache for the dual-core Intel Xeon
+  processor 7100 series.
+\newblock IEEE Journal of Solid-State Circuits, 2007, 42(4):846--852
+
+\bibitem{kongetira2005niagara}
+Kongetira P, Aingaran K, Olukotun K.
+\newblock Niagara: A 32-way multithreaded sparc processor.
+\newblock IEEE micro, 2005, 25(2):21--29
+
+\bibitem{shi2012vcuda}
+Shi L, Chen H, Sun J, et~al.
+\newblock vCUDA: GPU-accelerated high-performance computing in virtual
+  machines.
+\newblock IEEE Transactions on Computers, 2012, 61(6):804--816
+
+\bibitem{bolla2008effective}
+Bolla R, Bruschi R.
+\newblock An effective forwarding architecture for SMP Linux routers.
+\newblock In: Proc of Telecommunication Networking Workshop on QoS in
+  Multiservice IP Networks, 2008. IT-NEWS 2008. 4th International.
+\newblock IEEE, 2008,  210--216
+
+\bibitem{clht}
+David T, Guerraoui R, Trigonakis V.
+\newblock Asynchronized Concurrency: The Secret to Scaling Concurrent Search
+  Data Structures.
+\newblock SIGARCH Comput. Archit. News, 2015, 43(1):631--644
+
+\bibitem{cuckoo}
+Li X, Andersen D~G, Kaminsky M, et~al.
+\newblock Algorithmic Improvements for Fast Concurrent Cuckoo Hashing.
+\newblock In: Proc of Proceedings of the Ninth European Conference on Computer
+  Systems.
+\newblock New York, NY, USA: ACM, 2014,  27:1--27:14
+
+\bibitem{hopscotch}
+Herlihy M, Shavit N, Tzafrir M.
+\newblock Hopscotch hashing.
+\newblock In: Proc of Distributed Computing. Springer, 2008: 350--364
+
+\bibitem{metreveli2012cphash}
+Metreveli Z, Zeldovich N, Kaashoek M~F.
+\newblock Cphash: A cache-partitioned hash table.
+\newblock In: Proc of ACM SIGPLAN Notices, volume~47.
+\newblock ACM, 2012,  319--320
+
+\bibitem{nonblocking}
+Liu Y, Zhang K, Spear M.
+\newblock Dynamic-sized nonblocking hash tables.
+\newblock In: Proc of Proceedings of the 2014 ACM symposium on Principles of
+  distributed computing.
+\newblock ACM, 2014,  242--251
+
+\bibitem{shalev2006split}
+Shalev O, Shavit N.
+\newblock Split-ordered lists: Lock-free extensible hash tables.
+\newblock Journal of the ACM (JACM), 2006, 53(3):379--405
+
+\bibitem{urcu}
+Desnoyers M, McKenney P~E, Stern A~S, et~al.
+\newblock User-level implementations of read-copy update.
+\newblock Parallel and Distributed Systems, IEEE Transactions on, 2012,
+  23(2):375--382
+
+\bibitem{herlihy1990linearizability}
+Herlihy M~P, Wing J~M.
+\newblock Linearizability: A correctness condition for concurrent objects.
+\newblock ACM Transactions on Programming Languages and Systems (TOPLAS), 1990,
+  12(3):463--492
+
+\bibitem{mckenney2003kernel}
+McKenney P~E.
+\newblock Kernel korner: using RCU in the Linux 2.5 kernel.
+\newblock Linux Journal, 2003, 2003(114):11
+
+\bibitem{mckenney2004scaling}
+McKenney P~E, Sarma D, Soni M.
+\newblock Scaling dcache with RCU.
+\newblock Linux Journal, 2004, 2004(117):3
+
+\bibitem{mckenney2013rcu}
+McKenney P~E, Boyd-Wickizer S, Walpole J.
+\newblock RCU usage in the linux kernel: One decade later.
+\newblock Technical report, 2013.
 
 \bibitem{yu2009buffalo}
 Yu M, Fabrikant A, Rexford J.
@@ -30,15 +125,254 @@ Yu M, Fabrikant A, Rexford J.
   Emerging networking experiments and technologies.
 \newblock ACM, 2009,  313--324
 
-\bibitem{mitzenmacher2002compressed}
-Mitzenmacher M.
-\newblock Compressed bloom filters.
-\newblock IEEE/ACM transactions on networking, 2002, 10(5):604--612
+\bibitem{dharmapurikar2003longest}
+Dharmapurikar S, Krishnamurthy P, Taylor D~E.
+\newblock Longest prefix matching using bloom filters.
+\newblock In: Proc of Proceedings of the 2003 conference on Applications,
+  technologies, architectures, and protocols for computer communications.
+\newblock ACM, 2003,  201--212
+
+\bibitem{bonomi2006beyond}
+Bonomi F, Mitzenmacher M, Panigrah R, et~al.
+\newblock Beyond bloom filters: from approximate membership checks to
+  approximate state machines.
+\newblock In: Proc of ACM SIGCOMM Computer Communication Review, volume~36.
+\newblock ACM, 2006,  315--326
+
+\bibitem{song2005fast}
+Song H, Dharmapurikar S, Turner J, et~al.
+\newblock Fast hash table lookup using extended bloom filter: an aid to network
+  processing.
+\newblock ACM SIGCOMM Computer Communication Review, 2005, 35(4):181--192
+
+\bibitem{jokela2009lipsin}
+Jokela P, Zahemszky A, Esteve~Rothenberg C, et~al.
+\newblock LIPSIN: line speed publish/subscribe inter-networking.
+\newblock ACM SIGCOMM Computer Communication Review, 2009, 39(4):195--206
+
+\bibitem{broder2004network}
+Broder A, Mitzenmacher M.
+\newblock Network applications of bloom filters: A survey.
+\newblock Internet mathematics, 2004, 1(4):485--509
 
 \bibitem{fan2000summary}
 Fan L, Cao P, Almeida J, et~al.
 \newblock Summary cache: a scalable wide-area web cache sharing protocol.
 \newblock IEEE/ACM Transactions on Networking (TON), 2000, 8(3):281--293
+
+\bibitem{bonomi2006improved}
+Bonomi F, Mitzenmacher M, Panigrahy R, et~al.
+\newblock An improved construction for counting bloom filters.
+\newblock In: Proc of ESA, volume~6.
+\newblock Springer, 2006,  684--695
+
+\bibitem{bender2012don}
+Bender M~A, Farach-Colton M, Johnson R, et~al.
+\newblock Don't thrash: how to cache your hash on flash.
+\newblock Proceedings of the VLDB Endowment, 2012, 5(11):1627--1637
+
+\bibitem{Josh2012}
+Haberman J.
+\newblock State of the hash functions.
+\newblock Website.
+\newblock
+  \url{http://blog.reverberate.org/2012/01/state-of-hash-functions-2012.html}
+
+\bibitem{Murmurhash}
+Appleby A.
+\newblock MurmurHash.
+\newblock Website.
+\newblock \url{https://sites.google.com/site/murmurhash/}
+
+\bibitem{cityhash}
+Geoff~Pike J~A.
+\newblock Cityhash.
+\newblock Website.
+\newblock
+  \url{https://opensource.googleblog.com/2011/04/introducing-cityhash.html}
+
+\bibitem{jenkins1997hash}
+Jenkins B.
+\newblock Hash functions.
+\newblock Dr Dobbs Journal, 1997, 22(9):107--+
+
+\bibitem{jenkins2006function}
+Jenkins B.
+\newblock Function for producing 32bit hashes for hash table lookup, 2006
+
+\bibitem{jenkins2012spookyhash}
+Jenkins B.
+\newblock Spookyhash: a 128-bit noncryptographic hash, 2012
+
+\bibitem{knuth1998art}
+Knuth D~E.
+\newblock The art of computer programming: sorting and searching, volume~3.
+\newblock Pearson Education, 1998
+
+\bibitem{heileman2005caching}
+Heileman G~L, Luo W.
+\newblock How Caching Affects Hashing..
+\newblock In: Proc of ALENEX/ANALCO.
+\newblock 2005,  141--154
+
+\bibitem{pagh2004cuckoo}
+Pagh R, Rodler F~F.
+\newblock Cuckoo hashing.
+\newblock Journal of Algorithms, 2004, 51(2):122--144
+
+\bibitem{erlingsson2006cool}
+Erlingsson U, Manasse M, McSherry F.
+\newblock A cool and practical alternative to traditional hash tables.
+\newblock In: Proc of Proc. 7th Workshop on Distributed Data and Structures
+  (WDAS’06).
+\newblock 2006
+
+\bibitem{ross2007efficient}
+Ross K~A.
+\newblock Efficient hash probes on modern processors.
+\newblock In: Proc of Data Engineering, 2007. ICDE 2007. IEEE 23rd
+  International Conference on.
+\newblock IEEE, 2007,  1297--1301
+
+\bibitem{black1998graph}
+Black J~R, Martel C~U, Qi H.
+\newblock Graph and Hashing Algorithms for Modern Architectures: Design and
+  Performance..
+\newblock In: Proc of Algorithm Engineering.
+\newblock 1998,  37--48
+
+\bibitem{agarwal1989adaptive}
+Agarwal A, Cherian M.
+\newblock Adaptive backoff synchronization techniques, volume~17.
+\newblock ACM, 1989
+
+\bibitem{anderson1989performance}
+Anderson T~E.
+\newblock Performance implications of spin-waiting alternatives for
+  shared-memory multiprocessors.
+\newblock In: Proc of Proceedings of the 1989 International Conference on
+  Parallel Processing.
+\newblock Publ by IEEE, 1989
+
+\bibitem{graunke1990synchronization}
+Graunke G, Thakkar S.
+\newblock Synchronization algorithms for shared-memory multiprocessors.
+\newblock Computer, 1990, 23(6):60--69
+
+\bibitem{mellor1991algorithms}
+Mellor-Crummey J~M, Scott M~L.
+\newblock Algorithms for scalable synchronization on shared-memory
+  multiprocessors.
+\newblock ACM Transactions on Computer Systems (TOCS), 1991, 9(1):21--65
+
+\bibitem{craig1993building}
+Craig T.
+\newblock Building FIFO and priorityqueuing spin locks from atomic swap.
+\newblock Technical report, Technical Report TR 93-02-02, University of
+  Washington, 02 1993.(ftp tr/1993/02/UW-CSE-93-02-02. PS. Z from cs.
+  washington. edu), 1993
+
+\bibitem{magnusson1994queue}
+Magnusson P, Landin A, Hagersten E.
+\newblock Queue locks on cache coherent multiprocessors.
+\newblock In: Proc of Parallel Processing Symposium, 1994. Proceedings., Eighth
+  International.
+\newblock IEEE, 1994,  165--171
+
+\bibitem{scott2002non}
+Scott M~L.
+\newblock Non-blocking timeout in scalable queue-based spin locks.
+\newblock In: Proc of Proceedings of the twenty-first annual symposium on
+  Principles of distributed computing.
+\newblock ACM, 2002,  31--40
+
+\bibitem{scott2001scalable}
+Scott M~L, Scherer W~N.
+\newblock Scalable queue-based spin locks with timeout.
+\newblock In: Proc of ACM SIGPLAN Notices, volume~36.
+\newblock ACM, 2001,  44--52
+
+\bibitem{michael1998nonblocking}
+Michael M~M, Scott M~L.
+\newblock Nonblocking algorithms and preemption-safe locking on multiprogrammed
+  shared memory multiprocessors.
+\newblock journal of parallel and distributed computing, 1998, 51(1):1--26
+
+\bibitem{mellor1991scalable}
+Mellor-Crummey J~M, Scott M~L.
+\newblock Scalable reader-writer synchronization for shared-memory
+  multiprocessors.
+\newblock In: Proc of ACM SIGPLAN Notices, volume~26.
+\newblock ACM, 1991,  106--113
+
+\bibitem{krieger1993fair}
+Krieger O, Stumm M, Unrau R, et~al.
+\newblock A fair fast scalable rea, der-writer lock.
+\newblock In: Proc of Parallel Processing, 1993. ICPP 1993. International
+  Conference on, volume~2.
+\newblock IEEE, 1993,  201--204
+
+\bibitem{brooks1986butterfly}
+Brooks E~D.
+\newblock The butterfly barrier.
+\newblock International Journal of Parallel Programming, 1986, 15(4):295--307
+
+\bibitem{hensgen1988two}
+Hensgen D, Finkel R, Manber U.
+\newblock Two algorithms for barrier synchronization.
+\newblock International Journal of Parallel Programming, 1988, 17(1):1--17
+
+\bibitem{mellor1992fast}
+Mellor-Crummey J, Scott M.
+\newblock Fast, Contention-Free Combining Tree Barriers.
+\newblock 1992.
+
+\bibitem{tseng2016scalable}
+Tseng Y~L, Huang K~H, Lai B~C~C.
+\newblock Scalable mutli-layer barrier synchronization on NoC.
+\newblock In: Proc of VLSI Design, Automation and Test (VLSI-DAT), 2016
+  International Symposium on.
+\newblock IEEE, 2016,  1--4
+
+\bibitem{dijkstra1980termination}
+Dijkstra E~W, Scholten C~S.
+\newblock Termination detection for diffusing computations.
+\newblock Information Processing Letters, 1980, 11(1):1--4
+
+\bibitem{solihin2015fundamentals}
+Solihin Y.
+\newblock Fundamentals of Parallel Multicore Architecture.
+\newblock CRC Press, 2015
+
+\bibitem{lamport1974new}
+Lamport L.
+\newblock A new solution of Dijkstra's concurrent programming problem.
+\newblock Communications of the ACM, 1974, 17(8):453--455
+
+\bibitem{herlihy1991wait}
+Herlihy M.
+\newblock Wait-free synchronization.
+\newblock ACM Transactions on Programming Languages and Systems (TOPLAS), 1991,
+  13(1):124--149
+
+\bibitem{herlihy2003obstruction}
+Herlihy M, Luchangco V, Moir M.
+\newblock Obstruction-free synchronization: Double-ended queues as an example.
+\newblock In: Proc of Distributed Computing Systems, 2003. Proceedings. 23rd
+  International Conference on.
+\newblock IEEE, 2003,  522--529
+
+\bibitem{herlihy2003software}
+Herlihy M, Luchangco V, Moir M, et~al.
+\newblock Software transactional memory for dynamic-sized data structures.
+\newblock In: Proc of Proceedings of the twenty-second annual symposium on
+  Principles of distributed computing.
+\newblock ACM, 2003,  92--101
+
+\bibitem{bloom1970space}
+Bloom B~H.
+\newblock Space/time trade-offs in hash coding with allowable errors.
+\newblock Communications of the ACM, 1970, 13(7):422--426
 
 \bibitem{memc3}
 Fan B, Andersen D~G, Kaminsky M.
@@ -47,9 +381,157 @@ Fan B, Andersen D~G, Kaminsky M.
 \newblock In: Proc of NSDI, volume~13.
 \newblock 2013,  385--398
 
-\bibitem{broder2004network}
-Broder A, Mitzenmacher M.
-\newblock Network applications of bloom filters: A survey.
-\newblock Internet mathematics, 2004, 1(4):485--509
+\bibitem{tbb}
+Intel.
+\newblock Threading Building Blocks.
+\newblock Website.
+\newblock \url{https://www.threadingbuildingblocks.org}
+
+\bibitem{oracle}
+Oracle.
+\newblock Java 7 EE.
+\newblock Website.
+\newblock \url{https://www.oracle.com}
+
+\bibitem{cuckoo-src}
+R.Pagh, E.F.Rodler.
+\newblock Cuckoo Hashing.
+\newblock Journal of Algorithms, 2004, 51(2):122--144
+
+\bibitem{rcu}
+McKenney P~E, Slingwine J~D.
+\newblock Read-copy update: Using execution history to solve concurrency
+  problems.
+\newblock In: Proc of Parallel and Distributed Computing and Systems.
+\newblock 1998,  509--518
+
+\bibitem{urcucode}
+liburcu.
+\newblock User-level Read-copy Update.
+\newblock Website.
+\newblock \url{http://liburcu.org}
+
+\bibitem{intel2016}
+Intel.
+\newblock Intel 64 and IA-32 architectures software de- veloper’s manual.
+\newblock 2016.
+
+\bibitem{sspfd}
+Trigonakis V.
+\newblock SSPFD.
+\newblock Website.
+\newblock \url{https://github.com/trigonak/sspfd}
+
+\bibitem{pinning}
+Mazouz A, Touati S~A~A, Barthou D.
+\newblock Performance evaluation and analysis of thread pinning strategies on
+  multi-core platforms: Case study of spec omp applications on intel
+  architectures.
+\newblock In: Proc of High Performance Computing and Simulation (HPCS), 2011
+  International Conference on.
+\newblock IEEE, 2011,  273--279
+
+\bibitem{david}
+David T, Guerraoui R, Trigonakis V.
+\newblock Everything You Always Wanted to Know About Synchronization but Were
+  Afraid to Ask.
+\newblock In: Proc of Proceedings of the Twenty-Fourth ACM Symposium on
+  Operating Systems Principles.
+\newblock New York, NY, USA: ACM, 2013,  33--48
+
+\bibitem{spear2010lightweight}
+Spear M~F.
+\newblock Lightweight, robust adaptivity for software transactional memory.
+\newblock In: Proc of Proceedings of the twenty-second annual ACM symposium on
+  Parallelism in algorithms and architectures.
+\newblock ACM, 2010,  273--283
+
+\bibitem{saha2006mcrt}
+Saha B, Adl-Tabatabai A~R, Hudson R~L, et~al.
+\newblock McRT-STM: a high performance software transactional memory system for
+  a multi-core runtime.
+\newblock In: Proc of Proceedings of the eleventh ACM SIGPLAN symposium on
+  Principles and practice of parallel programming.
+\newblock ACM, 2006,  187--197
+
+\bibitem{shavit1997software}
+Shavit N, Touitou D.
+\newblock Software transactional memory.
+\newblock Distributed Computing, 1997, 10(2):99--116
+
+\bibitem{yen2007logtm}
+Yen L, Bobba J, Marty M~R, et~al.
+\newblock LogTM-SE: Decoupling hardware transactional memory from caches.
+\newblock In: Proc of High Performance Computer Architecture, 2007. HPCA 2007.
+  IEEE 13th International Symposium on.
+\newblock IEEE, 2007,  261--272
+
+\bibitem{moore2006logtm}
+Moore K~E, Bobba J, Moravan M~J, et~al.
+\newblock LogTM: log-based transactional memory..
+\newblock In: Proc of HPCA, volume~6.
+\newblock 2006,  254--265
+
+\bibitem{dalessandro2011hybrid}
+Dalessandro L, Carouge F, White S, et~al.
+\newblock Hybrid norec: A case study in the effectiveness of best effort
+  hardware transactional memory.
+\newblock ACM SIGARCH Computer Architecture News, 2011, 39(1):39--52
+
+\bibitem{Cain2013Robust}
+Cain H~W, Michael M~M, Frey B, et~al.
+\newblock Robust architectural support for transactional memory in the power
+  architecture.
+\newblock In: Proc of International Symposium on Computer Architecture.
+\newblock 2013,  225--236
+
+\bibitem{Wang2012Evaluation}
+Wang A, Gaudet M, Wu P, et~al.
+\newblock Evaluation of Blue Gene/Q hardware support for transactional
+  memories.
+\newblock 2012. 127--136
+
+\bibitem{Intel2015Intel}
+Intel R.
+\newblock Intel R 64 and IA-32 Architectures. Software Developer’s Manual.
+\newblock 2015.
+
+\bibitem{Herlihy1993Transactional}
+Herlihy M, Eliot J, Moss B.
+\newblock Transactional Memory: Architectural Support For Lock-free Data
+  Structures.
+\newblock In: Proc of International Symposium on Computer Architecture.
+\newblock 1993,  289--300
+
+\bibitem{Dice2008Applications}
+Dice D, Herlihy M, Lea D, et~al.
+\newblock Applications of the adaptive transactional memory test platform.
+\newblock Applications of the Adaptive Transactional Memory Test Platform
+  Researchgate, 2008.
+
+\bibitem{Afek2014Software}
+Afek Y, Levy A, Morrison A.
+\newblock Software-improved hardware lock elision.
+\newblock 2014,  212--221
+
+\bibitem{Rajwar2002Transactional}
+Rajwar R, Goodman J~R.
+\newblock Transactional lock-free execution of lock-based programs.
+\newblock 2002,  5--17
+
+\bibitem{2011Intel}
+Intel 64 and IA-32 Architectures Optimization Reference Manual.
+\newblock Order Number, 2011.
+
+\bibitem{Bobba2007Performance}
+Bobba J, Moore K~E, Volos H, et~al.
+\newblock Performance pathologies in hardware transactional memory.
+\newblock In: Proc of International Symposium on Computer Architecture.
+\newblock 2007,  81--91
+
+\bibitem{mitzenmacher2002compressed}
+Mitzenmacher M.
+\newblock Compressed bloom filters.
+\newblock IEEE/ACM transactions on networking, 2002, 10(5):604--612
 
 \end{thebibliography}

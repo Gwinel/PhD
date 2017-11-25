@@ -3,49 +3,81 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: main.aux
 The style file: hnunumerical.bst
 Database file #1: bib/references.bib
+Repeated entry---line 524 of file bib/references.bib
+ : @article{fan2000summary
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 876 of file bib/references.bib
+ : @book{agarwal1989adaptive
+ :                          ,
+I'm skipping whatever remains of this entry
+Warning--I didn't find a database entry for ""
+Warning--I didn't find a database entry for "todo"
+Warning--I didn't find a database entry for "Conway2010Cache"
+Warning--I didn't find a database entry for "2011Software"
+Warning--I didn't find a database entry for "likwid"
 -- HNUTThesis.bst version 0.1 (2017/08/19) by Cheng Chang.
 -- https://github.com/chengchang/hnuthesis
 -- See the "userguide.pdf" manual for usage information.
+Warning--there's a publisher but no address in hennessy2011computer
+Warning--there's a publisher but no address in hopscotch
+Warning--can't use both volume and number fields in metreveli2012cphash
+Warning--can't use both volume and number fields in bonomi2006beyond
+Warning--there's a publisher but no address in knuth1998art
+Warning--can't use both volume and number fields in agarwal1989adaptive
+Warning--there's a publisher but no address in agarwal1989adaptive
+Warning--there's a year and month but no day in craig1993building
+Warning--can't use both volume and number fields in scott2001scalable
+Warning--can't use both volume and number fields in mellor1991scalable
+Warning--empty journal in mellor1992fast
+Warning--there's a publisher but no address in solihin2015fundamentals
+Warning--empty journal in intel2016
+Warning--empty journal in Wang2012Evaluation
+Warning--empty journal in Intel2015Intel
+Warning--empty booktitle in Afek2014Software
+Warning--empty booktitle in Rajwar2002Transactional
+Warning--empty author in 2011Intel
 
 Done.
-You've used 9 entries,
+You've used 89 entries,
             2528 wiz_defined-function locations,
-            627 strings with 5785 characters,
-and the built_in function-call counts, 2824 in all, are:
-= -- 282
-> -- 111
-< -- 5
-+ -- 52
-- -- 26
-* -- 201
-:= -- 395
-add.period$ -- 21
-call.type$ -- 9
-change.case$ -- 0
+            1039 strings with 19061 characters,
+and the built_in function-call counts, 24267 in all, are:
+= -- 2409
+> -- 914
+< -- 45
++ -- 427
+- -- 213
+* -- 1359
+:= -- 3346
+add.period$ -- 224
+call.type$ -- 89
+change.case$ -- 1
 chr.to.int$ -- 0
-cite$ -- 9
-duplicate$ -- 114
-empty$ -- 263
-format.name$ -- 33
-if$ -- 652
+cite$ -- 107
+duplicate$ -- 1134
+empty$ -- 2408
+format.name$ -- 274
+if$ -- 5820
 int.to.chr$ -- 0
-int.to.str$ -- 9
-missing$ -- 9
-newline$ -- 51
-num.names$ -- 9
-pop$ -- 36
+int.to.str$ -- 89
+missing$ -- 83
+newline$ -- 485
+num.names$ -- 88
+pop$ -- 448
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 2
-skip$ -- 92
+skip$ -- 855
 stack$ -- 0
-substring$ -- 252
-swap$ -- 32
-text.length$ -- 5
+substring$ -- 1670
+swap$ -- 352
+text.length$ -- 45
 text.prefix$ -- 0
 top$ -- 5
 type$ -- 0
-warning$ -- 0
-while$ -- 30
-width$ -- 10
-write$ -- 108
+warning$ -- 18
+while$ -- 244
+width$ -- 91
+write$ -- 1021
+(There were 2 error messages)
