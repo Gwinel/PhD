@@ -5,7 +5,7 @@
 
 在这一章中，首先对与本文密切相关的基本概念进行介绍，随后对现有的几类主要的哈希表进行描述，介绍相关参数的意义以及配置方法，最后给出对现有几个具有代表性的并发哈希表进行评估结果，以及通过对实验结果进行分析给出的并发哈希表设计和应用的最佳实践建议。
 
-\section{实现并发哈希表的方法比较}
+\section{实现并发哈希表的同步方法比较}
 
 对于所有并发数据结构而言，断言并发访问是一项必要工作。
 为了保证多个线程能够有序的对内存进行访问，有基于锁(lock-based)、无锁化编程(lock-free)和事务内存(transaction memory)几种主要的并发编程模型。
@@ -48,7 +48,7 @@
 有被应用于memcached系统的多读单写Cuckoo哈希~\cite{memc3}，
 有应用于企业级应用的Threading Building Blocks (TBB)~\cite{tbb}，
 有集成到编程语言内的Concurrent\_HashMap~\cite{oracle}，
-\textcolor{red}{有使用消息传递机制来代替锁的CPhash~\cite{metreveli2012cphash}~.}
+有使用消息传递机制来代替锁的CPhash~\cite{metreveli2012cphash}~.
 在哈希表密度非常高的情况下仍然可以保持较好性能的Hopscotch哈希~\cite{hopscotch}，
 以及遵循最小缓存行切换原则而以缓存行为哈希桶的缓存行哈希(CLHT)~\cite{clht}~等.
 
@@ -110,13 +110,14 @@ CLHT-lb采用细粒度锁(每个哈希桶都有一个锁字段)完成对读者�
 而对于CLHT-lf，为了保持其插入键/值对插入时的原子性，设计了一个\textit{snapshot\_t}的对象。
 \textit{snapshot\_t}的大小为8字节，它包括一个4字节的版本号和一个4字节的map。
 \textit{snapshot\_t}提供在map内原子的读取/更改索引值的接口。
-\textcolor{red}{版本号被用于原子的读取/更改map内的其他点。}
+版本号被用于原子的读取/更改map内的其他点。
 简而言之，CLHT-lf的原子性的过程可以大致描述如下：首先，通过在原子区间之前读取\textit{snapshot\_t}对象的值；
 然后，使用比较并交换(CAS)原子指令对map内的目标索引值进行读取/更改。
 举个例子，如果其他线程执行的并发插入已经完成了，那么当前的线程就会使CAS失败，因为两次的版本号不一致。
 然后，可以通过map内的置位情况来判断给定的键/值对是处于有效、失效还是正在被插入三种状态中的哪一种。
 
 \subsection{Cuckoo哈希表}
+\label{sec:ckhash}
 与CLHT所不同的是，Cuckoo哈希方法使用的开放寻址法解决哈希值冲突的问题。
 使用的冲突处理方式不同注定了它们两者在数据结构上的差异。
 Cuckoo哈希表中，所有的键/值对都被存放到一个大数组内，没有指针也不使用链表。
@@ -177,14 +178,18 @@ Hopscotch实现了串行和并发两个版本~\cite{hopscotch}，本文中用到
 
 \subsection{基于RCU机制的哈希表}
 
-\textcolor{red}{spilted-order list有基于URCU的实现版本，具体参看谷歌搜索urcu hash table的结果。}
 
 读-复制更新，Read-copy Update(RCU)并不单纯是一种并发哈希表的设计方案，它最初是一种用于优化Linux系统内核的共享数据访问的一种并发模型~\cite{rcu}。
 RCU是一种无锁化编程模型。
 对于被RCU机制保护的共享数据结构，读者线程可以不需要锁自由的对其进行访问，但是写者线程在对该共享数据结构进行修改前必须保留该数据结构的副本。
 当修改完成之后，通过适当的回调函数将指向旧数据的指针修改成指向新的数据（从旧数据拷贝的数据）。
-RCU的核心概念有两个：一个成为静默期(quiescent state)；一个称为优雅期(grace period).
-\textcolor{red}{补充静默期和优雅期的描述与功能。}
+RCU的设计中有两个关键的时间区间：一个是Reader Lock时间；一个时Grace Period。Reader Lock时间是读者线程持有锁到释放锁之间的时间，Grace Period是指写者线程开始修改临界区的数据结构开始，到所有的读者线程都经过了至少一个Reader Lock时间的时间段。
+假设Grace Period开始的时刻记作$T_{start}$，Grace Period的持续时间记作$t_{gp}$和Reader Lock的持续时间记作$t_{rl}$，则$t_{gp}$和$t_{rl}$之间存在两种不同的关系：
+\begin{itemize}
+  \item 如果$t_{rl}$横跨$T_{start}$，则$t_{gp}$必然在$t_{rl}$结束之后结束；
+  \item 如果$t_{rl}$开始于$_{start}$之后，则$t_{gp}$可能在位于$t_{rl}$时间段内的任意一个时刻结束，也可能在$t_{rl}$结束之后结束。
+\end{itemize}
+在写者线程删除数据时，无论两者处于什么样的关系，在经历了Grace Period之后所有的读者线程都不可能获取到在$T_{start}$之前的旧数据，所以删除操作是安全的。
 
 基于RCU的并发哈希表的最大特点是牺牲更新性能来换取读性能。
 基于RCU的编程模型主要用于Linux系统内核，为了便于将RCU集成到我们的测试框架下进行测试我们使用用户态的RCU实现(URCU)~\cite{urcu}~。
@@ -207,6 +212,71 @@ TBB实现的并发哈希表处理冲突采用的是典型的链式法。
 适合处理读占多数的数据集。
 本文中，将TBB v 4.2集成到CHTBench中进行测试。
 
+\section{统一的跨平台并发哈希表测试框架的设计}
+\label{sec:design_framework}
+
+前文在进行并发哈希表介绍时提到，文献中提出的并发哈希表通常在设计（采用什么样的同步编程模型，基于锁还是无锁），实现（采用什么样的硬件优化方案）以及评估方法（总和的测试集合与测试方法）上都千差万别。
+这些差异使得用户在横向上很难直观的进行比较，也很难判断究竟哪种因素限制了并发哈希表的性能。
+在这部分内容里，将提出用于评估比较并发哈希表的测试框架\textbf{CHTBench}。
+CHTBench能为参与评估的并发哈希表提供一个公平的测试环境，排除编译器、数据分布、线程调度方式、键值大小等因素的干扰。
+
+\subsection{参数说明}
+表~\ref{tab:concurrent_hash}列出的哈希表兼使用C/C++编写，为设计测试框架提供了便利。
+可执行程序使用gcc 4.8编译生成，编译优化选项为'－O3'。
+为了简便起见，所有的键值对均为64位整形数。
+\textit{n}表示需要创建的线程数量，创建\textit{n}个线程用于并发的执行\textit{add}，\textit{remove}和\textit{find}操作。
+4个测试平台所能创建的最大线程数量见表~\ref{tab:arch_info}。
+\textit{c}为范围在1到100的随机数，它用于控制执行查询和更新操作的比重，确保执行的操作的比重跟预期一致。
+\textit{d}表示一次测试运行的时间，单位为毫秒，它用于控制\textit{while}循环什么时候结束。
+创建的所有线程都将执行包含\textit{u}\%更新操作的工作集，\textit{u}表示更新操作占总的操作数量的百分比。
+更新操作包含插入操作和删除操作，如没有特别说明，二者所占的比重是相同的。
+因此，总的操作数中查询操作所占的比重为100 - \textit{u}\%。
+\textit{i}为预先填充进哈希表的元素的个数，一般的\textit{i}为2的幂次方。
+\textit{r}表示范围在1到2\textit{i}的值，它表示所产生的键的位置。
+设置成最大值为2\textit{i}的目的是为了确保有50\%的操作是失败的操作。
+
+\subsection{测试逻辑}
+\label{sec:para_config}
+多线程的创建和销毁都适用pthread库提供的接口。
+在~\ref{sec:thread_pinning}~中详细介绍了三种不同的线程绑定方案，在测试文件有对应的核的排列方式。
+编译时只需要输入相应的关键字就能使用对应的线程绑定方案进行编译。
+哈希表的初始化在执行所有操作之前，初始化设置了两种方式，一是使用单个线程进行初始化；一是所有被创建的线程都参与初始化；
+在使用多线程完成初始化时，每个线程获得均匀的初始化任务。
+为了避免某些线程提前完成初始化转而执行其他操作，设置了内存屏障。
+这样只有当所有的线程都完成了初始化任务，才会开始下一阶段的任务。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.9\textwidth]{flowchart_test}
+\caption{CHTBench测试流程图}\label{fig:flowchart}
+\end{figure}
+
+如图~\ref{fig:flowchart}所示，
+进入测试函数后，先判断此次执行哪种操作。
+这个由随机值\textit{c}控制。
+下面举例说明。
+假设测试集中更新所占比重为20\%，则插入和删除各占10\%，而查询操作所占的比重为80\%，如果$0 < c \leq 10$时，执行插入操作；$10 < c \leq 20$执行删除操作；而\textit{c}为其他值时则执行查询操作。
+
+为了统计执行的总的操作次数，以及各项操作执行成功和失败的次数，每执行完一次操作，相应的计数器加1。最终通过统计相关计数器的值再除以执行时间得到吞吐量。
+
+\subsection{延迟测量工具}
+在并发哈希表中，线程申请锁的延迟，或是对某些数据执行原子操作的延迟将对其性能造成直接的影响。
+因此，在并发哈希表的评估中有一项重要的的指标——延迟。
+CHTBench测试框架集成了一个简易的解析器：$sspfd$。
+$sspfd$能够以极细的粒度（单个CPU时钟周期）分类记录各项操作的执行时间，当应用程序有延迟统计的需求时，$sspfd$对统计结果进行统计性的分析（比如计算标准差，绝对偏差，值聚类等），最后将统计结果输出。
+
+使用$sspfd$测量应用的延迟时，将SSPFD\_DO\_TIMINGS设置为1，设置为其它值则表示关闭$sspfd$的功能。
+$sspfd$提供了一系列访问接口，具体如下：
+\begin{itemize}
+\item[1.] \textbf{SSPFDINIT(num\_stores, num\_entries, id)} : 初始化函数，参数$num\_stores$表示要解析的操作类型数量，$num\_entries$表示统计每种操作的延迟需要的样本数量，样本越多测量结果越准确，$id$表示用于输出打印结果的线程的编号；
+\item[2.] \textbf{SSPFDI(store)} ：获取当前时间戳作为启动时间戳$t_{start}$，开始编号为$store$的操作的测算；
+\item[3.] \textbf{SSPFDO(store, entry)}： 获取当前时间戳作为终止时间戳$t_{end}$，将$t_{end} - t_{start}$的值存储到$entry$中。
+\item[4.] \textbf{SSPFDSTATS(store, num\_ops, statsp)}：为第$store$类型的操作的前$num\_ops$个值生成统计信息，将结果存储到$sspfd\_stats\_t$结构体的$statsp$指针中；
+\item[5.] \textbf{SSPFDPRINT(statsp)}：打印$statsp$指针中的统计信息；
+\item[6.] \textbf{SSPFDPRINTV(store, num\_print)}：打印$store$的前$num\_print$各测量信息；
+\item[7.] \textbf{SSPFDP(store, num\_vals)}：为$store$的前$num\_vals$个值生成统计信息并打印；
+\item[8.] \textbf{SSPFDPN(store, num\_vals, num\_print)}：在7的基础上额外打印这类操作的前$num\_print$个测量值；
+\end{itemize}
 \section{并发哈希表的评估与分析}
 \textbf{并发哈希表}（CHT）是一种允许在同一时刻有多个读者或写者访问共享对象的哈希表。
 其提供与串行哈希表一样的访问接口，但是CHT能够更有效的发挥多核处理器的性能。

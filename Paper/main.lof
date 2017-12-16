@@ -1,56 +1,62 @@
 \addvspace {10.0pt}
-\contentsline {figure}{\numberline {1.1}{\ignorespaces SMP架构多处理器的基本结构示意图\relax }}{6}{figure.caption.6}
-\contentsline {figure}{\numberline {1.2}{\ignorespaces DSM架构多处理器结构示意图\relax }}{7}{figure.caption.7}
+\contentsline {figure}{\numberline {1.1}{\ignorespaces SMP架构多处理器的基本结构示意图\relax }}{8}{figure.caption.6}
+\contentsline {figure}{\numberline {1.2}{\ignorespaces DSM架构多处理器结构示意图\relax }}{9}{figure.caption.7}
 \addvspace {10.0pt}
 \addvspace {10.0pt}
-\contentsline {figure}{\numberline {3.1}{\ignorespaces 4路组相联Cuckoo哈希表\relax }}{26}{figure.caption.9}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Hopscotch插入操作示例\relax }}{27}{figure.caption.10}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces AMD Opteron内存结点拓扑结构\relax }}{29}{figure.caption.12}
-\contentsline {figure}{\numberline {3.4}{\ignorespaces Intel Phi 7120p体系结构\relax }}{32}{figure.caption.13}
-\contentsline {figure}{\numberline {3.5}{\ignorespaces 并发哈希表的吞吐量随线程数量的变化曲线，哈希表的密度为50\%，\textit {u}为10\%，\textit {i}为一百万。\relax }}{33}{figure.caption.15}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630}}}{33}{figure.caption.15}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850}}}{33}{figure.caption.15}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron}}}{33}{figure.caption.15}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P}}}{33}{figure.caption.15}
-\contentsline {figure}{\numberline {3.6}{\ignorespaces 数据服从zipf分布时吞吐量随线程变化情况\relax }}{34}{figure.caption.16}
-\contentsline {figure}{\numberline {3.7}{\ignorespaces 哈希表初始化元素个数一定的前提下，吞吐量随更新比重变化趋势\relax }}{35}{figure.caption.17}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630, n = 16}}}{35}{figure.caption.17}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850, n = 24}}}{35}{figure.caption.17}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron, n = 12}}}{35}{figure.caption.17}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P, n = 60}}}{35}{figure.caption.17}
-\contentsline {figure}{\numberline {3.8}{\ignorespaces 不同初始化大小对应的吞吐量抽样直方图\relax }}{37}{figure.caption.19}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630}}}{37}{figure.caption.19}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850}}}{37}{figure.caption.19}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron}}}{37}{figure.caption.19}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P}}}{37}{figure.caption.19}
-\contentsline {figure}{\numberline {3.9}{\ignorespaces E5-2630平台上6种操作对应的延迟随线程数量变化曲线\relax }}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {get-fail}}}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {get-suc}}}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {put-fail}}}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {put-suc}}}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {rem-fail}}}{39}{figure.caption.20}
-\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {rem-suc}}}{39}{figure.caption.20}
-\contentsline {figure}{\numberline {3.10}{\ignorespaces E5-2630平台上使用平衡型线程绑定方案时线程与核的映射拓扑结构\relax }}{40}{figure.caption.21}
-\contentsline {figure}{\numberline {3.11}{\ignorespaces 三种线程绑定方式性能对比\relax }}{41}{figure.caption.22}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces 4路组相联Cuckoo哈希表\relax }}{34}{figure.caption.9}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Hopscotch插入操作示例\relax }}{35}{figure.caption.10}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces CHTBench测试流程图\relax }}{37}{figure.caption.11}
+\contentsline {figure}{\numberline {3.4}{\ignorespaces AMD Opteron内存结点拓扑结构\relax }}{40}{figure.caption.13}
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Intel Phi 7120p体系结构\relax }}{42}{figure.caption.14}
+\contentsline {figure}{\numberline {3.6}{\ignorespaces 并发哈希表的吞吐量随线程数量的变化曲线，哈希表的密度为50\%，\textit {u}为10\%，\textit {i}为一百万。\relax }}{43}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630}}}{43}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850}}}{43}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron}}}{43}{figure.caption.16}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P}}}{43}{figure.caption.16}
+\contentsline {figure}{\numberline {3.7}{\ignorespaces 数据服从zipf分布时吞吐量随线程变化情况\relax }}{44}{figure.caption.17}
+\contentsline {figure}{\numberline {3.8}{\ignorespaces 哈希表初始化元素个数一定的前提下，吞吐量随更新比重变化趋势\relax }}{46}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630, n = 16}}}{46}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850, n = 24}}}{46}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron, n = 12}}}{46}{figure.caption.18}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P, n = 60}}}{46}{figure.caption.18}
+\contentsline {figure}{\numberline {3.9}{\ignorespaces 不同初始化大小对应的吞吐量抽样直方图\relax }}{47}{figure.caption.20}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {E5-2630}}}{47}{figure.caption.20}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {E7-4850}}}{47}{figure.caption.20}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {Opteron}}}{47}{figure.caption.20}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {Phi 7120P}}}{47}{figure.caption.20}
+\contentsline {figure}{\numberline {3.10}{\ignorespaces E5-2630平台上6种操作对应的延迟随线程数量变化曲线\relax }}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {get-fail}}}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {get-suc}}}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(c)}{\ignorespaces {put-fail}}}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(d)}{\ignorespaces {put-suc}}}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(e)}{\ignorespaces {rem-fail}}}{50}{figure.caption.21}
+\contentsline {subfigure}{\numberline {(f)}{\ignorespaces {rem-suc}}}{50}{figure.caption.21}
+\contentsline {figure}{\numberline {3.11}{\ignorespaces E5-2630平台上使用平衡型线程绑定方案时线程与核的映射拓扑结构\relax }}{50}{figure.caption.22}
+\contentsline {figure}{\numberline {3.12}{\ignorespaces 三种线程绑定方式性能对比\relax }}{51}{figure.caption.23}
 \addvspace {10.0pt}
-\contentsline {figure}{\numberline {4.1}{\ignorespaces 串行执行五个操作的哈希表\relax }}{55}{figure.caption.29}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces 传统细粒度锁方法和基于RTM的粗粒度锁方法之间的性能比较\relax }}{62}{figure.caption.33}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{62}{figure.caption.33}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{62}{figure.caption.33}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces 使用不同全局锁方法之间的性能比较\relax }}{62}{figure.caption.34}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{62}{figure.caption.34}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{62}{figure.caption.34}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces 紧凑型线程绑定方案运行结果\relax }}{63}{figure.caption.35}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{63}{figure.caption.35}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{63}{figure.caption.35}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces 使用/不使用HTM的细粒度锁方法之间的性能比较\relax }}{64}{figure.caption.36}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{64}{figure.caption.36}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{64}{figure.caption.36}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces 串行执行五个操作的哈希表\relax }}{66}{figure.caption.30}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces 传统细粒度锁方法和基于RTM的粗粒度锁方法之间的性能比较\relax }}{73}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{73}{figure.caption.34}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{73}{figure.caption.34}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces 使用不同全局锁方法之间的性能比较\relax }}{74}{figure.caption.35}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{74}{figure.caption.35}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{74}{figure.caption.35}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces 紧凑型线程绑定方案运行结果\relax }}{75}{figure.caption.36}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{75}{figure.caption.36}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{75}{figure.caption.36}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces 使用/不使用HTM的细粒度锁方法之间的性能比较\relax }}{75}{figure.caption.37}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {\textit {i} = 10$^3$}}}{75}{figure.caption.37}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {\textit {i} = 10$^6$}}}{75}{figure.caption.37}
 \addvspace {10.0pt}
-\contentsline {figure}{\numberline {5.1}{\ignorespaces 布隆过滤器\relax }}{69}{figure.caption.40}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces 负载因子与指纹信息长度变化关系\relax }}{76}{figure.caption.42}
-\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$b$\nobreakspace {}= \nobreakspace {}4 }}}{76}{figure.caption.42}
-\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$b$\nobreakspace {} = \nobreakspace {}8}}}{76}{figure.caption.42}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces 布隆过滤器\relax }}{80}{figure.caption.41}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces 负载因子与指纹信息长度变化关系\relax }}{87}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$b$\nobreakspace {}= \nobreakspace {}4 }}}{87}{figure.caption.43}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$b$\nobreakspace {} = \nobreakspace {}8}}}{87}{figure.caption.43}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces 哈希桶容量与空间效率的关系\relax }}{89}{figure.caption.44}
+\contentsline {subfigure}{\numberline {(a)}{\ignorespaces {$u$ = 0}}}{101}{subfigure.5.4.2}
+\contentsline {subfigure}{\numberline {(b)}{\ignorespaces {$u$ = 10}}}{101}{subfigure.5.4.2}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces 并发Cuckoo过滤器的线程扩展性\relax }}{101}{figure.caption.54}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces 不同$retries$值之间的性能差异\relax }}{102}{figure.caption.55}
 \addvspace {10.0pt}
 \addvspace {10.0pt}
 \addvspace {10.0pt}

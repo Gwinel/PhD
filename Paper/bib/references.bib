@@ -66,6 +66,106 @@
  keywords = {concurrent data structures, multi-cores, portability, scalability},
 }
 
+@inproceedings{fan2014cuckoo,
+  title={Cuckoo filter: Practically better than bloom},
+  author={Fan, Bin and Andersen, Dave G and Kaminsky, Michael and Mitzenmacher, Michael D},
+  booktitle={Proceedings of the 10th ACM International on Conference on emerging Networking Experiments and Technologies},
+  pages={75--88},
+  year={2014},
+  organization={ACM}
+}
+
+@misc{moir2004concurrent,
+  title={Concurrent Data Structures.},
+  author={Moir, Mark and Shavit, Nir},
+  year={2004}
+}
+
+@inproceedings{wang2013opportunities,
+  title={Opportunities and pitfalls of multi-core scaling using hardware transaction memory},
+  author={Wang, Zhaoguo and Qian, Hao and Chen, Haibo and Li, Jinyang},
+  booktitle={Proceedings of the 4th Asia-Pacific Workshop on Systems},
+  pages={3},
+  year={2013},
+  organization={ACM}
+}
+
+@inproceedings{wang2017eunomia,
+  title={Eunomia: Scaling Concurrent Search Trees under Contention Using HTM},
+  author={Wang, Xin and Zhang, Weihua and Wang, Zhaoguo and Wei, Ziyun and Chen, Haibo and Zhao, Wenyun},
+  booktitle={Proceedings of the 22nd ACM SIGPLAN Symposium on Principles and Practice of Parallel Programming},
+  pages={385--399},
+  year={2017},
+  organization={ACM}
+}
+
+@inproceedings{wei2015fast,
+  title={Fast in-memory transaction processing using RDMA and HTM},
+  author={Wei, Xingda and Shi, Jiaxin and Chen, Yanzhe and Chen, Rong and Chen, Haibo},
+  booktitle={Proceedings of the 25th Symposium on Operating Systems Principles},
+  pages={87--104},
+  year={2015},
+  organization={ACM}
+}
+
+@inproceedings{rajwar2001speculative,
+  title={Speculative lock elision: Enabling highly concurrent multithreaded execution},
+  author={Rajwar, Ravi and Goodman, James R},
+  booktitle={Proceedings of the 34th annual ACM/IEEE international symposium on Microarchitecture},
+  pages={294--305},
+  year={2001},
+  organization={IEEE Computer Society}
+}
+
+@inproceedings{wang2014using,
+  title={Using restricted transactional memory to build a scalable in-memory database},
+  author={Wang, Zhaoguo and Qian, Hao and Li, Jinyang and Chen, Haibo},
+  booktitle={Proceedings of the Ninth European Conference on Computer Systems},
+  pages={26},
+  year={2014},
+  organization={ACM}
+}
+
+@inproceedings{chen2016fast,
+  title={Fast and general distributed transactions using RDMA and HTM},
+  author={Chen, Yanzhe and Wei, Xingda and Shi, Jiaxin and Chen, Rong and Chen, Haibo},
+  booktitle={Proceedings of the Eleventh European Conference on Computer Systems},
+  pages={26},
+  year={2016},
+  organization={ACM}
+}
+
+@inproceedings{rajwar2002transactional,
+  title={Transactional lock-free execution of lock-based programs},
+  author={Rajwar, Ravi and Goodman, James R},
+  booktitle={ACM SIGOPS Operating Systems Review},
+  volume={36},
+  number={5},
+  pages={5--17},
+  year={2002},
+  organization={ACM}
+}
+
+@book{herlihy1993transactional,
+  title={Transactional memory: Architectural support for lock-free data structures},
+  author={Herlihy, Maurice and Moss, J Eliot B},
+  volume={21},
+  number={2},
+  year={1993},
+  publisher={ACM}
+}
+
+@article{kung1981optimistic,
+  title={On optimistic methods for concurrency control},
+  author={Kung, Hsiang-Tsung and Robinson, John T},
+  journal={ACM Transactions on Database Systems (TODS)},
+  volume={6},
+  number={2},
+  pages={213--226},
+  year={1981},
+  publisher={ACM}
+}
+
 @inproceedings{pinning,
   title={Performance evaluation and analysis of thread pinning strategies on multi-core platforms: Case study of spec omp applications on intel architectures},
   author={Mazouz, Abdelhafid and Touati, Sid-Ahmed-Ali and Barthou, Denis},
@@ -176,6 +276,29 @@
     note = {\url{https://www.threadingbuildingblocks.org}},
 }
 
+@misc{tsx,
+    author = "Intel",
+    title = {Intel{\textregistered} transactional synchronization extensions},
+    howpublished = "Website",
+    note = {\url{https://software.intel.com/en-us/node/524022}},
+}
+
+@inproceedings{baumann2009multikernel,
+  title={The multikernel: a new OS architecture for scalable multicore systems},
+  author={Baumann, Andrew and Barham, Paul and Dagand, Pierre-Evariste and Harris, Tim and Isaacs, Rebecca and Peter, Simon and Roscoe, Timothy and Sch{\"u}pbach, Adrian and Singhania, Akhilesh},
+  booktitle={Proceedings of the ACM SIGOPS 22nd symposium on Operating systems principles},
+  pages={29--44},
+  year={2009},
+  organization={ACM}
+}
+
+@misc{Fabian-ryg,
+    author = "Fabian Giesen",
+    title = "Cache coherency primer",
+    howpublished = "Website",
+    note = {\url{https://fgiesen.wordpress.com/2014/07/07/cache-coherency/}},
+}
+
 @misc{oracle,
     author = "Oracle",
     title = "Java 7 EE",
@@ -280,6 +403,34 @@
   author={Dice, Dave and Herlihy, Maurice and Lea, Doug and Lev, Yossi and Luchangco, Victor and Mesard, Wayne and Moir, Mark and Moore, Kevin and Dan, Nussbaum and Sun, Microsystems},
   journal={Applications of the Adaptive Transactional Memory Test Platform Researchgate},
   year={2008},
+}
+
+@book{吴军2012数学之美,
+  title={数学之美},
+  author={吴军},
+  volume={5},
+  year={2012},
+  publisher={人民邮电出版社}
+}
+
+@article{putze2007cache,
+  title={Cache-, hash-and space-efficient bloom filters},
+  author={Putze, Felix and Sanders, Peter and Singler, Johannes},
+  journal={Experimental Algorithms},
+  pages={108--121},
+  year={2007},
+  publisher={Springer}
+}
+
+@inproceedings{fan1998summary,
+  title={Summary cache: A scalable wide-area web cache sharing protocol},
+  author={Fan, Li and Cao, Pei and Almeida, Jussara and Broder, Andrei Z},
+  booktitle={ACM SIGCOMM Computer Communication Review},
+  volume={28},
+  number={4},
+  pages={254--265},
+  year={1998},
+  organization={ACM}
 }
 
 @inproceedings{Afek2014Software,
@@ -508,6 +659,12 @@ month = {May},
   pages={684--695},
   year={2006},
   organization={Springer}
+}
+
+@article{mitzenmacher1999asymptotics,
+  title={The asymptotics of selecting the shortest of two, improved},
+  author={Mitzenmacher, Michael D and Vocking, Berhold},
+  year={1999}
 }
 
 @article{fan2000summary,
@@ -828,6 +985,51 @@ month = {May},
   organization={IEEE}
 }
 
+@inproceedings{lepers2015thread,
+  title={Thread and Memory Placement on NUMA Systems: Asymmetry Matters.},
+  author={Lepers, Baptiste and Qu{\'e}ma, Vivien and Fedorova, Alexandra},
+  booktitle={USENIX Annual Technical Conference},
+  pages={277--289},
+  year={2015}
+}
+
+@inproceedings{gidra2015numagic,
+  title={NumaGiC: a garbage collector for big data on big NUMA machines},
+  author={Gidra, Lokesh and Thomas, Ga{\"e}l and Sopena, Julien and Shapiro, Marc and Nguyen, Nhan},
+  booktitle={ACM SIGARCH Computer Architecture News},
+  volume={43},
+  number={1},
+  pages={661--673},
+  year={2015},
+  organization={ACM}
+}
+
+@inproceedings{bull2002data,
+  title={Data distribution, migration and replication on a cc-NUMA architecture},
+  author={Bull, J Mark and Johnson, Chris},
+  booktitle={Proceedings of the fourth European workshop on OpenMP},
+  year={2002}
+}
+
+@inproceedings{tang2013optimizing,
+  title={Optimizing Google's warehouse scale computers: The NUMA experience},
+  author={Tang, Lingjia and Mars, Jason and Zhang, Xiao and Hagmann, Robert and Hundt, Robert and Tune, Eric},
+  booktitle={High Performance Computer Architecture (HPCA2013), 2013 IEEE 19th International Symposium on},
+  pages={188--197},
+  year={2013},
+  organization={IEEE}
+}
+
+
+@inproceedings{blagodurov2010case,
+  title={A case for NUMA-aware contention management on multicore systems},
+  author={Blagodurov, Sergey and Zhuravlev, Sergey and Fedorova, Alexandra and Kamali, Ali},
+  booktitle={Proceedings of the 19th international conference on Parallel architectures and compilation techniques},
+  pages={557--558},
+  year={2010},
+  organization={ACM}
+}
+
 @book{agarwal1989adaptive,
   title={Adaptive backoff synchronization techniques},
   author={Agarwal, Anant and Cherian, Mathews},
@@ -835,6 +1037,110 @@ month = {May},
   number={3},
   year={1989},
   publisher={ACM}
+}
+
+@inproceedings{tam2007thread,
+  title={Thread clustering: sharing-aware scheduling on SMP-CMP-SMT multiprocessors},
+  author={Tam, David and Azimi, Reza and Stumm, Michael},
+  booktitle={ACM SIGOPS Operating Systems Review},
+  volume={41},
+  number={3},
+  pages={47--58},
+  year={2007},
+  organization={ACM}
+}
+
+@inproceedings{dashti2013traffic,
+  title={Traffic management: a holistic approach to memory placement on NUMA systems},
+  author={Dashti, Mohammad and Fedorova, Alexandra and Funston, Justin and Gaud, Fabien and Lachaize, Renaud and Lepers, Baptiste and Quema, Vivien and Roth, Mark},
+  booktitle={ACM SIGPLAN Notices},
+  volume={48},
+  number={4},
+  pages={381--394},
+  year={2013},
+  organization={ACM}
+}
+
+@inproceedings{lachaize2012memprof,
+  title={MemProf: a memory profiler for NUMA multicore systems},
+  author={Lachaize, Renaud and Lepers, Baptiste and Qu{\'e}ma, Vivien},
+  booktitle={ATC-USENIX Annual Technical Conference},
+  year={2012}
+}
+
+@inproceedings{brecht1993importance,
+  title={On the importance of parallel application placement in NUMA multiprocessors},
+  author={Brecht, Timothy},
+  booktitle={Symposium on Experiences with Distributed and Multiprocessor Systems (SEDMS IV)},
+  pages={1--18},
+  year={1993}
+}
+
+@inproceedings{timnat2014practical,
+  title={A practical wait-free simulation for lock-free data structures},
+  author={Timnat, Shahar and Petrank, Erez},
+  booktitle={ACM SIGPLAN Notices},
+  volume={49},
+  number={8},
+  pages={357--368},
+  year={2014},
+  organization={ACM}
+}
+
+@inproceedings{kogan2012methodology,
+  title={A methodology for creating fast wait-free data structures},
+  author={Kogan, Alex and Petrank, Erez},
+  booktitle={ACM SIGPLAN Notices},
+  volume={47},
+  number={8},
+  pages={141--150},
+  year={2012},
+  organization={ACM}
+}
+
+@inproceedings{michael1996simple,
+  title={Simple, fast, and practical non-blocking and blocking concurrent queue algorithms},
+  author={Michael, Maged M and Scott, Michael L},
+  booktitle={Proceedings of the fifteenth annual ACM symposium on Principles of distributed computing},
+  pages={267--275},
+  year={1996},
+  organization={ACM}
+}
+
+@inproceedings{kogan2011wait,
+  title={Wait-free queues with multiple enqueuers and dequeuers},
+  author={Kogan, Alex and Petrank, Erez},
+  booktitle={ACM SIGPLAN Notices},
+  volume={46},
+  number={8},
+  pages={223--234},
+  year={2011},
+  organization={ACM}
+}
+
+@inproceedings{fich2004inherent,
+  title={On the inherent weakness of conditional synchronization primitives},
+  author={Fich, Faith and Hendler, Danny and Shavit, Nir},
+  booktitle={Proceedings of the twenty-third annual ACM symposium on Principles of distributed computing},
+  pages={80--87},
+  year={2004},
+  organization={ACM}
+}
+
+@inproceedings{herlihy1988impossibility,
+  title={Impossibility and universality results for wait-free synchronization},
+  author={Herlihy, Maurice P},
+  booktitle={Proceedings of the seventh annual ACM Symposium on Principles of distributed computing},
+  pages={276--290},
+  year={1988},
+  organization={ACM}
+}
+
+@book{bovet2005understanding,
+  title={Understanding the Linux Kernel: from I/O ports to process management},
+  author={Bovet, Daniel P and Cesati, Marco},
+  year={2005},
+  publisher={" O'Reilly Media, Inc."}
 }
 
 @inproceedings{herlihy2003software,

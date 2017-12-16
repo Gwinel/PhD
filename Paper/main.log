@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  25 NOV 2017 21:06
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017) (preloaded format=xelatex 2017.9.20)  16 DEC 2017 18:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2465,9 +2465,8 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[4] (./main.lof)
-\tf@lof=\write8
-\openout8 = `main.lof'.
+[4] (./main.lof
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -2483,7 +2482,21 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
 
 
 
-] (./main.lot)
+])
+\tf@lof=\write8
+\openout8 = `main.lof'.
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[6] (./main.lot)
 \tf@lot=\write9
 \openout9 = `main.lot'.
 
@@ -2497,9 +2510,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[6
+[7
 
 
+
+] [8
 
 ] (./chapters/abstract.tex
 
@@ -2511,6 +2526,9 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                \hskip 12.5pt
 (hyperref)                replaced by space on input line 3.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -2525,6 +2543,34 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
 [2
 
 
+]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[3]
+Missing character: There is no ^^8c in font Times New Roman/OT:script=latn;lang
+uage=DFLT;mapping=tex-text;!
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[4
+
 
 ]) (./chapters/ch1_introduction.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -2536,10 +2582,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[3
-
-
-]
+[5]
 第1章
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
@@ -2559,7 +2602,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[4
+[6
 
 ]
 File: figures/uma.pdf Graphic file (type QTm)
@@ -2576,35 +2619,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[5]
+[7]
 File: figures/dsm.pdf Graphic file (type QTm)
  <use  "figures/dsm.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[6]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[7]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2669,7 +2686,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[12]) (./chapters/ch2_related_works.tex
+[12]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2683,6 +2700,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [13]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2693,6 +2713,42 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [14]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[15]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[16]) (./chapters/ch2_related_works.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[17]
 第2章
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2707,48 +2763,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[15
+[18
 
 ]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[16]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[17]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2774,19 +2791,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[20]) (./chapters/ch4_cht_analysis.tex
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[21]
-第3章
-
+[20]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2799,21 +2804,21 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[22
-
-]
-
-Package natbib Warning: Citation `todo' on page 23 undefined on input line 39.
+[21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Package natbib Warning: Citation `todo' on page 23 undefined on input line 39.
-
-LaTeX Font Info:    Calculating math sizes for size <9.03365> on input line 61.
-
-
-Overfull \hbox (18.50806pt too wide) in paragraph at lines 61--76
- [][] 
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
  []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[22]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -2839,8 +2844,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [24]
-File: figures/cuckoo.pdf Graphic file (type QTm)
- <use  "figures/cuckoo.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2854,8 +2857,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [25]
-File: figures/hopscotch.pdf Graphic file (type QTm)
- <use  "figures/hopscotch.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2869,27 +2870,19 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [26]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[27]
-File: figures/AMD_top.png Graphic file (type QTm)
- <use  "figures/AMD_top.png" >
 
-Package natbib Warning: Citation `Conway2010Cache' on page 28 undefined on inpu
-t line 267.
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
 
-
-Package natbib Warning: Citation `2011Software' on page 28 undefined on input l
-ine 268.
-
-
+[27]) (./chapters/ch3_cht_analysis.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2913,6 +2906,8 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [29]
+第3章
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2925,20 +2920,21 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[30]
-File: figures/PHIarch.pdf Graphic file (type QTm)
- <use  "figures/PHIarch.pdf" >
-File: figures/2630Scal.pdf Graphic file (type QTm)
- <use  "figures/2630Scal.pdf" >
-File: figures/4850Scal.pdf Graphic file (type QTm)
+[30
 
-<use  "figures/4850Scal.pdf" >
-File: figures/AMDScal.pdf Graphic file (type QTm)
- <use  "figures/AMDScal.pdf" >
-File: figures/7120PScal.pdf Graphic file (type QTm)
+]
 
-<use  "figures/7120PScal.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Package natbib Warning: Citation `todo' on page 31 undefined on input line 39.
+
+
+Package natbib Warning: Citation `todo' on page 31 undefined on input line 39.
+
+LaTeX Font Info:    Calculating math sizes for size <9.03365> on input line 61.
+
+
+Overfull \hbox (21.66982pt too wide) in paragraph at lines 61--76
+ [][] 
+ []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -2951,6 +2947,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [31]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2961,8 +2960,8 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [32]
-File: figures/2630zipf.pdf Graphic file (type QTm)
- <use  "figures/2630zipf.pdf" >
+File: figures/cuckoo.pdf Graphic file (type QTm)
+ <use  "figures/cuckoo.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -2976,6 +2975,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [33]
+File: figures/hopscotch.pdf Graphic file (type QTm)
+ <use  "figures/hopscotch.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -2986,20 +2990,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [34]
-File: figures/2630Update.pdf Graphic file (type QTm)
- <use  "figures/2630Update.pdf" >
-File: figures/4850Update.pdf Graphic file (type QTm)
- <use  "figures/4850Update.pdf" >
-File: figures/AMDUpdate.pdf Graphic file (type QTm)
-
-<use  "figures/AMDUpdate.pdf" >
-File: figures/7120U10.pdf Graphic file (type QTm)
- <use  "figures/7120U10.pdf" >
-
-LaTeX Warning: Reference `tab:cache_miss_update' on page 35 undefined on input 
-line 433.
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3010,6 +3000,174 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [35]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[36]
+File: figures/flowchart_test.pdf Graphic file (type QTm)
+ <use  "figures/flowchart_test.pdf" >
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[37]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[38]
+File: figures/AMD_top.png Graphic file (type QTm)
+ <use  "figures/AMD_top.png" >
+
+Package natbib Warning: Citation `Conway2010Cache' on page 39 undefined on inpu
+t line 337.
+
+
+Package natbib Warning: Citation `2011Software' on page 39 undefined on input l
+ine 338.
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[39]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[40]
+File: figures/PHIarch.pdf Graphic file (type QTm)
+ <use  "figures/PHIarch.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[41]
+File: figures/2630Scal.pdf Graphic file (type QTm)
+ <use  "figures/2630Scal.pdf" >
+File: figures/4850Scal.pdf Graphic file (type QTm)
+ <use  "figures/4850Scal.pdf" >
+File: figures/AMDScal.pdf Graphic file (type QTm)
+
+<use  "figures/AMDScal.pdf" >
+File: figures/7120PScal.pdf Graphic file (type QTm)
+ <use  "figures/7120PScal.pdf" >
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[42]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[43]
+File: figures/2630zipf.pdf Graphic file (type QTm)
+ <use  "figures/2630zipf.pdf" >
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[44]
+File: figures/2630Update.pdf Graphic file (type QTm)
+ <use  "figures/2630Update.pdf" >
+File: figures/4850Update.pdf Graphic file (type QTm)
+ <use  "figures/4850Update.pdf" >
+File: figures/AMDUpdate.pdf Graphic file (type QTm)
+
+<use  "figures/AMDUpdate.pdf" >
+File: figures/7120U10.pdf Graphic file (type QTm)
+ <use  "figures/7120U10.pdf" >
+
+LaTeX Warning: Reference `tab:cache_miss_update' on page 45 undefined on input 
+line 503.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[45]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[46]
 File: figures/2630Init.pdf Graphic file (type QTm)
  <use  "figures/2630Init.pdf" >
 File: figures/4850Init.pdf Graphic file (type QTm)
@@ -3028,7 +3186,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[36]
+[47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3041,7 +3199,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[37]
+[48]
 File: figures/getfail.pdf Graphic file (type QTm)
  <use  "figures/getfail.pdf" >
 File: figures/getsuc.pdf Graphic file (type QTm)
@@ -3056,6 +3214,12 @@ File: figures/remfail.pdf Graphic file (type QTm)
 <use  "figures/remfail.pdf" >
 File: figures/remsuc.pdf Graphic file (type QTm)
  <use  "figures/remsuc.pdf" >
+
+Package natbib Warning: Citation `likwid' on page 49 undefined on input line 62
+0.
+
+File: figures/2630topology.pdf Graphic file (type QTm)
+<use  "figures/2630topology.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3068,7 +3232,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[38]
+[49]
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3078,23 +3242,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[39]
-
-Package natbib Warning: Citation `likwid' on page 40 undefined on input line 55
-0.
-
-File: figures/2630topology.pdf Graphic file (type QTm)
-<use  "figures/2630topology.pdf" >
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[40]
+[50]
 File: figures/2630clht.pdf Graphic file (type QTm)
  <use  "figures/2630clht.pdf" >
 File: figures/2630hop.pdf Graphic file (type QTm)
@@ -3133,7 +3281,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[41]
+[51]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3146,7 +3294,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[42]
+[52]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3159,17 +3307,10 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[43]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+[53]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[44]) (./chapters/ch5_cht_on_htm.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3179,7 +3320,30 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[45]
+[54]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[55]) (./chapters/ch4_cht_on_htm.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[56]
 第4章
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3194,7 +3358,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[46
+[57
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3209,7 +3373,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[47]
+[58]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3222,7 +3386,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[48]
+[59]
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3232,7 +3396,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[49]
+[60]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3245,7 +3409,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[50]
+[61]
+
+Package natbib Warning: Citation `Rajwar2002Transactional' on page 62 undefined
+ on input line 175.
+
 *************************************************
 * fontspec warning: "script-not-exist"
 * 
@@ -3288,7 +3456,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[51]
+[62]
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3298,7 +3466,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[52]
+[63]
 File: figures/hashtable.png Graphic file (type QTm)
  <use  "figures/hashtable.png" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -3313,168 +3481,8 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[53]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[54]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[55]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[56]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[57]
-
-LaTeX Warning: Float too large for page by 14.303pt on input line 477.
-
-
-LaTeX Warning: Float too large for page by 16.30293pt on input line 527.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[58]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[59]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[60]
-File: figures/Scal-u10-i1000(noset).pdf Graphic file (type QTm)
- <use  "figures/Scal-u10-i1000(noset).pdf" >
-File: figures/Scal-u10-i1000000(noset).pdf Graphic file (type QTm)
-
-<use  "figures/Scal-u10-i1000000(noset).pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[61]
-File: figures/coarse-grained-u10-i1000(noset).pdf Graphic file (type QTm)
- <use  "figures/coarse-grained-u10-i1000(noset).pdf" >
-File: figures/coarse-grained-u10-i1000000(noset).pdf Graphic file (type QTm)
-
-<use  "figures/coarse-grained-u10-i1000000(noset).pdf" >
-Underfull \vbox (badness 2486) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[62]
-File: figures/coarse-grained-u10-i1000(setcpu).pdf Graphic file (type QTm)
- <use  "figures/coarse-grained-u10-i1000(setcpu).pdf" >
-File: figures/coarse-grained-u10-i1000000(setcpu).pdf Graphic file (type QTm)
-
-<use  "figures/coarse-grained-u10-i1000000(setcpu).pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[63]
-File: figures/fine-grained-u10-i1000.pdf Graphic file (type QTm)
- <use  "figures/fine-grained-u10-i1000.pdf" >
-File: figures/fine-grained-u10-i1000000.pdf Graphic file (type QTm)
-
-<use  "figures/fine-grained-u10-i1000000.pdf" >
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
 [64]
-Overfull \hbox (15.69493pt too wide) in paragraph at lines 676--687
- [][] 
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -3487,16 +3495,22 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [65]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[66]) (./chapters/ch6_concurrent_filter.tex
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[66]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3507,24 +3521,26 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [67]
-第5章
-File: figures/bloomfilter.pdf Graphic file (type QTm)
-<use  "figures/bloomfilter.pdf" >
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[68]
+
+LaTeX Warning: Float too large for page by 14.303pt on input line 474.
+
+
+LaTeX Warning: Float too large for page by 16.30293pt on input line 530.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[68
-
-]
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3535,9 +3551,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [69]
-Underfull \vbox (badness 2671) has occurred while \output is active []
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3548,9 +3561,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [70]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3574,9 +3584,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [72]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+File: figures/Scal-u10-i1000(noset).pdf Graphic file (type QTm)
+ <use  "figures/Scal-u10-i1000(noset).pdf" >
+File: figures/Scal-u10-i1000000(noset).pdf Graphic file (type QTm)
 
-
+<use  "figures/Scal-u10-i1000000(noset).pdf" >
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3587,10 +3599,17 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [73]
+File: figures/coarse-grained-u10-i1000(noset).pdf Graphic file (type QTm)
+ <use  "figures/coarse-grained-u10-i1000(noset).pdf" >
+File: figures/coarse-grained-u10-i1000000(noset).pdf Graphic file (type QTm)
 
-LaTeX Warning: Reference `sec:XX' on page 74 undefined on input line 210.
+<use  "figures/coarse-grained-u10-i1000000(noset).pdf" >
+File: figures/coarse-grained-u10-i1000(setcpu).pdf Graphic file (type QTm)
 
+<use  "figures/coarse-grained-u10-i1000(setcpu).pdf" >
+File: figures/coarse-grained-u10-i1000000(setcpu).pdf Graphic file (type QTm)
 
+<use  "figures/coarse-grained-u10-i1000000(setcpu).pdf" >
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3601,17 +3620,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [74]
+File: figures/fine-grained-u10-i1000.pdf Graphic file (type QTm)
+ <use  "figures/fine-grained-u10-i1000.pdf" >
+File: figures/fine-grained-u10-i1000000.pdf Graphic file (type QTm)
 
-LaTeX Warning: Reference `equ:ckf_f' on page 75 undefined on input line 269.
-
-File: figures/cbf_loadfactor_b4.pdf Graphic file (type QTm)
-<use  "figures/cbf_loadfactor_b4.pdf" >
-File: figures/cbf_loadfactor_b8.pdf Graphic file (type QTm)
-
-<use  "figures/cbf_loadfactor_b8.pdf" >
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+<use  "figures/fine-grained-u10-i1000000.pdf" >
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3622,6 +3635,11 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [75]
+Overfull \hbox (15.69493pt too wide) in paragraph at lines 686--697
+ [][] 
+ []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3632,9 +3650,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [76]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3644,15 +3659,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[77]
-
-LaTeX Warning: Reference `fig:cbf_opt_b' on page 78 undefined on input line 360
-.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
+[77]) (./chapters/ch5_concurrent_filter.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3663,19 +3670,24 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [78]
-Package hyperref Info: bookmark level for unknown lstlisting defaults to 0 on i
-nput line 386.
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
+第5章
+File: figures/bloomfilter.pdf Graphic file (type QTm)
+<use  "figures/bloomfilter.pdf" >
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[79]
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[79
+
+]
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3686,6 +3698,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [80]
+Underfull \vbox (badness 2671) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3709,6 +3724,9 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [82]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3741,7 +3759,12 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[85]) (./main.bbl
+[85]
+File: figures/cbf_loadfactor_b4.pdf Graphic file (type QTm)
+ <use  "figures/cbf_loadfactor_b4.pdf" >
+File: figures/cbf_loadfactor_b8.pdf Graphic file (type QTm)
+
+<use  "figures/cbf_loadfactor_b8.pdf" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3765,16 +3788,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [87]
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-[88]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3787,9 +3800,22 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[89
+[88]
 
-]
+LaTeX Warning: Reference `fig:space' on page 89 undefined on input line 362.
+
+File: figures/space.eps Graphic file (type eps)
+<figures/space.eps>
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[89]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3803,9 +3829,6 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [90]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
@@ -3816,6 +3839,16 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
  []
 
 [91]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[92]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
 
@@ -3828,17 +3861,285 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[92]) (./chapters/publications.tex
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
-
-Overfull \hbox (8.0299pt too wide) has occurred while \output is active
-    []
- []
-
 [93]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[94]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[95]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[96]
+Underfull \vbox (badness 1715) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[97]
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[98]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[99]
+
+Package caption Warning: \label without proper reference on input line 820.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:locks' on page 100 undefined on input line 809.
+
+
+Package caption Warning: \label without proper reference on input line 820.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:locks' on page 100 undefined on input line 810.
+
+
+Package caption Warning: \label without proper reference on input line 820.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:locks' on page 100 undefined on input line 810.
+
+File: figures/locks-u0.eps Graphic file (type eps)
+<figures/locks-u0.eps>
+File: figures/locks.eps Graphic file (type eps)
+ <figures/locks.eps>
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[100]
+
+Package caption Warning: \label without proper reference on input line 820.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:locks' on page 101 undefined on input line 822.
+
+
+Package caption Warning: \label without proper reference on input line 820.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `fig:locks' on page 101 undefined on input line 823.
+
+
+LaTeX Warning: Reference `fig:diff-scal' on page 101 undefined on input line 83
+2.
+
+File: figures/retries10_throughput.eps Graphic file (type eps)
+<figures/retries10_throughput.eps>
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[101]
+File: figures/retries_throughput.eps Graphic file (type eps)
+ <figures/retries_throughput.eps>
+LaTeX Font Info:    Calculating math sizes for size <10.53925> on input line 85
+9.
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[102]) (./chapters/summary.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[103]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[104
+
+
+]) (./main.bbl
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[105]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[106
+
+]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[107]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[108]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[109]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[110]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[111]) (./chapters/publications.tex
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+
+Overfull \hbox (8.0299pt too wide) has occurred while \output is active
+    []
+ []
+
+[112]
 附录 A
 ) (./chapters/projects.tex
 Overfull \hbox (8.0299pt too wide) has occurred while \output is active
@@ -3850,7 +4151,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[94
+[113
 
 ]
 附录 B
@@ -3864,7 +4165,7 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[95
+[114
 
 ] (./chapters/acknowledgements.tex
 
@@ -3886,15 +4187,15 @@ Overfull \hbox (8.0299pt too wide) has occurred while \output is active
     []
  []
 
-[96
+[115
 
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 81.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 81.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 80.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 80.
  (./main.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 81.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 81.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 80.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 80.
 
 
 LaTeX Warning: There were undefined references.
@@ -3905,12 +4206,12 @@ LaTeX Warning: There were undefined references.
 ### simple group (level 1) entered at line 1061 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 46512 strings out of 493005
- 928482 string characters out of 6134596
- 1022503 words of memory out of 5000000
- 49735 multiletter control sequences out of 15000+600000
- 27452 words of font info for 188 fonts, out of 8000000 for 9000
+ 46710 strings out of 493005
+ 935527 string characters out of 6134596
+ 1025694 words of memory out of 5000000
+ 49927 multiletter control sequences out of 15000+600000
+ 32937 words of font info for 208 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,24n,87p,10499b,7279s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,24n,87p,10499b,6491s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on main.pdf (104 pages).
+Output written on main.pdf (125 pages).

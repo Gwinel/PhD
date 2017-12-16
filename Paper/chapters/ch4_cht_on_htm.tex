@@ -23,10 +23,6 @@
 它最吸引人的特点是程序员只需在本地对共享数据的访问进行推理，并让底层系统确保正确的并发执行。
 该模型有望提供细粒度锁机制那样的线程扩展性并能避免由一般的锁机制中常见的陷阱，比如死锁等问题。
 
-事务内存发展到今天，有两种实现方式，一是基于软件的事务内存（STM）；一是基于硬件的事务内存（HTM）。
-不论是软件事务内存\cite{spear2010lightweight,saha2006mcrt,shavit1997software}还是硬件事务内存\cite{yen2007logtm,moore2006logtm,dalessandro2011hybrid}都得到了充分的研究与长足的发展。
-随着IBM z系列~\cite{Cain2013Robust}和p系列~\cite{Wang2012Evaluation}处理器以及Intel Haswell处理器~\cite{Intel2015Intel}的问世，标志着硬件事务内存~\cite{Herlihy1993Transactional}走向市场化。
-
 本章主要研究硬件事务内存对构建并发哈希表的作用。
 
 \section{Intel事务同步扩展}
@@ -43,7 +39,8 @@ TSX提供一组扩展指令集，允许编程人员指定事务同步的代码�
 这样，编程人员只需使用粗粒度的锁编程就能实现细粒度锁的性能。
 如果多个线程同时访问受同一个锁保护的临界区而彼此之间有不存在任何数据冲突，那么这些线程就能并发的执行而无需串行化。
 
-Intel TSX提供两种不同的软件接口。一种称为硬件锁省略，Hardware Lock Elision (HLE)；一种称为限制性事务内存，Restricted Transactional Memory (RTM)。
+Intel TSX提供两种不同的软件接口。
+一种称为硬件锁省略(Hardware Lock Elision，HLE)；一种称为限制性事务内存(Restricted Transactional Memory，RTM)。
 
 \subsection{Intel硬件锁省略}
 HLE提供与传统指令集兼容的指令集接口供编程人员编写事务化的程序，还提供两条全新的指令前缀XACQUIRE和XRELEASE。
@@ -476,7 +473,13 @@ Intel TSX将确认在这种情况下确实需要加锁以保证代码的正确�
 \label{algo:slr-scm-lock}
 \end{algorithm}
 
-\textcolor{red}{完善对于加锁过程的描述}
+% \textcolor{red}{完善对于加锁过程的描述}
+算法~\ref{algo:slr-scm-lock}结合了SLR和SCM两种软件优化方法。
+算法设计了两条执行路径，一条为speculative路径，用于事务执行；一条为fallback路径，用于事务触发中止时执行。
+在speculative路径内，代码片段事务的执行，当由于某种原因触发事务中止时，线程携带触发中止的原因跳转到fallback路径上执行。
+在fallback路径内，如果$retries$的值小于预先设定的最大值或者事务中止的原因是$TXN\_MAY\_SUCCEED$，则线程仍然尝试事务执行；
+如果进行$retries$的次数已经超过了，并且此时线程持有的是辅助锁，则将线程添加到辅助锁队列内；否则的话就以标准的锁申请方式申请辅助锁。
+最后，设置主锁为真，以标准方式申请持有主锁。
 
 \subsubsection{解锁过程}
 
@@ -516,7 +519,7 @@ Intel TSX将确认在这种情况下确实需要加锁以保证代码的正确�
     $my\_aux\_node.next \gets NULL$\;
     $last\rightarrow locked \gets false$\;
 
-    unlock\_aux\_lock:
+    unlock\_main\_lock:
     \tcc*[f]{这里重复第9至20的过程}\;
   }
   $retries \gets 0$\;
@@ -525,26 +528,31 @@ Intel TSX将确认在这种情况下确实需要加锁以保证代码的正确�
 \caption{结合SLR和SCM的解锁方法}
 \label{algo:slr-scm-unlock}
 \end{algorithm}
-\textcolor{red}{完善对于加锁过程的描述}
+
+算法\ref{algo:slr-scm-unlock}描述了与算法\ref{algo:slr-scm-lock}对应的加锁过程。
+在执行解锁操作时，首先判断当前执行的内容是否属于事务执行，如果为事务执行，则进一步判断当前执行的事务代码内是否存在锁嵌套(避免因嵌套引起的lemming效应)，时候终止当前正在执行的事务代码。
+如果当前线程持有的是标准锁(包括辅助锁和主锁)，则按照标准的锁释放流程释放锁，将锁的状态置为"False"。
 
 \subsection{基于RTM的并发哈希表实现}
+
 \subsubsection{基于全局锁的并发哈希表的HTM实现}
-\textcolor{red}{//todo}
 
-\subsubsection{基于细粒度锁的并发哈希表的RTM实现}
-\textcolor{red}{//todo}
+原始的缓存行哈希表实现了基于锁和无锁两个版本，不论哪一个版本的实现都颇为复杂。
+硬件事务内存天然的具有简化同步实现的特性，本文利用算法\ref{algo:slr-scm-lock}中描述的方法实现了基于RTM的MCS锁。
+之后在缓存行哈希表的结构体中加入属性为\textit{locklib\_mutex\_t}的锁字段。
+当线程执行对哈希表内元素的操作时，首先“虚假”的持有该锁，然后事务的执行相应的操作，待执行完毕准备提交时才真正意义上的申请锁，如果当前锁为空闲狂态，则占有锁，完成提交；如果提交时遇到锁被其他线程占用，则中止提交，然后进行重试。
+这种对整个哈希表使用锁保护的实现本质上是一种粗粒度锁实现，但是通过与原始的细粒度锁实现的比较发现，无论是线程扩展性还是吞吐量都丝毫不逊色甚至优于使用传统锁方法实现的细粒度缓存行哈希表。
 
-将原来对每个哈希桶加锁替换成对整个哈希表共用一个全局锁。
-具体的过程是，在CLHT-lb的哈希表结构体中加入属性为\textit{locklib\_mutex\_t}的锁字段。
-然后用基于HTM的锁方法替换掉CLHT-lb的锁。
-这个全局锁是通过结合SLR和SCM两种方法实现的，具体见算法~\ref{algo:slr-scm-lock}~和~\ref{algo:slr-scm-unlock}~。
+为了进一步探究使用RTM对细粒度并发哈希表性能的影响，实现了基于RTM的细粒度锁版本的缓存行哈希表。
+锁的粒度与原始实现一致，唯一不同的是使用的是使用了RTM优化的锁算法，具体的性能表现将在第~\ref{sec:rtm-eva}一节中展示。
 
 
 \section{性能评价}
+\label{sec:rtm-eva}
 \subsection{测试平台和参数设置}
 进行实验测试的平台为Linux工作站。
 该工作站配备有两个Intel Xeon Broadwell EP/EN/EX处理器，总共有32个物理核（64个逻辑核），内存总容量为64GiB。
-CPU的时钟频率为2.1 GHz，三级缓存的容量分别为64 KiB，256 KiB以及40 MiB。
+CPU的时钟频率为2.1GHz，三级缓存的容量分别为64KiB，256KiB以及40MiB。
 该工作站搭载Ubuntu 16.04 LTS操作系统。
 
 本次实验的源文件使用GCC-4.8.0进行编译生成可执行文件。
@@ -569,7 +577,8 @@ CPU的时钟频率为2.1 GHz，三级缓存的容量分别为64 KiB，256 KiB以
 另外，使用细粒度锁方法需要的内存空间要多于使用HTM。
 考虑下面的实例。
 CLHT以一个缓存行作为一个哈希桶，它将缓存行分成8个字，一个字用于进行同步控制，6个字用于存放键/值对，另一个字用于指向其它哈希桶。
-如果需要创建1024 X 1024个哈希桶，需要额外的分配8 MB的内存用于存储同步变量。
+如果需要创建1024$x$1024个哈希桶，需要额外的分配8 MB的内存用于存储同步变量。
+
 \begin{figure}[htbp]
 \centering
 %\subfigure[Intel]{
@@ -584,6 +593,7 @@ CLHT以一个缓存行作为一个哈希桶，它将缓存行分成8个字，一
 第二，当工作集的大小小于片上缓存的容量时，此时由于更加激烈的数据冲突引发频繁的事务中止影响了基于HTM的全局锁性能。
 
 \subsection{不同的全局锁方案之间的比较}
+\label{sec:htm_global}
 进一步的评估使用不同的锁实现方式作为全局锁之间的性能差异。
 为此实现了6种锁方法，它们分别是：
 （1）标准的MCS锁，没有使用任何优化的MCS锁方法；

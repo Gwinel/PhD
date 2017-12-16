@@ -10,17 +10,18 @@
 用户在浏览器内输入URL，浏览器需要判断该URL是否是恶意的，它将该URL与本地缓存的URL进行匹配，如果匹配失败，则说明该URL是安全的链接可以正常访问；否则，说明该URL可能存在安全隐患。
 此时，提交请求给远程客户端进行验证，并警告用户该URL存在风险。
 在这个应用场景中，如果缓存的URL数量很少，那么使用上述的数据结构都可以达到较高的查找效率，同时对内存空间的要求也不高。
-假设现在需要缓存的URL的数量为10亿条(这在当前是很常见的一个数量级)，每条URL的大小为8个字节，那么存储所有的URL大约需要8 GB的内存。
-使用哈希表是一种可能的解决方案.哈希表的查询时间复杂度为O(1)，可以节省查找的时间，但是没有降低对内存的需求。
+假设现在需要缓存的URL的数量为10亿条(这在当前是很常见的一个数量级)，每条URL的大小为8个字节，那么存储所有的URL大约需要8GB的内存。
+使用哈希表是一种可能的解决方案。
+哈希表的查询时间复杂度为O(1)，可以节省查找的时间，但是没有降低对内存的需求。
 
 事实上，除非有特别的需求，否者判断元素是否在一个指定集合内，并不需要把所有元素的原始信息都保存下来，而只需要保存该元素的“存在状态”，存储存在状态只需要几个bit。
 使用哈希函数可以将元素映射成位数组中的一个点，采用k个哈希函数将元素映射成k个点。
 这样，经过映射之后，查找元素是否存在时只需看看特定的几个位点的值就能判断某个元素是否存在于集合当中，如果k个位置都为1，则说明该元素可能存在，如果有1个位置上为0，则可以肯定该元素不存在。
-这样不仅可大大缩减内存空间，查找速度非常
+这样不仅可以大大缩减内存空间，查找速度也非常快。
 这就是布隆过滤器(Bloom Filter)的基本思想。
 它的名字源自其发明者Burton.H Bloom\cite{bloom1970space}。
 布隆过滤器最初应用于拼写检查和数据库系统。
-但是，随着互联网的爆炸式发展，海量数据中快速检索目标数据的需求使得布隆过滤器的应用焕发新生，涌现出新的应用和变种\cite{bender2012don,bonomi2006improved,song2005fast,yu2009buffalo}。
+但是，随着互联网的爆炸式发展，海量数据中快速检索目标数据的需求使得布隆过滤器的应用焕发新生，涌现出新的应用和变种\cite{song2005fast,bonomi2006improved,yu2009buffalo,bender2012don}。
 
 \section{布隆过滤器}
 
@@ -97,14 +98,16 @@ $-{1/m}$ $\to 0$，
 \epsilon = \left(1 - \left(1 - {1/m}\right)^{{-m}\frac{-kn}{m}}\right)^k \thickapprox \left(1 - e^{-\frac{nk}{m}}\right)^k
 \label{equ:beta}
 \end{equation}
-由公式\ref{equ:beta}可以初步断定\begin{math}\epsilon\end{math}与元素的个数n和位数组的长度m决定，增大n或者减小m都会导致\begin{math}\epsilon\end{math}的升高。这种计算方法不严格，因为前面假设哈希函数和散列后值的分布是相互独立的。
+由公式\ref{equ:beta}可以初步断定\begin{math}\epsilon\end{math}与元素的个数n和位数组的长度m决定，增大n或者减小m都会导致\begin{math}\epsilon\end{math}的升高。
+$m$和$n$的比值对应第~\ref{sec:space_ef}的空间开销。
+这种计算方法不严格，因为前面假设哈希函数和散列后值的分布是相互独立的。
 但是，这个假设随着m和n的增大误判率更接近真实的误判率。
 Mitzenmacher证明无假设情况下的误判率的期望值相同\cite{mitzenmacher2002compressed}。
 
 \subsection{最优哈希函数个数}
 \label{sec:num_hashf}
 哈希函数的选择对于布隆过滤器的性能以及空间利用率都有至关重要的作用。
-对于选取什么样的哈希函数已经在前文中有过介绍，这里不再缀述。
+对于选取什么样的哈希函数已经在前文中有过介绍，这里不再赘述。
 而对于哈希函数的个数，直观的认为越多越好。实际上，哈希函数越多，用于表达集合中每一个元素所需要的位数就越多，这与布隆过滤器用较低的误判率换取空间的高效利用的初衷相悖。那么哈希函数的个数应该满足什么条件才能有最佳性能呢？
 
 下面推导对给定的$\alpha$，k满足什么条件可以使$\epsilon$最小化。
@@ -150,7 +153,7 @@ lnf\left(k\right) = kln\left(1 - b^{-k}\right)
 \subsection{最优位数组长度}
 \label{sec:opt_m}
 下面进行给定一定的误判率上限，布隆过滤器至少需要多少位才能表示全集中任意的x个元素的集合。
-假设全集中元素的个数为n，最大误判率为$epsilon$。以此为前提展开对位数组大小的推导。
+假设全集中元素的个数为n，最大误判率为$\epsilon$。以此为前提展开对位数组大小的推导。
 
 假设$S_n$为全集中任取$n$个元素的集合，$B$是表示$S_n$的位数组。
 那么对于集合$S_n$中任意一个元素$x$，在$B$中查询$x$都能得到肯定的结果，即$B$能够接受$x$。
@@ -187,7 +190,7 @@ m \geq n\frac{log_2({1/\epsilon})}{ln2} = nlog_2e\ast log_2({1/\epsilon}) \thick
 
 式~\ref{equ:bfm2}说明当k取到最优值时，要保证误判率不超过给定的上限$\epsilon$，$m$至少要取到最小值的1.44倍。
 可以验证，当给定$\epsilon = 0.01$时，存储每个元素需要9.6比特。
-而将$\epsilon = 0.001 $时，每个元素需要额外的增加4.8比特。
+而$\epsilon = 0.001 $时，每个元素需要额外的增加4.8比特。
 所以，在实际的应用中，对于误判的容忍度不同，要求误判率越低，则存储每个元素需要的比特位越多，相同容量下存储的元素个数就越少。
 
 \section{Cuckoo过滤器的参数}
@@ -207,7 +210,7 @@ m \geq n\frac{log_2({1/\epsilon})}{ln2} = nlog_2e\ast log_2({1/\epsilon}) \thick
 
 为了支持动态的插入和删除元素，Cuckoo过滤器采用的是一种称为\textbf{不完整键值(partial-key)} Cuckoo哈希的技术。
 Cuckoo过滤器是标准Cuckoo哈希表在集合元素查询算法领域的应用。
-在前面的章节中已经对Cuckoo哈希表的基本原理和概念有过详细介绍(\textcolor{red}{第~\ref{sec:XX}节})，这里不再赘述。
+在前面的章节中已经对Cuckoo哈希表的基本原理和概念有过详细介绍(第~\ref{sec:ckhash}节)，这里不再赘述。
 仅对与在这一部分密切相关的术语进行重申。
 Cuckoo的数据结构与Cuckoo哈希表相同，其基本单元称为\textbf{实体}(entry)，不同的是每一个实体内存储的不是完整的键值，而是根据键值进行提取后的\textbf{指纹}(fingerprint)~\cite{memc3}，用$f$表示。
 哈希表由存储了多个实体的\textbf{桶}(bucket)数组构成。
@@ -266,7 +269,7 @@ Cuckoo的数据结构与Cuckoo哈希表相同，其基本单元称为\textbf{实
 \label{equ:cbf_f}
 \end{equation}
 
-因此，由式~\ref{equ:ckf_f}可以做出结论，$4^{bf}$必须满足$\Omega(n)$才能避免一场的插入失败的概率。
+因此，由式~\ref{equ:cbf_f}可以做出结论，$4^{bf}$必须满足$\Omega(n)$才能避免异常的插入失败的概率。
 指纹信息的长度最好为$f = \Omega(log(\frac{n}{b}))$比特。
 在第~\ref{sec:opt_m}节中指出标准的布隆过滤器用于表示每个元素所需的比特数为常数(近似等于$ln(\frac{1}{\epsilon})$)。
 而Cuckoo过滤器指纹信息所需的长度为$\Omega(logn)$这个级别，这个结果看上去似乎不是特别理想。
@@ -305,33 +308,34 @@ $\Omega(log~n)$与常数间的区别。
 图~\ref{fig:cbf_fingerprint_size}的结果表明6比特的指纹信息足够存储数十亿个元素，并且能够达到很高的哈希表利用率。
 
 \subsection{空间效率}
+\label{sec:space_ef}
 对Cuckoo过滤器内的元素进行增、删、查操作与每个哈希桶内包含多少实体无关。
 但是，为Cuckoo过滤器选择正确的参数对于空间效率具有重要意义。
 这一部分着重介绍如何选取合适的参数优化Cuckoo过滤器的空间效率。
 
 \subsubsection{空间开销}
 空间效率是通过计算在完整的过滤器中用于表示每个元素所用的平均比特数来衡量的。
-用哈希表的大小除以过滤器有效存储的元素的个数就是表示每个元素所用的平均比特数。
+用哈希表的比特数除以过滤器有效存储的元素的个数就是表示每个元素所用的平均比特数。
 尽管每个实体可以存储一条指纹信息，但是并不是所有的实体都已经存入了指纹信息——过滤器的哈希表内一定有空闲的实体。
 所以，每个元素实际上需要的比特数大于指纹信息的长度。
-如果每条指纹信息的长度为$f$比特，哈希表的负载因子为$\alpha$，则每个元素的空间开销C为：
+如果每条指纹信息的长度为$f$比特，哈希表的负载因子为$\alpha$，C的单位为：bits/item，每个元素的空间开销C可以用式~\ref{equ:space_cost}表示。
 \begin{equation}
-C = \frac{\text{哈希表的大小}}{\text{元素个数}} = \frac{f\cdot \text{实体数量}}{\alpha \cdot \text{实体的数量}} = \frac{f}{\alpha} \text{bits.}
+C = \frac{\text{哈希表的比特数}}{\text{存储的元素个数}} = \frac{f\cdot \text{实体的数量}}{\alpha \cdot \text{实体的数量}} = \frac{f}{\alpha} \text{bits.}
 \label{equ:space_cost}
 \end{equation}
 
 在前文中有过介绍，指纹信息的长度和负载因子都与哈希桶的大小有关。
 下面研究在给定的误判率$\epsilon$前提下，如何通过选取最优的桶大小$b$使$C$最小化。
 
-保持Cuckoo过滤器的总的大小为常量，改变哈希桶的大小会产生两方面的影响：
-\begin{itemize}
-\item \textbf{哈希桶容纳的实体数量越多，哈希表的空间占用率就越高。}对于使用两个哈希函数的Cuckoo过滤器，当桶能容纳的实体数$b = 1$时，哈希表的负载因子$\alpha$为50\%，
+保持Cuckoo过滤器的总比特数为常量，调整哈希桶的容量会产生两方面的影响：
+\textbf{第一，哈希桶容纳的实体数量越多，哈希表的空间利用率越高。}对于使用两个哈希函数的Cuckoo过滤器，当桶能容纳的实体数$b = 1$时，哈希表的负载因子$\alpha$为50\%，
 而当$b = 2,4,8$时，$\alpha$分别为84\%，95\%和98\%。
-\item \textbf{哈希桶的容量越大，维持相同$\epsilon$需要的指纹信息的长度越长。}
+
+\textbf{第二，哈希桶的容量越大，维持相同$\epsilon$需要的指纹信息的长度越长。}
 哈希桶的容量越大，进行查询时需要检查更多的实体，并且发现相同指纹信息的概率也会增加。
 在最坏情况下，查询一个并不存在的元素需要探测两个分别包含了$b$个实体的桶
 (当然并不是所有的哈希桶内都填满了实体，这里只是考虑最糟糕的情况；当哈希表的负载因子达到95\%时，已经很接近极限情况)。
-对于每一个实体而言，一次查询与存储的指纹相匹配并且返回成功匹配误报的概率最多为${1/2^f}$。
+对于每一个实体而言，一次查询与存储的指纹相匹配并且返回成功匹配被误报的概率最多为${1/2^f}$。
 在进行$2b$次这样的比较之后，误报率的上界为：
 \begin{equation}
 1 - (1 - {1/2^f})^{2b} \thickapprox {2b/2^f}
@@ -342,7 +346,6 @@ C = \frac{\text{哈希表的大小}}{\text{元素个数}} = \frac{f\cdot \text{�
 f \geq \lceil log_2({2b/\epsilon})\rceil = \lceil log_2({1/\epsilon}) + log_2(2b)\rceil  
 \label{equ:upper_f}
 \end{equation}
-\end{itemize}
 
 由式~\ref{equ:space_cost}和\ref{equ:upper_f}可以推算存储每个元素的空间开销$C$受下面条件的限制：
 \begin{equation}
@@ -354,10 +357,17 @@ $\alpha$随着$b$的增加而增加。
 此时$C$ = 1.05$log_2({1/\epsilon}) + 1.05\cdot 3$。
 式~\ref{equ:space_cost_bound}表明，当负载因子一定时，Cuckoo过滤器的空间开销要低于布隆过滤器($1.44log_2({1/\epsilon})$)。
 
-\textcolor{red}{为了确定最优的哈希桶容量$b$，下面将通过实验比较参数$b$为不同的值时的空间效率。
+为了确定最优的哈希桶容量$b$，下面将通过实验比较参数$b$为不同的值时的空间效率。
 用不完整键Cuckoo哈希方法构造具有不同的指纹信息长度的哈希表，分别记录对应的平均空间开销和误判率。
-结果如图~\ref{fig:cbf_opt_b}所示。
-使空间效率最好的$b$的取值依赖于预定的误判率$\epsilon$：当$\epsilon > 0.002 $时，$b = 2$对应的平均空间开销要略好于$b = 4$对应的空间开销；而当$ 10^{-5} < \epsilon \leq 0.002$时，$b = 4$具有最小的空间开销。}
+结果如图~\ref{fig:space}所示。
+使空间效率最好的$b$的取值依赖于预定的误判率$\epsilon$：当$\epsilon > 0.002 $时，$b = 2$对应的平均空间开销要略好于$b = 4$对应的空间开销；而当$ 10^{-5} < \epsilon \leq 0.002$时，$b = 4$具有最小的空间开销。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.6\textwidth]{space.eps}
+\caption{哈希桶容量与空间效率的关系}
+\label{fig:cbf_space}
+\end{figure}
 
 综上所述，Cuckoo过滤器的默认参数配置为(2，4)，即每个元素有两个候选的哈希桶，每个哈希桶最多能够容纳4条指纹信息。
 选取这组参数作为默认配置的原因一是实际的应用一般都要求$ 10^{-5} < \epsilon \leq 0.002$~\cite{broder2004network}，二是这个参数组合能够提供最优综合性能。
@@ -379,49 +389,52 @@ $\alpha$随着$b$的增加而增加。
 
 \subsection{加锁与解锁}
 接下来的内容介绍如何通过基于Intel RTM的MCS锁实现多线程并发的Cuckoo过滤器。
-Listing 2.1 给出了基于Intel RTM的MCS锁算法实现。
+算法~\ref{algo:mcs_lock}给出了基于Intel RTM的MCS锁算法实现。
 $locklib\_mutex\_t$是一个包含了MCS锁字段、一个$uint8\_t$类型的$mode$变量以及一个用于缓存行对齐的字符串的结构体。
 函数$locklib\_mutex\_lock()$具有两个参数，一个为互斥量$mutex$，一个为整型数$mode$。
 $mode$的值分别对应0、1，0表示当前持有锁的操作为读取操作，1表示当前持有锁的操作为更新操作(删除或插入)。
-\begin{lstlisting}[caption = {基于Intel RTM的MCS锁算法}]
-struct {
-        mcs_lock_t    lock;
-        uint32_t    pad1[128/4 - sizeof(mcs_lock_t)];
-} spec_mcs_lock_t;
+\begin{algorithm}[htbp]
+\textbf{struct} \{\\
+        ~~~~mcs\_lock\_t    lock;\\
+        ~~~~\textbf{uint32\_t}    pad1[128/4 - sizeof(mcs\_lock\_t)];\\
+\} spec\_mcs\_lock\_t;\\
 
-struct {
-        mcs_lock_t        mcs;
-        uint8_t mode;
-        char padding[];
-} locklib_mutex_t;
+\textbf{struct} \{\\
+        ~~~~mcs\_lock\_t        mcs;\\
+        ~~~~\textbf{uint8\_t} mode;\\
+       ~~~~\textbf{char} padding[];\\
+\} locklib\_mutex\_t;\\
 
-int locklib_mutex_lock(locklib_mutex_t *mutex, uint8_t mode){
-        spec_mcs_lock_t *lock = (spec_mcs_lock_t *) mutex;
-        uint32_t reason = 0;
+\textbf{int} locklib\_mutex\_lock~(locklib\_mutex\_t ~*mutex, \textbf{uint8\_t} mode)\{\\
+        ~~~~spec\_mcs\_lock\_t~ *lock ~= ~(spec\_mcs\_lock\_t ~*) ~mutex;\\
+        ~~~~\textbf{uint32\_t} reason = 0;\\
 
-speculative_path:
-        XBEGIN(fallback_path, reason);
-        if (lock->lock) XABORT(1);
-        return 0;
+speculative\_path:\\
+        ~~~~XBEGIN(fallback\_path, reason);\\
+        ~~~~\textbf{if}~ (lock->lock) ~XABORT(1); \\
+        ~~~~~~~~\textbf{return} 0;\\
 
-fallback_path:
-        retries++;
-        while (lock->lock)
-                cpu_relax();
-        if (retries < MAX_RETRIES)
-                goto speculative_path;
+fallback\_path:\\
+        ~~~~retries++;\\
+        ~~~~\textbf{while}~ (lock->lock)\\
+                ~~~~~~~~cpu\_relax();\\
+        ~~~~\textbf{if} (retries < MAX\_RETRIES)\\
+                ~~~~~~~~\textbf{goto} speculative\_path;\\
 
-        // Acquire lock in a standard manner
-        my_node.locked = true;
-        qnode_t *prev = __sync_lock_TAS(&lock->lock, &my_node);
-        if (unlikely(prev != NULL)) {
-                prev->next = &my_node;
-                while (my_node.locked)
-                        cpu_relax();
-        }
-        mutex->mode = mode;
-        return 0;}
-\end{lstlisting}
+        \tcc{标准方式申请锁}\ 
+        ~~~~my\_node.locked = true;\\
+        ~~~~qnode\_t *prev = \_\_sync\_lock\_TAS(\&lock->lock, \&my\_node);\\
+        ~~~~\textbf{if} ~(unlikely(prev != NULL)) \{\\
+                ~~~~~~~~prev->next = \&my\_node;\\
+                ~~~~~~~~\textbf{while}~ (my\_node.locked)\\
+                        ~~~~~~~~~~~~cpu\_relax();\\
+        ~~~~\}\\
+        ~~~~mutex->mode = mode;\\
+        ~~~~\textbf{return} 0; \\
+\}\\
+\caption{基于Intel RTM的MCS锁算法}
+\label{algo:mcs_lock}
+\end{algorithm}
 对临界区的保护设置了$speculative\_path$，$fallback\_path$两条执行路径：一条为事务化推测执行路径(第16行)；一条为回退路径(第21行)，即当事务执行失败后，临界区申请标准锁完成本次操作。
 在事务化推测执行期间，线程首先不会申请获取锁，直到执行完成准备提交时再申请获取锁，如果申请的锁被占用，则该线程所执行的事务被中止，
 线程对系统状态所做的更改都失效，系统回退到初始状态跳转到回退路径执行(事务内存的原子性)。
@@ -433,36 +446,37 @@ fallback_path:
 一般的，事务代码在经过一定次数的重试之后成功提交的概率远远大于失败的概率，所以执行回退路径对性能的影响是可控的。
 
 % \begin{figure}
-\begin{lstlisting}[caption = {基于Intel RTM的MCS解锁算法}]
-int locklib_mutex_unlock(locklib_mutex_t *mutex)
-{
-    spec_mcs_lock_t *lock = (spec_mcs_lock_t *) mutex;
+\begin{algorithm}[htbp]
+\textbf{int} locklib\_mutex\_unlock(locklib\_mutex\_t *mutex) \\
+\{\\
+    ~~spec\_mcs\_lock\_t *lock = (spec\_mcs\_lock\_t *) mutex;\\
 
-    if (XTEST()) {
-        XEND();
-    } 
-    else {
-        // Release lock in a standard manner
-        qnode_t *last = my_node.next;
-        if (last == NULL) {
-            if (likely(true == __sync_bool_CAS
-            	(&lock->lock, &my_node, NULL)))
-                	return 0;
+    ~~~~\textbf{if} (XTEST(~)) \{\\
+        ~~~~~~~~XEND(~);\\
+    ~~~~\} \\
+    ~~~~\textbf{else} \{ \\
+        ~~~~~~~~\tcc{使用标准的方式进行解锁}\
+        ~~~~~~~~qnode\_t *last = my\_node.next; \\
+        ~~~~~~~~\textbf{if} (last == NULL) \{ \\
+            ~~~~~~~~~~~~\textbf{if} (likely(true == \_sync\_bool\_CAS(\&lock->lock, \&my\_node, NULL))) \\
+                	~~~~~~~~~~~~~~~~\textbf{return} 0; \\
 
-            while ((last = my_node.next) == NULL)
-                	cpu_relax();
-            }
+            ~~~~~~~~~~~~\textbf{while} ((last = my\_node.next) == NULL) \\
+                	~~~~~~~~~~~~~~cpu\_relax(); \\
+            ~~~~~~~~~~~~\} \\
 
-        my_node.next = NULL;
-        last->locked = false;
-    }
+        ~~~~~~~~my\_node.next = NULL; \\
+        ~~~~~~~~last->locked = false; \\
+    ~~~~\} \\
 
-    retries = 0;
-    return 0;
-}
-\end{lstlisting}
+    ~~~~retries = 0; \\
+    ~~~~\textbf{return} 0; \\
+\}\\
+\caption{基于Intel RTM的MCS解锁算法}
+\label{algo:mcs_unlock}
+\end{algorithm}
 
-Listing 2.2 展示了对应的解锁过程。
+算法~\ref{algo:mcs_unlock}展示了对应的解锁过程。
 与加锁过程的两条路径相对应，释放锁的过程也分为两个阶段：首先使用\textit{XTEST}判断当前执行的操作是否为事务执行，若为事务执行，使用\textit{XEND}结束；若判断此次操作申请的锁是通过标准的方式获取的，则按照标准锁的释放过程释放锁。
 最后将\textit{retries}变量清零。
 
@@ -733,6 +747,144 @@ FIND\_UNLOCK; \\
 另外，当指纹信息的长度大于4比特时，只对它的4个比特位进行编码，余下的比特位将直接单独的存储在原来的哈希桶内。
 
 \subsection{性能评估}
+本文在Cuckoo过滤器的基础上\cite{fan2014cuckoo}，实现了基于Intel RTM的并发Cuckoo过滤器并结合一些优化方法进行性能优化。
+下文为了便于进行性能比较和描述，将并发Cuckoo过滤器记作“CCF”。
 
+\textbf{实验配置：}所有插入过滤器的元素都是预先采用随机数生成器生成的64位的整型数。
+由于生成相同数值的概率极低，所以没有对具有相同值的元素进行排查。
+每一次对过滤器的操作请求，过滤器首先使用CityHash\cite{cityhash}生成对应元素的64位哈希值。
+每一组数据都是通过运行10次的结果取平均值得到。
+所有实验都是在具有两个Intel Xeon Broadwell EP/EN/EX处理器的机器上运行。
+该机器总共有32个物理核（64个逻辑核），内存总容量为64 GB。
+CPU的时钟频率为2.1 GHz，三级缓存的容量分别为64 KB，256 KB以及40 MB。
+该工作站搭载Ubuntu 16.04 LTS操作系统。
+
+\textbf{性能指标：}为了充分评估CCF的性能、空间效率、误判率以及与CCF并发性相关的线程扩展性、吞吐量，本文确定了以下几个性能指标：
+\begin{itemize}
+ \item \textit{空间效率：}用于表示一个元素所需的平均比特位，计算方式是过滤器插入的元素的总的比特位数除以过滤器总的元素的容量，单位为bits/item.
+ \item \textit{误判率：}在过滤器的负载因子不再变化之后，通过在过滤器内查询不存在的元素，统计返回值为“True”的查询的次数$false\_count$，然后用$false\_count$除以执行的查询的次数，得到误判率；
+ \item \textit{构造速率：}往空的过滤器中不断插入元素到“饱和”（判断过滤器“饱和”的依据是当执行某次插入操作返回失败）时为止，总的插入元素的个数除以从空到“饱和”花费的时间，单位为million items/sec.
+ \item \textit{吞吐量：}平均每秒所能执行的过滤器元素操作的数量；吞吐量跟工作集、过滤器的密度以及线程数量相关。
+ \item \textit{线程扩展性：}吞吐量随着线程数量增长的能力，好的扩展性体现在随着参与运算的线程的增加，对应的吞吐量也增加。
+% \item \textit{加速比：}在多处理器上，使用$n$个线程的CCF的构造速率和使用单线程的CF的构造速率的比值。
+\end{itemize}    
+
+\subsubsection{空间效率和误判率}
+\textbf{red}{这部分考虑重新设定实验方案进行修正！！}
+
+首先对比CF和CCF的空间效率和误判率。
+过滤器的大小设置成192 MB（为$m = 2^{25}$个能存储4个大小为12比特的指纹信息的哈希桶的哈希表的大小）。
+对于CCF，执行测试的线程数设置成机器支持的最大线程数（64），每个线程承担的插入任务是均等的，当线程的某次插入操作失败时，该线程的插入任务终止。
+当所有的线程完成插入任务或者被终止时，统计插入元素的个数，最终插入元素的个数为各个线程执行的插入次数的总和。
+同样CF停止插入元素的条件也是某次插入返回失败。
+误判率的测算过程是，在过滤器内查询一个确定不存在的元素，如果某次查询操作返回该元素存在，则记录一次误判。
+本次实验中，抽样查询次数为一百万次。
+最终误判率通过记录的误判数除以总的查询的次数。
+表~\ref{tab:cf_space}列出了CF和CCF的相关测试结果。
+
+在指纹信息长度、过滤器容量一定的前提下，CCF的误判率是串行Cuckoo过滤器的一半；
+此外，二者最明显的差距体现在构造速率上，CCF的构造速度大约是串行Cuckoo过滤器的十余倍。
+但是，CCF的空间利用率较低，约为串行过滤器的50\%。
+
+\begin{table}[htbp]
+  \centering
+  \caption{空间效率、误判率和构造速率}
+  \label{tab:cf_space}
+  \begin{tabular}{ccccc}
+    \toprule
+      filter  & \# inserted items & bits/item & $\epsilon$ (\%)&  constr.speed  \\
+    \midrule
+      CF   &  128.07 (M) & 12.58 (bits) &  0.2       &  5.32 (M items/sec)  \\
+      CCF  &  66.9 (M)  & 24.07 (bits)  &  0.1       &  658.06 (M items/sec) \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\subsubsection{扩展性}
+这一部分将对CCF的线程扩展性进行评估。
+
+%首先比较不同的锁实现的总和吞吐量，从中选取性能最好的锁方法，然后针对这种方法再进行更细的评估。
+首先综合评估了使用不同软件优化方案的RTM版本。
+这些软件方法分别是：基于RTM Retry的版本，用“Retry-CCF“标识，其中$retry$的最大次数设置为10（对于$retries$次数的设定将有专门的内容进行说明）；基于SLR的版本，用”SLR-CCF“标识；基于SCM的版本，用”SCM-CCF标识“；以及结合了SLR和SCM的版本，用”MIX-CCF“标识。
+图~\ref{fig:locks}展示了这四个不同版本的线程扩展性。
+图~\ref{fig:locks}（a）对应处理只读数据集的运行结果，图~\ref{fig:locks}（b）对应处理更新占10\%的数据集的运行结果。
+过滤器的参数说明：过滤器的哈希桶数量为$2^{24}$个，
+数据结构使用（2，4）路组相连的Cuckoo哈希表，即使用2个哈希函数，每个哈希桶能容纳4条指纹信息，因此过滤器的最大指纹信息存储数量为$2^{26}$，指纹信息的长度为12比特，过滤器的负载因子固定为50\%（之所以不设置成更高的参数，是基于数据集中包含一定比例的插入操作），即初始化的过滤器内存储了$2^{25}$个指纹信息。
+此时过滤器的大小为96 MB，远大于测试机器的L3缓存（40 MB）的容量。
+
+\begin{figure}[htbp]
+\centering
+%\subfigure[Intel]{
+\subfigure[$u$ = 0]{\includegraphics[width=0.45\textwidth]{locks-u0.eps}}
+\subfigure[$u$ = 10]{\includegraphics[width=0.45\textwidth]{locks.eps}}
+\label{fig:locks}
+\end{figure}
+图~\ref{fig:locks}（a）的结果表明Retry-CCF的扩展性最好，其次是MIX-CCF，单独使用SLR或者SCM的扩展性都不理想；
+图~\ref{fig:locks}（b）中Retry-CCF和MIX-CCF的吞吐量和扩展性不相伯仲。
+这与第~\ref{sec:htm_global}节中基于HTM的并发哈希表存在差异。
+
+\subsubsection{更新比重对性能的影响}
+Cuckoo过滤器的核心技术是不完整键Cuckoo哈希，是建立在Cuckoo哈希表上的应用。
+在对哈希表的综合评估中(第\ref{sec:impact_update})发现数据集中更新比重所占的比例对性能的影响较大。
+因此，这里通过几组数据对运行不同数据集的CCF的性能进行比较。
+由于上述对使用不同优化机制的版本进行比较发现基于Retry-CCF机制的性能略胜一筹。
+因此，进行这部分测试使用Retry-CCF。
+过滤器各项参数的设置与收集图~\ref{fig:diff-scal}数据的设置相同。
+不同的是测试所用的数据集包括三个，分别为包含了40\%和10\%更新操作以及只进行查询操作。
+运行的结果如图~\ref{fig:retry_thp}所示。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\textwidth]{retries10_throughput.eps}
+\caption{并发Cuckoo过滤器的线程扩展性}\label{fig:retry_thp}
+\end{figure}
+
+由图~\ref{fig:retry_thp}可以观察到，并发Cuckoo过滤器的只读性能的扩展性最好，吞吐量随着线程数量的增加而上升，它的最高吞吐量出现在线程数为64处（实验机器支持的最大线程数），是运行单个线程的Cuckoo过滤器的38倍。
+而如果测试集中包含一定比例的更新操作时，情况会发生变化。
+这种变化直观的体现在吞吐量上，比如数据集包含10\%的更新操作时，最高吞吐量为单个线程的11倍，而数据集包含40\%更新操作时，最高吞吐量仅为单个线程的2.5倍。
+另外，线程的扩展性也受到影响，具体的趋势是数据集的更新操作的比重越高，扩展性就越差。
+如在只读的数据集中，一直到线程数达到最大，CCF都展现出良好的扩展性，但在$u = 10\%$时，吞吐量在线程数大于48后出现下降；同样的，$u = 40\%$时，吞吐量在线程数大于16就开始下降。
+
+进一步结合本文第~\ref{sec:thread_scal}中结论，设计或者应用并发哈希表不能一味追求高并发度，要综合考虑工作集的特点。
+
+\subsubsection{$Retries$设置对性能的影响}
+在基于RTM Retry的版本中，$retries$值的设置将直接对性能造成影响。
+如果值太小，等待提交的线程在当前持有事务锁的线程释放锁之前就已经转为申请标准锁或者被存放到等待线程队列中，增加了串行化执行的比例，造成性能下降；
+如果值过大，某些由系统问题（如页错误、不兼容的指令等）引起的事务中止耗费在Retry过程的时间过长，导致运行效率低。
+因此，选用恰当的$retries$值对性能和效率都至关重要。
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.65\textwidth]{retries_throughput.eps}
+\caption{不同$retries$值之间的性能差异}\label{fig:diff-retry}
+\end{figure}
+
+接下来通过一组实验数据说明基于RTM Retry的版本中参数$retries$的设置对并发Cuckoo过滤器性能的影响。
+本组实验中设置了$retries = 5, 10, 20$三个值。
+测试所用的数据集包含10\%的更新操作。
+测试结果如图~\ref{fig:diff-retry}所示。
+从图中的曲线趋势可以观察到，当$retries = 5$时，CCF的吞吐量在线程数大于16之后开始下降，并且并发度越高，吞吐量越低。
+而$retries$设置成更大的值时，线程扩展性有明显的改善，$retries = 20$的扩展性略微比$retries = 10$的好，但是它所花费的执行时间也更长。
+因此，综合考虑扩展性和效率两方面的因素，在本文的相关测试中将$retries$设置为10.
 
 \section{本章小结}
+本章首先介绍了标准布隆过滤器的原理，对布隆过滤器的误判率，最优哈希函数个数，位数组长度和空间效率等进行了理论推导。
+最终得到位数组长度$m$，元素个数$n$和误判率$\epsilon$之间需要满足：$\frac{m}{n} \geq 1.44 log_2({1/\epsilon})$才能使性能达到最优。
+在哈希函数个数一定的情况下，要使误判率缩小到原来的十分之一，每个元素平均需要增加4.8比特的存储空间。
+随后，介绍了基于不完整键Cuckoo哈希方法的Cuckoo过滤器，对Cuckoo过滤器的设计原理，指纹信息的长度，空间效率，哈希桶的容量等方面都进行了深入的理论分析。
+确定了Cuckoo过滤器的空间效率等于指纹信息的长度$f$与过滤器的负载因子$\alpha$的比值。
+而$f$与$\alpha$都与哈希桶容量$b$有关，故以此为出发点，进一步的对哈希桶的容量对空间效率的影响进行了分析。
+接下来，使用基于Intel RTM实现的读写锁实现了支持多线程并发的Cuckoo过滤器。
+对其加锁和解锁算法进行了描述，对并发操作的方法进行详细介绍。
+最后对并发Cuckoo过滤器的性能进行了全面的评估。
+评估涵盖了对其的线程扩展性、构造速率、误判率、空间效率的评估，评估了与硬件事务内存特性相关的参数的影响以及使用不同软件优化方法对性能的影响。
+
+实验评估的结果表明，我们的并发Cuckoo过滤器在多核处理器上的效率和性能都与预期的结果相符，在处理只读数据集时最高吞吐量是使用单个线程运行的
+38倍，数据集中包含少量更新操作时，吞吐量略低，但也达到单个线程处理的吞吐量的11倍。
+此外还发现在支持硬件事务内存的环境里使用简单的优化方案带来的性能上的改善效果更明显。
+
+
+
+
+
+
