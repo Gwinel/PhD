@@ -1,0 +1,108 @@
+This is BibTeX, Version 0.99d (TeX Live 2017)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: main.aux
+The style file: hnunumerical.bst
+Database file #1: bib/references.bib
+Repeated entry---line 478 of file bib/references.bib
+ : @inproceedings{Herlihy1993Transactional
+ :                                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 528 of file bib/references.bib
+ : @inproceedings{Rajwar2002Transactional
+ :                                       ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 855 of file bib/references.bib
+ : @article{fan2000summary
+ :                        ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1024 of file bib/references.bib
+ : @inproceedings{magnusson1994queue
+ :                                  ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1033 of file bib/references.bib
+ : @techreport{craig1993building
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1346 of file bib/references.bib
+ : @book{agarwal1989adaptive
+ :                          ,
+I'm skipping whatever remains of this entry
+-- HNUTThesis.bst version 0.1 (2017/08/19) by Cheng Chang.
+-- https://github.com/chengchang/hnuthesis
+-- See the "userguide.pdf" manual for usage information.
+Warning--there's a publisher but no address in hennessy2011computer
+Warning--there's a publisher but no address in hopscotch
+Warning--can't use both volume and number fields in metreveli2012cphash
+Warning--can't use both volume and number fields in bonomi2006beyond
+Warning--there's a publisher but no address in knuth1998art
+Warning--can't use both volume and number fields in agarwal1989adaptive
+Warning--there's a publisher but no address in agarwal1989adaptive
+Warning--there's a year and month but no day in craig1993building
+Warning--can't use both volume and number fields in scott2001scalable
+Warning--can't use both volume and number fields in mellor1991scalable
+Warning--empty journal in mellor1992fast
+Warning--there's a publisher but no address in solihin2015fundamentals
+Warning--can't use both volume and number fields in kogan2011wait
+Warning--can't use both volume and number fields in kogan2012methodology
+Warning--can't use both volume and number fields in timnat2014practical
+Warning--can't use both volume and number fields in dashti2013traffic
+Warning--can't use both volume and number fields in tam2007thread
+Warning--can't use both volume and number fields in herlihy1993transactional
+Warning--there's a publisher but no address in herlihy1993transactional
+Warning--can't use both volume and number fields in rajwar2002transactional
+Warning--there's a number but no volume in linfei2010
+Warning--there's a school but no address in wangruibo2007
+Warning--there's a school but no address in wangzhaoguo2014
+Warning--empty journal in Wang2012Evaluation
+Warning--empty journal in Intel2015Intel
+Warning--empty booktitle in Afek2014Software
+Warning--there's a publisher but no address in 吴军2012数学之美
+Warning--can't use both volume and number fields in fan1998summary
+Warning--empty journal in mitzenmacher1999asymptotics
+Warning--empty journal in intel2016
+Warning--empty author in 2011Intel
+Warning--can't use both volume and number fields in dalessandro2010norec
+
+Done.
+You've used 135 entries,
+            2528 wiz_defined-function locations,
+            1246 strings with 26647 characters,
+and the built_in function-call counts, 37738 in all, are:
+= -- 3761
+> -- 1443
+< -- 83
++ -- 673
+- -- 336
+* -- 2077
+:= -- 5162
+add.period$ -- 351
+call.type$ -- 135
+change.case$ -- 1
+chr.to.int$ -- 0
+cite$ -- 167
+duplicate$ -- 1794
+empty$ -- 3714
+format.name$ -- 434
+if$ -- 9106
+int.to.chr$ -- 0
+int.to.str$ -- 135
+missing$ -- 125
+newline$ -- 745
+num.names$ -- 134
+pop$ -- 690
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 2
+skip$ -- 1375
+stack$ -- 0
+substring$ -- 2479
+swap$ -- 602
+text.length$ -- 83
+text.prefix$ -- 0
+top$ -- 5
+type$ -- 0
+warning$ -- 32
+while$ -- 375
+width$ -- 138
+write$ -- 1580
+(There were 6 error messages)

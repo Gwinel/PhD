@@ -1,0 +1,27 @@
+1 	Function lock()
+2 	retries ← 0
+
+3 	// speculative path
+4 	XBEGIN (line 6)
+5 	return
+
+6 	// fallback path
+7 	retries ← retries+ 1
+8 	if retries < MAX_RETRIES then
+9 	goto Line 3
+10 	else
+11 	lock.lock()
+12 	end
+   
+
+
+1	Function unlock() 
+2	if XTEST()then
+3		if lock is TRUE then 
+4			XABORT
+5		else
+6			XEND
+7	end 
+8	else
+9		lock.unlock()
+10	end

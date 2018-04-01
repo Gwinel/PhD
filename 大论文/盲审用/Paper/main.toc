@@ -1,0 +1,113 @@
+\contentsline {chapter}{学位论文原创性声明和学位论文版权使用授权书}{I}{Doc-Start}
+\contentsline {chapter}{插图索引}{VI}{chapter*.2}
+\contentsline {chapter}{附表索引}{VIII}{chapter*.3}
+\contentsline {chapter}{摘\hskip 1em\relax 要}{2}{chapter*.4}
+\contentsline {chapter}{Abstract}{4}{chapter*.5}
+\contentsline {chapter}{\numberline {第1章\hspace {.3em}}绪\hskip 1em\relax 论}{6}{chapter.1}
+\contentsline {section}{\numberline {1.1}多核系统概述}{6}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}多核体系结构}{6}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}多核系统的缓存一致性}{10}{subsection.1.1.2}
+\contentsline {section}{\numberline {1.2}课题研究背景及意义}{12}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}并发哈希表的性能评估}{12}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}并发哈希表的设计}{14}{subsection.1.2.2}
+\contentsline {subsection}{\numberline {1.2.3}哈希表与布隆过滤器}{15}{subsection.1.2.3}
+\contentsline {section}{\numberline {1.3}本文主要工作}{16}{section.1.3}
+\contentsline {section}{\numberline {1.4}本文组织结构}{17}{section.1.4}
+\contentsline {chapter}{\numberline {第2章\hspace {.3em}}并发哈希表的相关研究}{19}{chapter.2}
+\contentsline {section}{\numberline {2.1}哈希表概述}{19}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}相关概念}{19}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}哈希函数}{19}{subsection.2.1.2}
+\contentsline {subsection}{\numberline {2.1.3}哈希冲突处理}{20}{subsection.2.1.3}
+\contentsline {section}{\numberline {2.2}基于软件技术的同步方法研究}{22}{section.2.2}
+\contentsline {subsection}{\numberline {2.2.1}阻塞技术}{22}{subsection.2.2.1}
+\contentsline {subsubsection}{\numberline {(1)}锁方法}{22}{subsubsection.2.2.1.1}
+\contentsline {subsection}{\numberline {2.2.2}屏障技术}{24}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}无阻塞技术}{24}{subsection.2.2.3}
+\contentsline {section}{\numberline {2.3}NUMA架构内存管理相关研究}{25}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}线程与处理器内核的关联}{25}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}NUMA系统的非对称互连}{26}{subsection.2.3.2}
+\contentsline {section}{\numberline {2.4}事务内存相关研究}{27}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}实现事务内存的相关技术}{27}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}基于事务内存的并发数据结构}{28}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}布隆过滤器}{28}{section.2.5}
+\contentsline {section}{\numberline {2.6}本章小结}{29}{section.2.6}
+\contentsline {chapter}{\numberline {第3章\hspace {.3em}}基于多核系统的并发哈希表的评估与分析}{31}{chapter.3}
+\contentsline {section}{\numberline {3.1}实现并发哈希表的同步方法比较}{31}{section.3.1}
+\contentsline {section}{\numberline {3.2}典型的并发哈希表}{32}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}缓存行哈希表}{32}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}Cuckoo哈希表}{34}{subsection.3.2.2}
+\contentsline {subsection}{\numberline {3.2.3}Hopscotch哈希表}{35}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}基于RCU机制的哈希表}{36}{subsection.3.2.4}
+\contentsline {subsection}{\numberline {3.2.5}基于Intel TBB的哈希表}{36}{subsection.3.2.5}
+\contentsline {section}{\numberline {3.3}统一的跨平台并发哈希表测试框架的设计}{37}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}参数说明}{37}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}测试逻辑}{38}{subsection.3.3.2}
+\contentsline {subsection}{\numberline {3.3.3}延迟测量工具}{39}{subsection.3.3.3}
+\contentsline {section}{\numberline {3.4}并发哈希表的评估与分析}{39}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}测试平台与配置}{40}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}线程扩展性}{42}{subsection.3.4.2}
+\contentsline {subsubsection}{\numberline {(1)}总体的扩展性评估}{42}{subsubsection.3.4.2.1}
+\contentsline {subsubsection}{\numberline {(2)}数据分布方式对线程扩展性的影响}{45}{subsubsection.3.4.2.2}
+\contentsline {subsubsection}{\numberline {(3)}哈希表的扩容}{45}{subsubsection.3.4.2.3}
+\contentsline {subsection}{\numberline {3.4.3}更新比重对性能的影响}{46}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}缓存与主存}{48}{subsection.3.4.4}
+\contentsline {subsection}{\numberline {3.4.5}操作延迟}{49}{subsection.3.4.5}
+\contentsline {subsection}{\numberline {3.4.6}线程绑定方案的影响}{51}{subsection.3.4.6}
+\contentsline {subsection}{\numberline {3.4.7}同步}{54}{subsection.3.4.7}
+\contentsline {subsection}{\numberline {3.4.8}内存消耗}{55}{subsection.3.4.8}
+\contentsline {section}{\numberline {3.5}本章小结}{57}{section.3.5}
+\contentsline {chapter}{\numberline {第4章\hspace {.3em}}基于硬件事务内存的缓存行哈希表的实现}{58}{chapter.4}
+\contentsline {section}{\numberline {4.1}事务内存的基本概念}{58}{section.4.1}
+\contentsline {section}{\numberline {4.2}Intel事务同步扩展}{59}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Intel硬件锁省略}{59}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Intel限制性事务内存}{60}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}RTM的Lemming效应}{61}{subsection.4.2.3}
+\contentsline {section}{\numberline {4.3}软件辅助的硬件锁省略技术}{63}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}软件辅助的锁删除方法}{63}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}软件辅助的冲突检测方法}{66}{subsection.4.3.2}
+\contentsline {section}{\numberline {4.4}基于HTM的并发哈希表的设计}{67}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}问题引入}{67}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}缓存行哈希原型描述}{69}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}基于RTM的锁方法描述}{71}{subsection.4.4.3}
+\contentsline {subsection}{\numberline {4.4.4}基于HTM的缓存行哈希表}{73}{subsection.4.4.4}
+\contentsline {section}{\numberline {4.5}性能评价}{76}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}测试平台和参数设置}{76}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}基于HTM的粗粒度锁实现与细粒度锁CLHT-lb的比较}{76}{subsection.4.5.2}
+\contentsline {subsection}{\numberline {4.5.3}不同的全局锁方案之间的比较}{77}{subsection.4.5.3}
+\contentsline {subsection}{\numberline {4.5.4}基于HTM的细粒度锁实现与传统细粒度方法的比较}{79}{subsection.4.5.4}
+\contentsline {subsection}{\numberline {4.5.5}影响HTM性能的因素分析}{80}{subsection.4.5.5}
+\contentsline {section}{\numberline {4.6}本章小结}{81}{section.4.6}
+\contentsline {chapter}{\numberline {第5章\hspace {.3em}}并发Cuckoo过滤器的设计}{83}{chapter.5}
+\contentsline {section}{\numberline {5.1}布隆过滤器}{84}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}基本原理}{84}{subsection.5.1.1}
+\contentsline {subsection}{\numberline {5.1.2}误判率估计}{85}{subsection.5.1.2}
+\contentsline {subsection}{\numberline {5.1.3}最优哈希函数个数}{86}{subsection.5.1.3}
+\contentsline {subsection}{\numberline {5.1.4}最优位数组长度}{87}{subsection.5.1.4}
+\contentsline {section}{\numberline {5.2}Cuckoo过滤器的设计}{88}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Cuckoo过滤器的数据结构}{89}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Cuckoo过滤器的参数}{91}{subsection.5.2.2}
+\contentsline {subsubsection}{\numberline {(1)}指纹信息的长度}{91}{subsubsection.5.2.2.1}
+\contentsline {subsubsection}{\numberline {(2)}空间效率}{93}{subsubsection.5.2.2.2}
+\contentsline {section}{\numberline {5.3}并发Cuckoo过滤器}{95}{section.5.3}
+\contentsline {subsection}{\numberline {5.3.1}自旋锁}{95}{subsection.5.3.1}
+\contentsline {subsection}{\numberline {5.3.2}加锁与解锁}{98}{subsection.5.3.2}
+\contentsline {subsection}{\numberline {5.3.3}并发访问接口}{100}{subsection.5.3.3}
+\contentsline {subsubsection}{\numberline {(1)}插入操作}{101}{subsubsection.5.3.3.1}
+\contentsline {subsubsection}{\numberline {(2)}删除操作}{104}{subsubsection.5.3.3.2}
+\contentsline {subsubsection}{\numberline {(3)}查询操作}{105}{subsubsection.5.3.3.3}
+\contentsline {section}{\numberline {5.4}性能优化}{105}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}空间性能优化}{105}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}并发性能优化}{107}{subsection.5.4.2}
+\contentsline {section}{\numberline {5.5}性能评估}{111}{section.5.5}
+\contentsline {subsection}{\numberline {5.5.1}实验配置和性能指标}{111}{subsection.5.5.1}
+\contentsline {subsection}{\numberline {5.5.2}空间效率和误判率}{111}{subsection.5.5.2}
+\contentsline {subsection}{\numberline {5.5.3}扩展性}{112}{subsection.5.5.3}
+\contentsline {subsection}{\numberline {5.5.4}更新比重对性能的影响}{113}{subsection.5.5.4}
+\contentsline {subsection}{\numberline {5.5.5}$Retries$设置对性能的影响}{114}{subsection.5.5.5}
+\contentsline {section}{\numberline {5.6}本章小结}{115}{section.5.6}
+\contentsline {chapter}{结论}{116}{chapter*.65}
+\contentsline {chapter}{参考文献}{119}{chapter*.66}
+\contentsline {chapter}{\numberline {附录 A\hspace {.3em}}读学位期间所发表的学术论文}{127}{appendix.A}
+\contentsline {chapter}{\numberline {附录 B\hspace {.3em}}读学位期间所参加的科研项目}{128}{appendix.B}
+\contentsline {chapter}{致\hskip 1em\relax 谢}{129}{appendix*.67}
+\contentsfinish 

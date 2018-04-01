@@ -1,0 +1,22 @@
+\addvspace {10.0pt}
+\addvspace {10.0pt}
+\addvspace {10.0pt}
+\contentsline {table}{\numberline {3.1}{\ignorespaces 用于评估的五种并发哈希表实现\relax }}{31}{table.caption.8}
+\contentsline {table}{\numberline {3.2}{\ignorespaces 测试目标平台的硬件和系统特征\relax }}{39}{table.caption.12}
+\contentsline {table}{\numberline {3.3}{\ignorespaces CLHT-lb内存带宽随线程数量变化情况\relax }}{42}{table.caption.15}
+\contentsline {table}{\numberline {3.4}{\ignorespaces 平均缓存未命中数量随更新比重变化情况\relax }}{46}{table.caption.19}
+\contentsline {table}{\numberline {3.5}{\ignorespaces E5-2630平台上的内存使用情况\relax }}{55}{table.caption.24}
+\addvspace {10.0pt}
+\contentsline {table}{\numberline {4.1}{\ignorespaces RTM的中止状态定义\relax }}{60}{table.caption.25}
+\contentsline {table}{\numberline {4.2}{\ignorespaces Intel PMU收集的不同的HTM方法的运行时数据\relax }}{76}{table.caption.38}
+\contentsline {table}{\numberline {4.3}{\ignorespaces slr-scm-mcs方案的中止率随线程变化情况\relax }}{77}{table.caption.39}
+\contentsline {table}{\numberline {4.4}{\ignorespaces slr-scm-mcs方案的中止率随更新比重变化情况\relax }}{77}{table.caption.40}
+\addvspace {10.0pt}
+\contentsline {table}{\numberline {5.1}{\ignorespaces 相关符号及其含义\relax }}{85}{table.caption.42}
+\contentsline {table}{\numberline {5.2}{\ignorespaces HashTable类的成员函数列表\relax }}{92}{table.caption.47}
+\contentsline {table}{\numberline {5.3}{\ignorespaces 空间效率、误判率和构造速率\relax }}{100}{table.caption.52}
+\addvspace {10.0pt}
+\addvspace {10.0pt}
+\addvspace {10.0pt}
+\addvspace {10.0pt}
+\contentsfinish 

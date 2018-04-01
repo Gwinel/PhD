@@ -1,0 +1,72 @@
+%!TEX root =  ../main.tex
+
+\begin{abstract}
+	随着多处理器技术的日臻成熟以及集成到单个处理器上的处理器核心数量的日趋增加，计算机的运算能力的瓶颈不断被打破，同时这也为设计具有高可扩展性的并发数据结构以及开发基于多核架构的高性能软件系统提出了挑战。
+    并发哈希表是一种重要的并发数据结构，因其处理元素的开销为常数时间的特性被广泛应用于多核架构的软件系统开发。
+    在并发哈希表的设计、优化以及应用中，处理器的体系结构，缓存一致性协议，内存带宽，内存访问延迟以及多线程的同步机制都对其性能产生重大影响。
+    本文针对基于多核系统的并发哈希表做了如下工作：
+
+    首先，设计了用于并发哈希表的测试、评估的统一测试框架CHTBench。
+    CHTBench是目前唯一一个为不同并发哈希表之间进行性能比较，评估而设计的保证公平性的测试框架。
+    它提供统一的测试接口，具有可配置的线程与核的映射关系，能够测试不同规模的数据集以及数据集中更新操作的比重等。
+    此外，CHTBench使用$sspfd$进行延迟的测算，综合考察不同并发哈希表线程扩展性，查询和更新性能，各种操作类型的延迟等宏观指标。
+    还可以结合其它的工具如$likwid$对缓存命中率，内存带宽，跨内存节点通信开销等微观指标进行分析。
+    使用CHTBench可以为并发哈希表的评估和比较提供相对公平的测试环境。
+
+    第二，基于CHTBench测试框架对现有的几种具有代表性的并发哈希表在四个不同的多核系统上进行了深入的剖析。
+    对并发哈希表的评估选用的性能指标涵盖宏观和微观两个层面，包括吞吐量的线程扩展性，延迟，分层内存结构对性能的影响，不同线程与核映射方式之间的性能差异，同步机制的性能评估以及内存消耗。
+    通过对上述指标的分析，找出现有并发哈希表设计方法中存在的问题以及可能的性能瓶颈，分析总结了8条设计、优化并发哈希表的最佳实践原则，为将来进一步设计基于多核系统的具有高可扩展性的并发哈希表奠定理论和实践基础。
+    根据对比现有文献以及相关研究工作，我们对于并发哈希表的评估方法和所涉及的评估指标是迄今为止最全面的。
+
+    第三，使用Intel限制性事务内存（RTM）实现了基于硬件事务内存（HTM）的缓存行哈希表。
+    使用全局锁实现了多线程并发，实验评估结果表明，当数据集的规模大于最后一级缓存容量时，基于HTM的缓存行哈希表的性能是使用传统的细粒度锁方法实现的缓存行哈希表的120\%。
+    使用硬件事务内存进行并发哈希表的设计真正做到了粗粒度锁方法的简便与细粒度锁方法的高性能的有机结合。
+    同时，为了消除Intel TSX的Lemming效应对性能的影响，设计了两种软件辅助方法：软件辅助的锁省略方法（SLR）和软件辅助的冲突管理方法（SCM）。
+    实验结果表明，这两种方法对基于HTM的并发哈希表性能的提升比Intel官方推荐的RTM Retry机制更明显。
+
+    最后，使用不完整键Cuckoo哈希方法设计并实现了支持多线程并发的Cuckoo过滤器。
+    这是目前为止唯一一款支持多线程并发的过滤器实现，同时也是唯一一款基于硬件事务内存的过滤器。
+    原始的布隆过滤器不支持删除操作，实现删除操作需要引入额外的空间开销，Cuckoo哈希引入指纹信息技术实现了删除操作，不额外增加过滤器的空间开销。
+    使用基于Intel RTM的读写锁实现了多线程并发的Cuckoo过滤器。
+    实验评估表明，并发Cuckoo过滤器的初始化速度是使用单个线程初始化的10倍，查询操作的性能是单个线程的38倍，处理更新占10\%的数据集的性能是单个线程的11倍。
+    此外，还对$retry$的最大值如何选取以及使用不同软件优化方法的Cuckoo过滤器版本进行了线程扩展性的比较。
+
+    
+  	\keywords{多核系统；并发哈希表；布隆过滤器；同步；非一致性内存架构；硬件事务内存}
+\end{abstract}
+
+\begin{enabstract}
+	 As the development of multi-processor techniques and the increasing of the number of cores integrated into a single CPU chip the bottleneck of computing power of the processor is constantly being broken. 
+	 It also makes designing highly scalable concurrency data structures and developing high-performance software systems based on multi-core architectures more complicated.
+	 Concurrent hash table(CHT) is an important concurrent data structure and it is widely used to implement software systems on multi-core architectures as its queries run in amortized constant time.
+	 The hardware architecture, cache coherence protocol, memory bandwidth, memory access latency and multi-thread synchronization mechanism impact the designing, optimization and application of CHT significantly.
+     The works of this paper including:
+
+     First, we present a framework, named CHTBench, which provides a fair testing environment and unified interface for the experiments by hiding the discrepancies of hardware platforms, synthesized workloads, concurrency models, and compiler configurations. 
+     In this way, we can guarantee the experimental results generated from our framework are fairly comparable between different CHTs. 
+     An open source library, $sspfd$, is integrated into CHTBench to measure the access latency of different kinds of operations.
+     With CHTBench it's easy to compare the performance of CHTs. And it can also combine with other system tools such as $likwid$ to measure cache hit/miss rate, memory bandwidth overheads and cross-socket node communication overheads from micro perspective.
+    
+     Second, we dissected 5 state of the art CHTs on CHTBench. The evaluations are explored from a wide range of perspectives including thread scalability, throughput, latency, memory hierarchy impact, low-level synchronization primitives, and memory usage. The inter-correlations between relevant metrics are also discussed when necessary. The experiments are conducted on four major hardware platforms including Intel Many Integrated Core(MIC) architecture and three representative Non-uniform Memory Architecture(NUMA) systems. We ported CHTs to the MIC platform, and to our knowledge, this is the first extensive study of concurrent hash tables on Intel MIC architecture. 
+     According to the experimental results, �eight principles of best practices in designing and optimizing concurrent hash tables are summarized which lay the theoretical and practical foundation for further design of high scalability concurrent hash tables based on multi-core systems in the future. 
+
+
+    Then, implemented a concurrent cache-line hash table with hardware transactional memory(HTM-based CLHT).
+    The HTM-based CLHT takes the whole hash table as the critical section to achieve multi-threaded concurrency. 
+    When running workloads which large than the capacity of LLC, its performance is twenty percent better than using traditional fine-grained locks. 
+    Designing CHT achieves the combination of simplicity of coarse-grained locking and high-performance of fine-grained locking.
+    In order to eliminate the Lemming effect of Intel TSX, we presented two software-assisted techniques, lock removal(SLR) and conflict management(SCM).
+    Both of these methods improve the performance of the HTM-based concurrent hash table more significantly than the RTM Retry mechanism recommended by Intel.
+
+    At last, we presented a concurrent Cuckoo Filter based on partial-key Cuckoo Hashing.
+    To our knowledge, this is the only concurrent filter so far, and its also the only one which based on hardware transactional memory(HTM).
+    The standard Bloom Filter do not support delete elements from filter, while other extended versions of Bloom Filter support the deletion of filters with high space overheads.
+    The structure of Cuckoo Hashing is in a set-associative way, each element can map to several slots.
+    Taking this feature of Cuckoo hash table, we extract the fingerprints of the members of a set and store them in a hash table. 
+    This can delete an element very easy and without any additional space overheads.
+    When running with read-only workloads, the max throughput is 38 times of the throughput of a single thread, and running workloads with ten percent update operations, the max throughput is 11 times of a single thread.
+
+
+
+  	\enkeywords{Multi-core System; Concurrent Hash Table; Synchronization; Non-uniform Memory Architecture; Hardware Transactional Memory}
+\end{enabstract}
